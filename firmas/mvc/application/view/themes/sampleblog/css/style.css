@@ -1,0 +1,119 @@
+body
+{   
+  background-image: url(../images/bg.jpg);
+  font-family: Arial,sans-serif;
+  color: #333;
+  font-size:10pt;
+  margin:0;
+}
+  
+a:link, a:visited, a:active
+{ background-color: inherit; color:#08c; text-decoration: none; }
+
+a:hover
+{ background-color: inherit; text-decoration: none; color:#f80;}
+
+ul 
+{ list-style:none; margin-left:10px; padding:1px;}
+
+li
+{ padding:0 0 8px 10px; background: url(../images/arw.gif) 0 3px no-repeat;}
+
+li a:link, li a:visited, li a:active
+{ background-color: inherit; color:#333; text-decoration: none; }
+
+li a:hover
+{ background-color: inherit; text-decoration: none; color:#f80;}
+
+strong
+{ background:inherit; color:#08c; font-weight:normal;}
+
+h1
+{font-size:18pt; font-weight:normal; margin:0;}
+
+h2
+{font-size:8pt; font-weight:normal; margin:0; text-transform:uppercase;}
+
+#header
+{ width:735px; margin:auto; 
+  background:url(../images/headerbg.gif) 0 0 no-repeat #09c; color:#fff;
+  font-size:20pt; padding:20px 0 20px 15px; 
+ letter-spacing:3px; text-align:center; 
+ text-transform:uppercase;}
+  
+#menu
+{ width:750px; margin:auto; height:25px; 
+  background:#f80; color:inherit; font-size:9pt; clear:both;}
+
+#body
+{ width:750px; margin:auto; background:#eee; color:inherit;}
+  
+#sidebar
+{ width:215px; padding:10px; background:#eee; float:left; color:inherit; font-size:80%;}
+
+#footer
+{ width:750px; margin:auto; padding:5px 0;text-align:center; background:#09c; color:#fff; font-size:8pt; 
+  border-top:#f80 2px solid;}
+
+#footer a:link, #footer a:visited, #footer a:active
+{ background-color: inherit; color:#fff; text-decoration: none;}
+
+#footer a:hover
+{ background-color: inherit; text-decoration: underline; color:#f90;}
+
+.header
+{ font-size:8pt; font-weight:normal; letter-spacing:0; text-transform:none; padding-top:10px;}
+  
+.menu 
+{ width:150px; height:25px; float:left; font-family: Tahoma,sans-serif;
+text-align:center; text-transform:uppercase; }
+
+.menu a:link, .menu a:visited, .menu a:active
+{ background:inherit; text-decoration: none; color:#fff;display:block; height:17px; padding-top:8px; font-weight:bold; font-size:7pt;}
+
+.menu a:hover
+{ background:#f96; text-decoration:none; color:#069;}
+
+.content
+{ width:475px;float:right; padding:20px; 
+ background-color:#fff; color:inherit; text-align:justify;}
+
+.topside
+{ padding:15px 0 5px 0; font-size:10pt; letter-spacing:2px; 
+  font-weight:normal; border-bottom:#08c 2px dotted;}
+
+.footer 
+{ clear:both; }
+
+.img
+{border:0; float:left; margin-right:10px;}
+
+.center
+{text-align:center; padding-top:5px;}
+
+/*== estilos tabla ==*/
+.tabla th {
+padding: 5px;
+font-size: 12px;
+background-color: #f80;
+color: #fff;
+text-align: center;
+border-width: 1px;
+border-style: solid;
+border-color: #999999;
+font-family: "Trebuchet MS", Arial;
+text-transform: uppercase;
+}
+
+.tabla td {
+padding: 5px;
+border-width: 1px;
+border-style: solid;
+border-color: #999999;
+text-align:right;
+} 
+
+.tags{
+    font-size: 11px;
+    font-style: italic;
+}
