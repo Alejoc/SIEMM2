@@ -80,7 +80,7 @@ class MYPDF extends TCPDF {
       $this->MultiCell(180, 20,'HACE CONSTAR QUE:' .$txt, 0, 'C', 0, 0, '', '', true, 0, false, true, 60, 'T');
       $this->Ln();
       $this->SetFont('helvetica', '', 10);
-      $this->multicell(180,0,'El paciente '.utf8_encode($row['nom1'].' '.$row['nom2'].' '.$row['ape1'].' '.$row['ape2'].' identificado con documento '.$row['tdoc_pac']. ':'.$row['doc_pac'].', quien estuvo hospitalizada en la CLINICA EMMANUEL IPS. Desde el dia '.$row['fingreso_hosp'].' | '.$row['hingreso_hosp'].' y a la fecha de hoy, no se ha definido una fecha de salida del paciente por parte de su medico tratante, motivo por el cual no se puede generar incapacidad por ahora.'),0,'J');
+      $this->multicell(180,0,'El paciente '.utf8_encode($row['nom1'].' '.$row['nom2'].' '.$row['ape1'].' '.$row['ape2'].' identificado con documento '.$row['tdoc_pac']. ':'.$row['doc_pac'].', quien se encuentra  hospitalizado(a) en la CLINICA EMMANUEL IPS. Desde el dia '.$row['fingreso_hosp'].' | '.$row['hingreso_hosp'].' y a la fecha de hoy, no se ha definido una fecha de salida del paciente por parte de su medico tratante, motivo por el cual no se puede generar incapacidad por ahora.'),0,'J');
       $this->Ln();
       $this->multicell(180,0,'La presente certificacion de expide en Bogota D.C. a solicitud del interesado a los 22 dias del mes de diciembre de 2016, como justificacion por su ausencia a lugar de trabajo, estudio u otro.',0,'J');
       $this->Ln();

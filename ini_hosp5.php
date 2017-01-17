@@ -181,7 +181,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<section class="panel panel-body">
 			<article class="col-xs-2">
 		  	<label for="">Fecha Ingreso:</label>
-		  	<input type="date" name="fingreso" class="form-control" value="<?php echo date('Y-m-d');?>"<?php echo $atributo2;?>/>
+		  	<input type="date" name="fingreso" class="form-control" value="<?php echo date('Y-m-d');?>"<?php echo $atributo1;?>/>
 		  </article>
 			<article class="col-xs-2">
 		  	<label for="">Hora Ingreso:</label>

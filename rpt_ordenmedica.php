@@ -215,35 +215,35 @@ class MYPDF extends TCPDF {
       $this->Cell(100,0,'Procedimientos ordenados:',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',7);
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento1']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc1']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento1']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc1']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento2']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc2']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento2']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc2']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento3']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc3']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento3']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc3']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento4']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc4']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento4']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc4']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento5']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc5']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento5']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc5']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento6']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc6']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento6']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc6']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 10,utf8_encode($row['procedimiento7']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 10,utf8_encode($row['obs_proc7']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['procedimiento7']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->MultiCell(90, 15,utf8_encode($row['obs_proc7']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
       $this->SetFont('helvetica', '',7);
-      $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),25,20),0,'J');
+      $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),60,30),0,'J');
       $this->SetFont('helvetica', 'BI',10);
       $this->MultiCell(130, 0,utf8_encode('Profesional:'.$row['nombre'].' RM profesional:'.$row['rm_profesional'].' Especialidad:'.$row['espec_user']) .$txt, 0, 'R', 0, 0, '', '', true, 0, false, true, 80, 'T');
-
+      $this->Ln(120);
     }
 
 
