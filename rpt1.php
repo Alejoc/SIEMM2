@@ -94,7 +94,7 @@ class MYPDF extends TCPDF {
         $this->SetFont('', 'B', 8);
         $this->Cell(25, 0, 'Nombre Paciente:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->SetFont('', 'I', 8);
-        $this->Cell(60, 0, $nom, 1, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(90, 0, $nom, 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->SetFont('', 'B', 8);
         $this->Cell(20, 0, 'Identificacion:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->SetFont('', 'I', 8);
@@ -365,7 +365,7 @@ from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join user l on (l.id_user=k.id_user)
 
 where b.id_adm_hosp ='".$_GET["idadmhosp"]."' and k.freg_nutri BETWEEN '".$_GET["f1"]."' and '".$_GET["f2"]."'
-order by fecha_evo ASC
+order by fecha_evo ASC, hora_evo ASC
 
 ";
 //echo $sql;

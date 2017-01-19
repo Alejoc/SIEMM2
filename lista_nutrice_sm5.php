@@ -52,14 +52,14 @@ if (isset($_GET["mante"])){					///nivel 2
     from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
                 left join eps j on (j.id_eps=b.id_eps)
     where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Evolucion";
+			$boton="Agregar valoracion";
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='formularios/evo_psico_ce5.php';
-			$subtitulo='Evolucion Diaria Psicologia';
+			$form1='formularios/val_nutrice_sm.php';
+			$subtitulo='Valoracion inicial Nutricion';
 			break;
       $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
       b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,

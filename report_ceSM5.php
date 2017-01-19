@@ -1,4 +1,3 @@
-
 <?php
 $subtitulo="";
 	if(isset($_POST["operacion"])){	//nivel3
@@ -7,10 +6,8 @@ $subtitulo="";
 			$fotoE="";$fotoA1="";$fotoA2="";
 			if (isset($_FILES["fotopac"])){
 				if (is_uploaded_file($_FILES["fotopac"]["tmp_name"])){
-
 					$cfoto=explode(".",$_FILES["fotopac"]["name"]);
 					$archivo=$_POST["docpac"].".".$cfoto[count($cfoto)-1];
-
 					if(move_uploaded_file($_FILES["fotopac"]["tmp_name"],LOG.PACIENTES.$archivo)){
 						$fotoE=",fotopac='".PACIENTES.$archivo."'";
 						$fotoA1=",fotopac";
@@ -38,7 +35,6 @@ $subtitulo="";
 				$sql="INSERT INTO hc_hospitalario (id_adm_hosp,id_user,freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,his_personal,his_familiar,perso_premorbida,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,estado_general,tad,tas,tam,fr,fc,so,peso,talla,temperatura,imc,cabcuello,torax,ext,abdomen,neurologico,genitourinario,examen_mental,analisis,finalidad,causa_externa,plantratamiento,Resp_hchosp,especialidad,estado_hchosp) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["motivoconsulta"]."','".$_POST["enferactual"]."','".$_POST["hpersonal"]."','".$_POST["hfamiliar"]."','".$_POST["ppremorbida"]."','".$_POST["antalergico"]."','".$_POST["antpatologico"]."','".$_POST["antquirurgico"]."','".$_POST["anttoxicologicos"]."','".$_POST["antfarmacologico"]."','".$_POST["antgineco"]."','".$_POST["antpsiquiatrico"]."','".$_POST["anthospitalario"]."','".$_POST["anttrauma"]."','".$_POST["antfami"]."','".$_POST["antotros"]."','".$_POST["estadogen"]."','".$_POST["tad"]."','".$_POST["tas"]."','$tamt','".$_POST["fr"]."','".$_POST["fc"]."','".$_POST["sao2"]."','".$_POST["peso"]."','".$_POST["talla"]."','".$_POST["temperatura"]."','$imc2','".$_POST["cabezacuello"]."','".$_POST["torax"]."','".$_POST["extsup"]."','".$_POST["abdomen"]."','".$_POST["neurologico"]."','".$_POST["genitourinario"]."','".$_POST["exmental"]."','".$_POST["analisis"]."','".$_POST["finconsulta"]."','".$_POST["causaexterna"]."','".$_POST["plant"]."','".$_SESSION["AUT"]["nombre"]."','".$_SESSION["AUT"]["especialidad"]."','Realizada')";
 				$subtitulo="Adicionado";
-
 			break;
 		}
 		//echo $sql;
@@ -54,7 +50,6 @@ $subtitulo="";
 		}
 	}
 }
-
 if (isset($_GET["mante"])){					///nivel 2
 	switch ($_GET["mante"]) {
 		case 'E':
@@ -64,7 +59,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
-			$subtitulo='Edición de datos del Vehículo';
+			$subtitulo='EdiciÃ³n de datos del VehÃ­culo';
 			break;
 			case 'X':
 			$sql="";
@@ -73,7 +68,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo1=' readonly="readonly"';
 			$atributo2=' readonly="readonly"';
 			$atributo3=' disabled="disabled"';
-			$subtitulo='Confirmación para eliminar de datos del Vehículo';
+			$subtitulo='ConfirmaciÃ³n para eliminar de datos del VehÃ­culo';
 			break;
 			case 'A':
 			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,estadocivil,edad,lateralidad,profesion,religion,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,tipo_usuario,tipo_afiliacion,ocupacion,dep_residencia,mun_residencia,zona_residencia,nivel,via_ingreso,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE a.id_adm_hosp=".$_GET["idadmhosp"];
@@ -95,7 +90,6 @@ if (isset($_GET["mante"])){					///nivel 2
 		}else{
 				$fila=array("id_paciente"=>"","tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","fotopac"=>"","estadocivil"=>"","edad"=>"","lateralidad"=>"","profesion"=>"","religion"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","tipo_usuario"=>"","tipo_afiliacion"=>"","ocupacion"=>"","dep_residencia"=>"","mun_residencia"=>"","zona_residencia"=>"","nivel"=>"","via_ingreso"=>"");
 			}
-
 		?>
 <script src = "js/sha3.js"></script>
 		<script>
@@ -105,7 +99,6 @@ if (isset($_GET["mante"])){					///nivel 2
 					document.forms[0].nom_cliente.focus();				// Ubicar el cursor
 					return(false);
 				}
-
 			}
 		</script>
 		<script type="text/javascript" src="/js/jquery.js"></script>
@@ -114,7 +107,6 @@ if (isset($_GET["mante"])){					///nivel 2
 		#resultado{width:600px;border:solid 1px #dadada;text-align:justify;padding:5px;}
 		</style>
 		<script src="ajax.js"></script>
-
 <form action="<?php echo PROGRAMA;?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
 	<div class="botonhc"id="th-estilo1">
 			<a data-toggle="collapse" class="ac" data-target="#datpac" >Datos del Paciente</a> <span class="glyphicon glyphicon-arrow-down"></span>
@@ -135,11 +127,11 @@ if (isset($_GET["mante"])){					///nivel 2
 					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["tipo_usuario"];?>"<?php echo $atributo2?>/>
 				</article>
 				<article class="col-xs-4">
-					<label for="">Tipo Afiliación:</label>
+					<label for="">Tipo AfiliaciÃ³n:</label>
 					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["tipo_afiliacion"];?>"<?php echo $atributo2?>/>
 				</article>
 				<article class="col-xs-6">
-					<label for="">Ocupación:</label>
+					<label for="">OcupaciÃ³n:</label>
 					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["ocupacion"];?>"<?php echo $atributo2?>/>
 				</article>
 				<article class="col-xs-6">
@@ -157,7 +149,7 @@ if (isset($_GET["mante"])){					///nivel 2
 					<input type="text" name="nompac" class="form-control text-center" value="<?php echo $fila["nom1"];?> <?php echo $fila["nom2"];?> <?php echo $fila["ape1"];?> <?php echo $fila["ape2"];?>"<?php echo $atributo3;?>/>
 				</article>
 				<article class="col-xs-3">
-					<label for="">Identificación:</label>
+					<label for="">IdentificaciÃ³n:</label>
 					<input type="text" name="identificacion" class="form-control text-center" value="<?php echo $fila["tdoc_pac"];?> <?php echo $fila["doc_pac"];?>"<?php echo $atributo3;?>/>
 				</article>
 				<article class="col-xs-3">
@@ -169,7 +161,7 @@ if (isset($_GET["mante"])){					///nivel 2
 					<input type="text" name="nompac" class="form-control text-center" value=""<?php echo $atributo3;?>/>
 				</article>
 				<article class="col-xs-3">
-					<label for="">Religión:</label>
+					<label for="">ReligiÃ³n:</label>
 					<input type="text" name="nompac" class="form-control text-center" value=""<?php echo $atributo3;?>/>
 				</article>
 				<article class="col-xs-3">
@@ -184,7 +176,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		</section>
 
 	<article>
-		<h4 id="th-estilot">Datos de historia Clínica</h4>
+		<h4 id="th-estilot">Datos de historia ClÃ­nica</h4>
 	</article>
 
 	<section class="panel-body"> <!--Anamnesis-->
@@ -207,11 +199,11 @@ if (isset($_GET["mante"])){					///nivel 2
 				<textarea class="form-control" name="motivoconsulta" rows="5" id="comment" required=""></textarea>
 			</article>
 			<article class="col-xs-10">
-				<label for="" >Enfermedad Actual: <span class="fa fa-info-circle" data-toggle="popover" title="Circunstancias especiales del paciente en relación con su enfermedad" data-content=""></span></label>
+				<label for="" >Enfermedad Actual: <span class="fa fa-info-circle" data-toggle="popover" title="Circunstancias especiales del paciente en relaciÃ³n con su enfermedad" data-content=""></span></label>
 				<textarea class="form-control" name="enferactual" rows="5" id="comment" required=""></textarea>
 			</article>
 			<article class="col-xs-5">
-				<label >Historia Personal: <span class="fa fa-info-circle" data-toggle="popover" title="Embarazo, parto, lactancia y desarrollo psicomotor, niñez, adolecencia,adultez, senectud, personalidad previa, antecedentes legales" data-content=""></span></label>
+				<label >Historia Personal: <span class="fa fa-info-circle" data-toggle="popover" title="Embarazo, parto, lactancia y desarrollo psicomotor, niÃ±ez, adolecencia,adultez, senectud, personalidad previa, antecedentes legales" data-content=""></span></label>
 				<textarea class="form-control" name="hpersonal" rows="6" id="comment" required=""></textarea>
 			</article>
 			<article class="col-xs-5">
@@ -255,13 +247,13 @@ if (isset($_GET["mante"])){					///nivel 2
 					<textarea class="form-control" name="antquirurgico" rows="4" id="respuesta4" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
-					<label for="">Toxicológicos:</label>
+					<label for="">ToxicolÃ³gicos:</label>
 					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto5()" ></button>
    				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto5()"></button>
 					<textarea class="form-control" name="anttoxicologicos" rows="4" id="respuesta5" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
-					<label for="">Farmacológicos:</label>
+					<label for="">FarmacolÃ³gicos:</label>
 					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto6()" ></button>
    				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto6()"></button>
 					<textarea class="form-control" name="antfarmacologico" rows="4" id="respuesta6" required=""></textarea>
@@ -298,7 +290,7 @@ if (isset($_GET["mante"])){					///nivel 2
 </section>
 <section class="panel-body">
 			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#efisico" >Examen Físico <span class="glyphicon glyphicon-arrow-down"></span> </a>
+				<a data-toggle="collapse" class="ac" data-target="#efisico" >Examen FÃ­sico <span class="glyphicon glyphicon-arrow-down"></span> </a>
 				<span class="badge">OK</span>
 			</div>
 			<section id="efisico" class="collapse">
@@ -332,7 +324,7 @@ if (isset($_GET["mante"])){					///nivel 2
 					<input type="text" name="talla" value="" class="form-control">
 				</article>
 				<article class="col-xs-2">
-					<label for="">Temp(°C):</label>
+					<label for="">Temp(Â°C):</label>
 					<input type="text" name="temperatura" value="" class="form-control">
 				</article>
 <article class="col-xs-6 animated tada fuente_alerta_fijo">
@@ -343,7 +335,7 @@ if (isset($_GET["mante"])){					///nivel 2
 </section>
 <section class="panel-body">
 			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#explogeneral" >Exploración general y regional<span class="glyphicon glyphicon-arrow-down"></span> </a>
+				<a data-toggle="collapse" class="ac" data-target="#explogeneral" >ExploraciÃ³n general y regional<span class="glyphicon glyphicon-arrow-down"></span> </a>
 				<span class="badge">OK</span>
 			</div>
 			<section id="explogeneral" class="collapse">
@@ -507,13 +499,15 @@ if (isset($_GET["mante"])){					///nivel 2
 	</table>
 	<table class="table table-responsive">
 	<tr>
-		<th id="th-estilo1">ADMISIÓN</th>
-		<th id="th-estilo1">IDENTIFICACIÓN</th>
+		<th id="th-estilo1">ADMISIÃN</th>
+		<th id="th-estilo1">IDENTIFICACIÃN</th>
 		<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
 		<th id="th-estilo3">FECHA INGRESO</th>
 		<th id="th-estilo3">FOTO</th>
 		<th id="th-estilo4">Reporte HC PRIMERA VEZ</th>
 		<th id="th-estilo4">Reporte CONTROL MEDICO</th>
+		<th id="th-estilo4">Psicologia SM</th>
+		<th id="th-estilo4">Nutricion SM</th>
 
 
 	</tr>
@@ -522,11 +516,9 @@ if (isset($_GET["mante"])){					///nivel 2
 	if (isset($_REQUEST["doc"])){
 	$doc=$_REQUEST["doc"];
 	$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.doc_pac='".$doc."'  and tipo_servicio='Consulta Externa SM' ";
-
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
-
 			echo"<tr >\n";
 			echo'<td class="text-center">'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center">'.$fila["doc_pac"].'</td>';
@@ -535,6 +527,8 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1 text-center" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rptceSM.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_valpsico_sm.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_valnutri_sm.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo "</tr>\n";
 		}
 	}
@@ -543,11 +537,9 @@ if (isset($_REQUEST["nom"])){
 	$doc=$_REQUEST["nom"];
 	$f1=date;
 	$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.nom1  LIKE '%".$doc."%'  and tipo_servicio='Consulta Externa SM'";
-
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
-
 			echo"<tr >	\n";
 			echo'<td class="text-center">'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center">'.$fila["doc_pac"].'</td>';
@@ -556,6 +548,8 @@ if (isset($_REQUEST["nom"])){
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rptceSM.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_valpsico_sm.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_valnutri_sm.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo "</tr>\n";
 		}
 	}

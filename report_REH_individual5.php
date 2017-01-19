@@ -554,13 +554,14 @@ if (isset($_GET["mante"])){					///nivel 2
 
 	<table class="table table-responsive">
 	<tr>
-		<th id="th-estilo1">ADMISIÃN</th>
-		<th id="th-estilo1">IDENTIFICACIÃN</th>
+		<th id="th-estilo1">ADMISION</th>
+		<th id="th-estilo1">IDENTIFICACION</th>
 		<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
 		<th id="th-estilo3">FECHA INGRESO</th>
 		<th id="th-estilo3">FOTO</th>
 		<th id="th-estilo4">Identificacion</th>
 		<th id="th-estilo4">Autorizacion</th>
+		<th id="th-estilo4">HC ingreso</th>
 		<th id="th-estilo4">Informe Mensual</th>
 		<th id="th-estilo4">Evoluciones</th>
 		<th id="th-estilo4">Hoja Firmas</th>
@@ -590,6 +591,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1 text-center" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center" ><a href="rpt_identificacion.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_autorizacion.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_hc_reh.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&tterapia='.$tterapia.'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_im.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&tterapia='.$tterapia.'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_evolucion.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'&tterapia='.$tterapia.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_hojafirmas.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
@@ -620,6 +622,7 @@ if (isset($_REQUEST["nom"])){
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center" ><a href="rpt_identificacion.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_autorizacion.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_hc_reh.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&tterapia='.$tterapia.'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_im.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&tterapia='.$tterapia.'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_evolucion.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'&tterapia='.$tterapia.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_hojafirmas.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';

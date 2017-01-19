@@ -43,6 +43,7 @@ $subtitulo="";
 		//echo $sql;
 		if ($bd1->consulta($sql)){
 			$subtitulo="El formato de $subtitulo en $subtitulo2 fue $subtitulo1 con exito!";
+			$check='si';
 			if($_POST["operacion"]=="X"){
 			if(is_file($fila["logo"])){
 				unlink($fila["logo"]);
@@ -50,6 +51,7 @@ $subtitulo="";
 			}
 		}else{
 			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!! .";
+			$check='no';
 		}
 	}
 }
