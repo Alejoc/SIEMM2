@@ -19,11 +19,13 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'VI':
-				$sql="INSERT INTO valini_fisio_reh (id_adm_hosp, id_user, freg_valinifisio_reh, hreg_valinifisio_reh, tmuscular1, tmuscular2, ccorporal, amv, act_refleja1, act_refleja2, act_refleja3, act_refleja4, act_refleja5, act_refleja6, act_refleja7, act_refleja8, act_refleja9, act_refleja10, act_refleja11, act_refleja12, ntallocerebral1, ntallocerebral2, ntallocerebral3, ntallocerebral4, ntallocerebral5, nmesencefalo1, nmesencefalo2, nmesencefalo3, nmesencefalo4, nmesencefalo5, nmesencefalo6, ncorteza, endere_supino, endere_prono, endere_cuadrupedo, endere_sedente, endere_rodillas, endere_bipedo, equilibrio_supino, equilibrio_prono, equilibrio_cuadrupedo, equilibrio_sedente, equilibrio_rodillas, equilibrio_bipedo, platerales_supino, platerales_prono, platerales_cuadrupedo, platerales_sedente, platerales_rodillas, platerales_bipedo, panteriores_supino, panteriores_prono, panteriores_cuadrupedo, panteriores_sedente, panteriores_rodillas, panteriores_bipedo, pposteriores_supino, pposteriores_prono, pposteriores_cuadrupedo, pposteriores_sedente, pposteriores_rodillas, pposteriores_bipedo, vma, vme1, vme2, vme3, vme4, vme5, vme6, vme6i, vme6d, vme7, vme8, vme9, vme10, vme11, vme12, vme13, vme14, vme15, vme16, vme7i, vme7d, vme8i, vme8d, vme9i, vme9d, vme10i, vme10d, vme11i, vme11d, vme12i, vme12d, vme13i, vme13d, vme14i, vme14d, vme15i, vme15d, vme16i, vme16d, retracciones, mreales, maparentes, matrofia, pfcarrera_ini1, pfcarrera_ini2, pfcarrera_ini3, pfcarrera_ini4, pfcarrera_ini5, pfcarrera_ini6, pfcarrera_ini7, pfcarrera_ini8, pfcarrera_ini9, pfcarrera_ini10, pfcarrera_ini11, pfcarrera_ele1, pfcarrera_ele2, pfcarrera_ele3, pfcarrera_ele4, pfcarrera_ele5, pfcarrera_ele6, pfcarrera_ele7, pfcarrera_mad1, pfcarrera_mad2, pfcarrera_mad3, pfcarrera_mad4, pfcarrera_mad5, pfcarrera_mad6, pfcarrera_mad7, pfcarrera_mad8, pfsalto_ini1, pfsalto_ini2, pfsalto_ini3, pfsalto_ini4, pfsalto_ini5, pfsalto_ini6, pfsalto_ele1, pfsalto_ele2, pfsalto_ele3, pfsalto_ele4, pfsalto_ele5, pfsalto_ele6, pfsalto_mad1, pfsalto_mad2, pfsalto_mad3, pfsalto_mad4, pfsalto_mad5, pfsalto_mad6, pfsalto_mad7, pfpatear_ini1, pfpatear_ini2, pfpatear_ini3, pfpatear_ini4, pfpatear_ini5, pfpatear_ini6, pfpatear_ele1, pfpatear_ele2, pfpatear_ele3, pfpatear_mad1, pfpatear_mad2, pfpatear_mad3, pfpatear_mad4, pfpatear_mad5, pfpatear_mad6, pfpatear_mad7, pfpatear_mad8, pfatajar_ini1, pfatajar_ini2, pfatajar_ini3, pfatajar_ini4, pfatajar_ini5, pfatajar_ini6, pfatajar_ini7, pfatajar_ini8, pfatajar_ele1, pfatajar_ele2, pfatajar_ele3, pfatajar_ele4, pfatajar_ele5, pflanzar_ini1, pflanzar_ini2, pflanzar_ini3, pflanzar_ini4, pflanzar_ini5, pflanzar_ini6, pflanzar_ini7, pflanzar_ini8, pflanzar_ele1, pflanzar_ele2, pflanzar_ele3, pflanzar_ele4, pflanzar_ele5, pflanzar_ele6, pflanzar_ele7, pflanzar_ele8, pflanzar_mad1, pflanzar_mad2, pflanzar_mad3, pflanzar_mad4, pflanzar_mad5, pflanzar_mad6, pflanzar_mad7, pflanzar_mad8, pflanzar_mad9, cdg1, cdg2, cdg3, cos1, cos2, cos3, ee1, ee2, ee3, ee4, ee5, ed1, actpostura, marcha, obs_valoracion, estado_valini_fisio_reh) VALUES
+			$freg=date('Y-m-d');
+			$hreg=date('H:m');
+				$sql="INSERT INTO valini_fisio_reh (id_adm_hosp, id_user, freg_valinifisio_reh, hreg_valinifisio_reh, tmuscular1, tmuscular2, ccorporal, amv, act_refleja1, act_refleja2, act_refleja3, act_refleja4, act_refleja5, act_refleja6, act_refleja7, act_refleja8, act_refleja9, act_refleja10, act_refleja11, act_refleja12, ntallocerebral1, ntallocerebral2, ntallocerebral3, ntallocerebral4, ntallocerebral5, nmesencefalo1, nmesencefalo2, nmesencefalo3, nmesencefalo4, nmesencefalo5, nmesencefalo6, ncorteza, endere_supino, endere_prono, endere_cuadrupedo, endere_sedente, endere_rodillas, endere_bipedo, equilibrio_supino, equilibrio_prono, equilibrio_cuadrupedo, equilibrio_sedente, equilibrio_rodillas, equilibrio_bipedo, platerales_supino, platerales_prono, platerales_cuadrupedo, platerales_sedente, platerales_rodillas, platerales_bipedo, panteriores_supino, panteriores_prono, panteriores_cuadrupedo, panteriores_sedente, panteriores_rodillas, panteriores_bipedo, pposteriores_supino, pposteriores_prono, pposteriores_cuadrupedo, pposteriores_sedente, pposteriores_rodillas, pposteriores_bipedo, vma, vme1, vme2, vme3, vme4, vme5, vme6i, vme6d, vme7i, vme7d, vme8i, vme8d, vme9i, vme9d, vme10i, vme10d, vme11i, vme11d, vme12i, vme12d, vme13i, vme13d, vme14i, vme14d, vme15i, vme15d, vme16i, vme16d, retracciones, mr_msd, mr_msi, mr_mid, mr_mii, map_msd, map_msi, map_mid, map_mii, mat_msd, mat_msi, mat_mid, mat_mii, pfcarrera_ini1, pfcarrera_ini2, pfcarrera_ini3, pfcarrera_ini4, pfcarrera_ini5, pfcarrera_ini6, pfcarrera_ini7, pfcarrera_ini8, pfcarrera_ini9, pfcarrera_ini10, pfcarrera_ini11, pfcarrera_ele1, pfcarrera_ele2, pfcarrera_ele3, pfcarrera_ele4, pfcarrera_ele5, pfcarrera_ele6, pfcarrera_ele7, pfcarrera_mad1, pfcarrera_mad2, pfcarrera_mad3, pfcarrera_mad4, pfcarrera_mad5, pfcarrera_mad6, pfcarrera_mad7, pfcarrera_mad8, pfsalto_ini1, pfsalto_ini2, pfsalto_ini3, pfsalto_ini4, pfsalto_ini5, pfsalto_ini6, pfsalto_ele1, pfsalto_ele2, pfsalto_ele3, pfsalto_ele4, pfsalto_ele5, pfsalto_ele6, pfsalto_mad1, pfsalto_mad2, pfsalto_mad3, pfsalto_mad4, pfsalto_mad5, pfsalto_mad6, pfsalto_mad7, pfpatear_ini1, pfpatear_ini2, pfpatear_ini3, pfpatear_ini4, pfpatear_ini5, pfpatear_ini6, pfpatear_ele1, pfpatear_ele2, pfpatear_ele3, pfpatear_mad1, pfpatear_mad2, pfpatear_mad3, pfpatear_mad4, pfpatear_mad5, pfpatear_mad6, pfpatear_mad7, pfpatear_mad8, pfatajar_ini1, pfatajar_ini2, pfatajar_ini3, pfatajar_ini4, pfatajar_ini5, pfatajar_ini6, pfatajar_ini7, pfatajar_ini8, pfatajar_ele1, pfatajar_ele2, pfatajar_ele3, pfatajar_ele4, pfatajar_ele5, pflanzar_ini1, pflanzar_ini2, pflanzar_ini3, pflanzar_ini4, pflanzar_ini5, pflanzar_ini6, pflanzar_ini7, pflanzar_ini8, pflanzar_ele1, pflanzar_ele2, pflanzar_ele3, pflanzar_ele4, pflanzar_ele5, pflanzar_ele6, pflanzar_ele7, pflanzar_ele8, pflanzar_mad1, pflanzar_mad2, pflanzar_mad3, pflanzar_mad4, pflanzar_mad5, pflanzar_mad6, pflanzar_mad7, pflanzar_mad8, pflanzar_mad9, cdg1, cdg2, cdg3, cos1, cos2, cos3, ee1, ee2, ee3, ee4, ee5, ed1, actpostura, marcha, obs_valoracion, estado_valini_fisio_reh ) VALUES
 				('".$_POST["idadmhosp"]."',
 '".$_SESSION["AUT"]["id_user"]."',
-'".$_POST["freg_valinifisio_reh"]."',
-'".$_POST["hreg_valinifisio_reh"]."',
+'$freg',
+'$hreg',
 '".$_POST["tmuscular1"]."',
 '".$_POST["tmuscular2"]."',
 '".$_POST["ccorporal"]."',
@@ -88,19 +90,8 @@ $subtitulo="";
 '".$_POST["vme3"]."',
 '".$_POST["vme4"]."',
 '".$_POST["vme5"]."',
-'".$_POST["vme6"]."',
 '".$_POST["vme6i"]."',
 '".$_POST["vme6d"]."',
-'".$_POST["vme7"]."',
-'".$_POST["vme8"]."',
-'".$_POST["vme9"]."',
-'".$_POST["vme10"]."',
-'".$_POST["vme11"]."',
-'".$_POST["vme12"]."',
-'".$_POST["vme13"]."',
-'".$_POST["vme14"]."',
-'".$_POST["vme15"]."',
-'".$_POST["vme16"]."',
 '".$_POST["vme7i"]."',
 '".$_POST["vme7d"]."',
 '".$_POST["vme8i"]."',
@@ -122,9 +113,18 @@ $subtitulo="";
 '".$_POST["vme16i"]."',
 '".$_POST["vme16d"]."',
 '".$_POST["retracciones"]."',
-'".$_POST["mreales"]."',
-'".$_POST["maparentes"]."',
-'".$_POST["matrofia"]."',
+'".$_POST["mr_msd"]."',
+'".$_POST["mr_msi"]."',
+'".$_POST["mr_mid"]."',
+'".$_POST["mr_mii"]."',
+'".$_POST["map_msd"]."',
+'".$_POST["map_msi"]."',
+'".$_POST["map_mid"]."',
+'".$_POST["map_mii"]."',
+'".$_POST["mat_msd"]."',
+'".$_POST["mat_msi"]."',
+'".$_POST["mat_mid"]."',
+'".$_POST["mat_mii"]."',
 '".$_POST["pfcarrera_ini1"]."',
 '".$_POST["pfcarrera_ini2"]."',
 '".$_POST["pfcarrera_ini3"]."',
@@ -267,7 +267,7 @@ $subtitulo="";
 				$subtitulo2="Fisioterapia";
 			break;
 		}
-		echo $sql;
+		//echo $sql;
 		if ($bd1->consulta($sql)){
 			$subtitulo="El formato de $subtitulo en $subtitulo2 fue $subtitulo1 con exito!";
 			$check='si';

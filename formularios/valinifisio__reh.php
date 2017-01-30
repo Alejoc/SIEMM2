@@ -205,12 +205,13 @@ excesivo rango de movimiento, hiperlaxitud
 				<section class="collapse" id="cc">
 					<article class="col-xs-3">
 						<label for="">Compromiso corporal</label>
-						<select class="form-control" name="avd_alimen1">
+						<select class="form-control" name="ccorporal">
 							<option value="Cuadriplejia">Cuadriplejia</option>
 							<option value="Diplejia">Diplejia</option>
 							<option value="Paraplejia">Paraplejia</option>
 							<option value="Hemiplejia">Hemiplejia</option>
 							<option value="Monoplejia">Monoplejia</option>
+							<option value="Ninguna">Ninguna</option>
 						</select>
 					</article>
 					<article class="col-xs-6">
@@ -704,7 +705,7 @@ MMSS
 					<article class="col-xs-12">
 						<table class="table table-bordered">
 							<tr>
-								<h2>Nivel: Mesencefalo</h2>
+								<h2>Nivel: Corteza</h2>
 							</tr>
 							<tr>
 								<td><strong>REFLEJO</strong></td>
@@ -1158,7 +1159,7 @@ Bípedo 18 m</p></td>
 					<tr>
 						<td>Plantiflexion</td>
 						<td>
-							<select class="form-control" name="vme1011d">
+							<select class="form-control" name="vme10d">
 								<option value="5">Normal</option>
 								<option value="4">Bien</option>
 								<option value="3">Regular</option>
@@ -1168,7 +1169,7 @@ Bípedo 18 m</p></td>
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="vme1011i">
+							<select class="form-control" name="vme10i">
 								<option value="5">Normal</option>
 								<option value="4">Bien</option>
 								<option value="3">Regular</option>
@@ -1409,7 +1410,7 @@ Bípedo 18 m</p></td>
 					</article>
 					<article class="col-xs-3">
 							<label for="">MID</label>
-							<input type="text" name="mr_midsd" value="" class="form-control">
+							<input type="text" name="mr_msd" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MII</label>
@@ -1420,38 +1421,38 @@ Bípedo 18 m</p></td>
 					<h3>Medidas Aparentes</h3>
 					<article class="col-xs-3">
 							<label for="">MSD</label>
-							<input type="text" name="mr_msd" value="" class="form-control">
+							<input type="text" name="map_msd" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MSI</label>
-							<input type="text" name="mr_msi" value="" class="form-control">
+							<input type="text" name="map_msi" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MID</label>
-							<input type="text" name="mr_midsd" value="" class="form-control">
+							<input type="text" name="map_mid" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MII</label>
-							<input type="text" name="mr_mii" value="" class="form-control">
+							<input type="text" name="map_mii" value="" class="form-control">
 					</article>
 				</article>
 				<article class="col-xs-4" id="th-estilo1">
 					<h3>Medidas de Atrofia</h3>
 					<article class="col-xs-3">
 							<label for="">MSD</label>
-							<input type="text" name="mr_msd" value="" class="form-control">
+							<input type="text" name="mat_msd" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MSI</label>
-							<input type="text" name="mr_msi" value="" class="form-control">
+							<input type="text" name="mat_msi" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MID</label>
-							<input type="text" name="mr_midsd" value="" class="form-control">
+							<input type="text" name="mat_mid" value="" class="form-control">
 					</article>
 					<article class="col-xs-3">
 							<label for="">MII</label>
-							<input type="text" name="mr_mii" value="" class="form-control">
+							<input type="text" name="mat_mii" value="" class="form-control">
 					</article>
 				</article>
 			</section>
@@ -1493,7 +1494,7 @@ Bípedo 18 m</p></td>
 							</td>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini1">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1504,7 +1505,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini2">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1515,7 +1516,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini3">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1528,7 +1529,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini4">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1537,7 +1538,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 							  <div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ini5">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1548,7 +1549,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 							  <div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ini6">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1561,7 +1562,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini7">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1572,7 +1573,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 							  <div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ini8">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1583,7 +1584,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 							  <div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ini9">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1597,7 +1598,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini10">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1611,7 +1612,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ini11">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1642,7 +1643,7 @@ Bípedo 18 m</p></td>
 							</td>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ele1">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1653,7 +1654,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ele2">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1664,7 +1665,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ele3">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1677,7 +1678,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_ele4">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1689,7 +1690,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 							  <div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ele5">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1702,7 +1703,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<td>
 								<div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ele6">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1715,7 +1716,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<td>
 								<div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_ele7">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1745,7 +1746,7 @@ Bípedo 18 m</p></td>
 							</td>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_mad1">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1756,7 +1757,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_mad2">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1767,7 +1768,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_mad3">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1780,7 +1781,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfcarrera_mad4">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
@@ -1789,7 +1790,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_mad5">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1800,7 +1801,7 @@ Bípedo 18 m</p></td>
 							</TD>
 							<TD>
 							  <div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_mad6">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1813,7 +1814,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<td>
 								<div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_mad7">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1826,7 +1827,7 @@ Bípedo 18 m</p></td>
 						<tr>
 							<td>
 								<div class="col-xs-5">
-							    <select class="form-control " name="">
+							    <select class="form-control " name="pfcarrera_mad8">
 							      <option value="Presente">Presente</option>
 							      <option value="No presente">No presente</option>
 							    </select>
@@ -1854,13 +1855,13 @@ Bípedo 18 m</p></td>
 
 							</td>
 							<td class="col-xs-4">
-								<label for="">Movimientos de las piernas (vista lateral)</label>
+								<label for="">Movimientosde los brazos</label>
 							</td>
 							<td class="col-xs-4">
-								<label for="">Movimientos de las piernas (vista posterior)</label>
+								<label for="">Movimientos del tronco</label>
 							</td>
 							<td class="col-xs-4">
-								<label for="">Movimientos de los brazos</label>
+								<label for="">Movimientos de piernas y cader</label>
 							</td>
 						</tr>
 						<tr>
@@ -1869,139 +1870,1403 @@ Bípedo 18 m</p></td>
 							</td>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfsalto_ini1">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
 								</div>
 								<div class="col-xs-7">
-									<p>Piernas rígidas</p>
+									<p>Movimiento limitado</p>
 								</div>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfsalto_ini2">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
 								</div>
 								<div class="col-xs-7">
-									<p>Movimiento de rodilla balanceado hasta realizar la posición de apoyo</p>
+									<p>mantenido en posicion vertical con poca participacion en el largo del salto</p>
 								</div>
 							</TD>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfsalto_ini3">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
 								</div>
 								<div class="col-xs-7">
-									<p>Balanceo de brazos rígido, con distintos grados de flexión a nivel del codo</p>
+									<p>Posicion de flexion preparatoria limitada</p>
 								</div>
 							</TD>
 						</tr>
 						<tr>
 							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+									<select class="form-control " name="pfsalto_ini4">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
 								</div>
-								<p>paso desigual</p>
+								<p>Se mueve hacia abajo hacia los lados o hacia arriba manteniendo el equilibrio en el vuelo </p>
 							</TD>
 							<TD>
-							  <div class="col-xs-5">
-							    <select class="form-control " name="">
-							      <option value="Presente">Presente</option>
-							      <option value="No presente">No presente</option>
-							    </select>
-							  </div>
-							  <div class="col-xs-7">
-							  	<p>El pie que realiza el paso tiende a la rotación externa de cadera</p>
-							  </div>
-							</TD>
-							<TD>
-							  <div class="col-xs-5">
-							    <select class="form-control " name="">
-							      <option value="Presente">Presente</option>
-							      <option value="No presente">No presente</option>
-							    </select>
-							  </div>
-								<div class="col-xs-7">
-							  	<p>Angulo de balanceo corto</p>
-								</div>
-							</TD>
-						</tr>
-						<tr>
-							<TD>
-								<div class="col-xs-5">
-									<select class="form-control " name="">
-										<option value="Presente">Presente</option>
-										<option value="No presente">No presente</option>
-									</select>
-								</div>
-								<div class="col-xs-7">
-									<p>base de sustentación amplia</p>
-								</div>
-							</TD>
-							<TD>
-							  <div class="col-xs-5">
-							    <select class="form-control " name="">
-							      <option value="Presente">Presente</option>
-							      <option value="No presente">No presente</option>
-							    </select>
-							  </div>
-							  <div class="col-xs-7">
-							  <p>Estabilidad corporal cuando se realiza el apoyo</p>
-							  </div>
-							</TD>
-							<TD>
-							  <div class="col-xs-5">
-							    <select class="form-control " name="">
-							      <option value="Presente">Presente</option>
-							      <option value="No presente">No presente</option>
-							    </select>
-							  </div>
-								<div class="col-xs-7">
-									<p>Balanceo de brazos tiende hacer extendido</p>
-								</div>
 
 							</TD>
+							<TD>
+							  <div class="col-xs-5">
+							    <select class="form-control " name="pfsalto_ini5">
+							      <option value="Presente">Presente</option>
+							      <option value="No presente">No presente</option>
+							    </select>
+							  </div>
+								<div class="col-xs-7">
+							  	<p>Dificultad en despegue y aterrizaje para utilizar ambos pies en form simultanea</p>
+								</div>
+							</TD>
 						</tr>
 						<tr>
 							<TD>
+
+							</TD>
+							<TD>
+
+							</TD>
+							<TD>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+							    <select class="form-control " name="pfsalto_ini6">
+							      <option value="Presente">Presente</option>
+							      <option value="No presente">No presente</option>
+							    </select>
+							  </div>
+								<div class="col-xs-7">
+							  	<p>Extension de cadera, rodillas y cuello de pie (bilateral) imcompleta</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos del tronco</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de piernas y cadera</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="4">
+								ELEMENTAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_ele1">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
 								</div>
-								<p>sin momento claro de despegue del suelo</p>
+								<div class="col-xs-7">
+									<p>Tienen la iniciativa en el momento del despegue</p>
+								</div>
 							</TD>
-							<td colspan="2">
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_ele2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>No se observan cambios</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_ele3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Mayor flexion preparatoria</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_ele4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>Se mueven hacia los costados para mantener el equilibrio durante el salto</p>
+							</TD>
+							<TD>
+
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_ele5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>Caderas, rodillas y cuelllo de pie se extienden mas durante el despegue, con ligera flexion.</p>
+							</TD>
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+							<td>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_ele6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>Durante el vuelo rodillas en posicion de flexion</p>
+							</td>
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos del torax</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de piernas y caderas</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="4">
+								MADURO
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_mad1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Se desplazan a buena altura y se extienden hacia adelante en el despegue</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_mad2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>En el despegue se flexiona en angulo de 45°</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_mad3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Mayor flexion preparatoria</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_mad4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>Se mantienen altos durante todo el salto</p>
+							</TD>
+							<TD>
+
+							</TD>
+							<TD>
+							  <div class="col-xs-5">
+							    <select class="form-control " name="pfsalto_mad5">
+							      <option value="Presente">Presente</option>
+							      <option value="No presente">No presente</option>
+							    </select>
+							  </div>
+								<div class="col-xs-7">
+							  	<p>Caderas, rodillas y cuello de pie totalmente extendidos en el despegue</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<td>
 
 							</td>
 						</tr>
 						<tr>
-							<TD>
+							<td></td><td></td>
+							<td>
 								<div class="col-xs-5">
-									<select class="form-control " name="">
+							    <select class="form-control " name="pfsalto_mad6">
+							      <option value="Presente">Presente</option>
+							      <option value="No presente">No presente</option>
+							    </select>
+							  </div>
+								<div class="col-xs-7">
+							  	<p>En el vuelo las caderas se flexionan posicion de los muslos casi horizontal a la tierra</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td><td></td>
+							<td>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfsalto_mad7">
 										<option value="Presente">Presente</option>
 										<option value="No presente">No presente</option>
 									</select>
 								</div>
-								<p>Movimiento corto y limitado</p>
-							</TD>
-							<td colspan="2">
+								<div class="col-xs-7">
+									<p>Peso del cuerpo en el aterrizaje conserva la inercia hacia adelante y abajo</p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</article>
+
+				<article class="col-xs-12">
+					<table class="table table-bordered">
+						<tr>
+							<td>
+								ESTADIO
+							</td>
+							<td colspan="3">
+								PATEAR
+							</td>
+						</tr>
+						<tr>
+							<td>
 
 							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de brazo y tronco</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de las piernas</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="5">
+								INICIAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ini1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Movimiento escasodurante el pateo</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ini2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Pierna que patea presenta balanceo limitado atras durante el momento preparatorio</p>
+								</div>
+							</TD>
+
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ini3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>Cuerpo erguido</p>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ini4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Movimiento hacia adelante corto sin impulso</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ini5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Brazos a los lados o extendidospara mejor equilibrio</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ini6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>No se hace pateo a la pelota sino hacia la pelota.</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos y tronco</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de las piernas</label>
+							</td>
+
+						</tr>
+						<tr>
+							<td rowspan="4">
+								ELEMENTAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ele1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>No se observan cambios</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ele2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Pierna que patea se dirige hacia atras durante fase preparatoria, parte movimiento de la rodilla.</p>
+								</div>
+							</TD>
+
+						</tr>
+						<tr>
+							<td></td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_ele3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>La que ejecuta el movimiento tiende a permaneceren flexion hasta el contacto con la pelota.</p>
+							</TD>
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos y tronco</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de las piernas</label>
+							</td>
+
+						</tr>
+						<tr>
+							<td rowspan="5">
+								MADURO
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>En contacto con la pelota el brazo del lado que realiza la accion tiende al balanceo en direccion antero posterior</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Movimiento de la pierna que realiza la accion se inicia desde cadera, rodilla en ligera flexion.</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>El brazo opuesto al lado que ejecuta la accion se desplaza de posicion posterior a lateralhacia adelante </p>
+							</TD>
+
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>desplazando de la pierna en arco amplio</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<p>El tronco se inclina a la altura del pecho en el periodo de inercia</p>
+							</TD>
+
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>La pierna de apoyo se flexiona al contacto con la pelota</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad7">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>En el momento de inercia el pie de apoyose flexiona sobre los dedos</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfpatear_mad8">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El pie golpea con impulso completo y alto</p>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</article>
+
+				<article class="col-xs-12">
+					<table class="table table-bordered">
+						<tr>
+							<td>
+								ESTADIO
+							</td>
+							<td colspan="3">
+								ATAJAR
+							</td>
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de la cabeza </label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de las manos</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="5">
+								INICIAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Se produce una reaccion marcada, volviendo la cabeza o tapando la cara con los brazos</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Los brazos extendidos frente al cuerpo</p>
+
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Las palmas estan vueltas hacia arriba</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Escaso movimiento hasta el momento del contacto</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>dedos extendidos</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Movimiento similar hasta el momento de contacto</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini7">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Las manos no se utilizanen el patron de atajar</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<td></td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini8">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Se intenta atrapar la pelota con todo el cuerpo</p>
+								</div>
+							</TD>
+							<td></td>
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de la cabeza</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de las manos</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="4">
+								ELEMENTAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ele1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>La reaccion de rechazo se limita a que el niño cierre los ojos al contacto con la piedra</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ele2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Los codos se mantienen hacia los lados, flexion alrededor de 90°</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ele3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Las manos se enfrentan una a la otra con los pulgares hacia arriba</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ele4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Los brazos atrapan la pelota cuando falla el contacto inicial intentando con las manos</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ele5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Con el contacto las manos intentan tomar la pelota con movimiento poco coordinado</p>
+							</div>
+							</TD>
+						</tr>
+					</table>
+				</article>
+
+				<article class="col-xs-12">
+					<table class="table table-bordered">
+						<tr>
+							<td>
+								ESTADIO
+							</td>
+							<td colspan="3">
+								LANZAR
+							</td>
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos </label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos del tronco</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de piernas y pies</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="5">
+								INICIAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El movimiento parte del codo</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El tronco permanece perpendicular al blanco</p>
+
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Los pies permanecen quietos</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Codo adelantado respecto al cuerpo</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pfatajar_ini5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Se produce una pequeña rotacion durante el tiro</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Los dedos se separan al soltar</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini7">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El peso del cuerpo experimenta un ligerodesplazamiento hacia atras</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+						</tr>
+						<tr>
+							<td></td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ini8">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Inherencia hacia adelante y hacia abajo</p>
+								</div>
+							</TD>
+							<td></td>
+						</tr>
+						<tr>
+
+						</tr>
+						<tr>
+							<td>
+
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de los brazos</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos del tronco</label>
+							</td>
+							<td class="col-xs-4">
+								<label for="">Movimientos de piernas y pies</label>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="4">
+								ELEMENTAL
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>En la preparacion el brazo se desplaza hacia arriba, hacia los lados y hacia atrascon el codo en flexion</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El tronco rota hacia el lado que ejecuta el tiro durante el movimiento preparatorio</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Se da un paso hacia adelante con la pierna correspondiente al brazo que realiza el tiro</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Pelota mantenida detras de la cabeza</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Los hombros rotan hacia el lado del movimiento</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>El brazo se desplaza adelante, al respecto al hombro</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele7">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Tronco en flexion hacia adelante</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_ele8">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Desplazamiento definido del peso corporal hacia adelante</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+						</tr>
+						<tr>
+							<td rowspan="4">
+								MADURO
+							</td>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad1">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El brazo se desplaza hacia atras en la preparacion</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad2">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>El tronco rota hacia el lado del tiro en el movimiento preparatorio</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad3">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<p>Durante el momento de preparacion el peso esta sobre el pie posterior</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad4">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>El codo opuesto se eleva para equilibrar el movimiento del brazo ejecutante</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad5">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>El hombro que efectua el tiro desciende levemente</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad6">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>A medida que el peso se desplaza el pie opuesto se adelanta un paso</p>
+								</div>
+							</TD>
+						</tr>
+						<tr>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad7">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>El codo que realiza el tiro se desplaza hacia adelante en forma horizontal a medida que se estira</p>
+								</div>
+							</TD>
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad8">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>Definida rotacion de caderas, piernas columna y hombros durante el tiro</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+						</tr>
+						<tr>
+
+							<TD>
+								<div class="col-xs-5">
+									<select class="form-control " name="pflanzar_mad9">
+										<option value="Presente">Presente</option>
+										<option value="No presente">No presente</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+								<p>El antebrazo rota y el pulgar finaliza apuntando hacia abajo</p>
+								</div>
+							</TD>
+							<TD>
+
+							</TD>
+							<TD>
+
+							</TD>
 						</tr>
 					</table>
 				</article>
 			</section>
 		 </section>
+		 <section class="panel-body"> <!--Anamnesis-->
+			 <div class="botonhc">
+					 <a data-toggle="collapse" class="ac" data-target="#ce" >Coordinacion y equilibrio</a>
+					 <span class="glyphicon glyphicon-arrow-down"></span>
+					 <span class="badge">OK</span>
+			 </div>
+			 <section class="collapse" id="ce">
+				 <article class="col-xs-10">
+					 <table class="table table-bordered">
+						 <tr colspan="2">
+						 	<td>
+								<h2>COORDINACION DINAMICA GENERAL (PICQ Y VAYER)</h2>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>PRUEBA</td>
+							<td>
+
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>
+								<p>2 - 6 años con los ojos abiertos realizar un recorrido en linea recta, alternando el talon de un pie contra la punta del otro</p>
+							</td>
+							<td>
+								<select class="form-control " name="cdg1" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>6-12años Posicion de pie, una rodilla flexionada en angulo recto, brazos a lo largo del cuerpo, impulsar por el suelo un objeto</td>
+							<td>
+								<select class="form-control " name="cdg2" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>6-12 años Salto al aire flexionando las rodillas para tocar los talones por detras con las manos</td>
+							<td>
+								<select class="form-control " name="cdg3" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+					 </table>
+				 </article>
+				 <article class="col-xs-10">
+					 <table class="table table-bordered">
+						 <tr colspan="2">
+						 	<td>
+								<h2>COORDINACION OCULO SEGMENTARIA (PICQ Y VAYER)</h2>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>PRUEBA</td>
+							<td>
+
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>
+								<p>2-6 años Seguir un laberinto con una linea continua</p>
+							</td>
+							<td>
+								<select class="form-control " name="cos1" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>6-12años Con una pelota de goma, dar a un blanco a punto fijo con una mano y luego contra la otra</td>
+							<td>
+								<select class="form-control " name="cos2" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>6-12 años Recibir una pelota lanzada 3 metros aprox. con una mano (Alternamos)</td>
+							<td>
+								<select class="form-control " name="cos3" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+					 </table>
+				 </article>
+				 <article class="col-xs-10">
+					 <table class="table table-bordered">
+						 <tr colspan="2">
+						 	<td>
+								<h2>EQUILIBRIO ESTATICO (OZERETSKI Y GUILMAIN)</h2>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>PRUEBA</td>
+							<td>
+
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>
+								<p>4-5 AÑOS Mantenerse inmovil de puntillas y con los pies juntos </p>
+							</td>
+							<td>
+								<select class="form-control " name="ee1" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>5-6 años Mantenerse sobre una pierna, a la "pata coja", sin moverse</td>
+							<td>
+								<select class="form-control " name="ee2" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>6 años Con los ojos cerrados y los pies juntos permanecer inmovil</td>
+							<td>
+								<select class="form-control " name="ee3" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>9-10 años Permanecer de puntillas con los pies juntos y ojos cerrados</td>
+							<td>
+								<select class="form-control " name="ee4" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>9-10 años Mantenerse sobre una pierna con los ojos cerrados</td>
+							<td>
+								<select class="form-control " name="ee5" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+					 </table>
+				 </article>
+				 <article class="col-xs-10">
+					 <table class="table table-bordered">
+						 <tr colspan="2">
+						 	<td>
+								<h2>EQUILIBRIO DINAMICO (ORTEGA Y BLAZQUEZ)</h2>
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>PRUEBA</td>
+							<td>
+
+							</td>
+						 </tr>
+						 <tr>
+						 	<td>
+								<p>Caminar sobre superficie inestable</p>
+							</td>
+							<td>
+								<select class="form-control " name="ed1" required="">
+									<option value=""></option>
+									<option value="SI">SI</option>
+									<option value="NO">NO</option>
+									<option value="NO APLICA">NO APLICA</option>
+								</select>
+							</td>
+						 </tr>
+
+					 </table>
+				 </article>
+			 </section>
+		 </section>
+		 <section class="panel-body"> <!--Anamnesis-->
+			 <div class="botonhc">
+					 <a data-toggle="collapse" class="ac" data-target="#obs" >Observaciones</a>
+					 <span class="glyphicon glyphicon-arrow-down"></span>
+					 <span class="badge">OK</span>
+			 </div>
+			 <section class="collapse" id="obs">
+				 <article class="col-xs-12">
+					 <label for="">Actitud postural y/o postura</label>
+					 <textarea name="actpostura" class="form-control" rows="5"></textarea>
+				</article>
+				<article class="col-xs-12">
+					<label for="">Marcha</label>
+					<textarea name="marcha" class="form-control" rows="5"></textarea>
+			 </article>
+			 <article class="col-xs-12">
+				 <label for="">Observacion de conformidad con el proceso de valoracion</label>
+				 <textarea name="obs_valoracion" class="form-control" rows="5"></textarea>
+			</article>
+			</section>
+		</section>
 	<div class="row text-center">
 	  	<input type="submit" class="btn btn-primary" name="aceptar" Value="<?php echo $boton; ?>" />
 		<input type="hidden" class="btn btn-primary" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>

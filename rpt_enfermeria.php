@@ -226,7 +226,7 @@ right join sedes_ips h on (h.id_sedes_ips = b.id_sedes_ips)
 
 where b.tipo_servicio = 'Rehabilitacion' and b.id_adm_hosp ='".$_GET["idadmhosp"]."' and e.freg_nota BETWEEN '".$_GET["f1"]."' and '".$_GET["f2"]."'
 
-order by 7,9 ASC
+order by fecha_evo ASC, hora_evo ASC
 ";
 //echo $sql;
 $rs = mysql_query($sql);

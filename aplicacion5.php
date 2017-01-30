@@ -261,7 +261,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 
 		<button class="btn btn-default navbar-right dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span><?php include("usuario".VERSION.".php");?></span></button>
 			<ul class="dropdown-menu pull-right">
-				<li><a href="#"><span class="fa fa-exchange"></span> Cambio de Clave</a></li>
+				<li><a href=""><span class="fa fa-exchange"></span> Cambio de Clave</a></li>
 				<li><a href="#"><span class="fa fa-cog"></span>  Soporte</a></li>
 				<li><a href="#"><span class="fa fa-info-circle"></span>  Capacitacion</a></li>
 				<li role="separator" class="divider"></li>

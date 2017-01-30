@@ -229,7 +229,8 @@
 				</article>
 				<article class="col-xs-5">
 					<label for="">Finalidad de la consulta: </label>
-					<select name="finconsulta" class="form-control" <?php echo atributo3; ?>>
+					<select name="finconsulta" class="form-control"  required="" <?php echo atributo3; ?>>
+						<option value=""></option>
 						<?php
 						$sql="SELECT id_fconsulta,descripfconsulta from finalidad_consulta ORDER BY id_fconsulta ASC";
 						if($tabla=$bd1->sub_tuplas($sql)){
@@ -247,7 +248,8 @@
 				</article>
 				<article class="col-xs-5">
 					<label for="">Causa externa: </label>
-					<select name="causaexterna" class="form-control" <?php echo atributo3; ?>>
+					<select name="causaexterna" class="form-control"  required=""  <?php echo atributo3; ?>>
+						<option value=""></option>
 						<?php
 						$sql="SELECT id_cexterna,descricexterna from causa_externa ORDER BY id_cexterna ASC";
 						if($tabla=$bd1->sub_tuplas($sql)){
@@ -265,7 +267,7 @@
 				</article>
 				<article class="col-xs-5">
 					<label for="">Clasificación Diagnostica: </label>
-					<select name="clasificacion_dx" class="form-control" <?php echo atributo3; ?> requie>
+					<select name="clasificacion_dx" class="form-control" <?php echo atributo3; ?>  required="">
 						<option value=""></option>
 						<option value="Psiquiatria">Psiquiatria</option>
 						<option value="Rhb. farmacodependencia">Rhb. farmacodependencia</option>

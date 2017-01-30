@@ -1,4 +1,4 @@
-<form action="<?php echo PROGRAMA;?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+<form action="<?php echo PROGRAMA.'?&opcion=44';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
 	<section class="panel-body">
 	  <?php
 	    include("consulta_paciente.php");
@@ -18,21 +18,20 @@
 		<section class="collapse" id="anamnesis">
 			<article class="col-xs-3">
 				<label for="">Fecha de registro:</label>
-				<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
+				<input type="date" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo2?> >
 			</article>
 			<article class="col-xs-3">
 				<label for="">Hora de registro</label>
-				<input type="text" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1?>>
+				<input type="time" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo2?>>
 			</article>
 			<article class="col-xs-10">
-				<label for="">Motivo de consulta:</label>
+				<label for="">Motivo de consulta:<span class="fa fa-info-circle" data-toggle="popover" title="Descripcion subjetiva emitida por el paciente o su acudiente en la consulta" data-content=""></span></label>
 				<textarea class="form-control" name="motivoconsulta" rows="5" id="comment" required=""></textarea>
 			</article>
 			<article class="col-xs-10">
-				<label for="" >Enfermedad Actual: <span class="fa fa-info-circle" data-toggle="popover" title="Circunstancias especiales del paciente en relación con su enfermedad" data-content=""></span></label>
+				<label for="" >Enfermedad Actual: <span class="fa fa-info-circle" data-toggle="popover" title="Descripcion tecnica del comentario realizado en el "motivo de consulta"" data-content=""></span></label>
 				<textarea class="form-control" name="enferactual" rows="5" id="comment" required=""></textarea>
 			</article>
-
 		</section>
 </section>
 <section class="panel-body">
@@ -107,61 +106,9 @@
 				</article>
 		  </section>
 </section>
-
 <section class="panel-body">
 			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#explogeneral" >Exploración general y regional<span class="glyphicon glyphicon-arrow-down"></span> </a>
-				<span class="badge">OK</span>
-			</div>
-			<section id="explogeneral" class="collapse">
-				<article class="col-xs-12">
-					<label for="">Estado General:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto11()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto11()"></button>
-					<textarea class="form-control" name="estadogen" rows="3" id="respuesta11" required=""></textarea>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Cabeza y Cuello:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto12()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto12()"></button>
-					<textarea class="form-control" name="cabezacuello" rows="5" id="respuesta12" required=""></textarea>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Torax:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto13()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto13()"></button>
-					<textarea class="form-control" name="torax" rows="5" id="respuesta13" required=""></textarea>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Abdomen:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto16()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto16()"></button>
-					<textarea class="form-control" name="abdomen" rows="5" id="respuesta16" required=""></textarea>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Genitourinario:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto17()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto17()"></button>
-					<textarea class="form-control" name="genitourinario" rows="5" id="respuesta17" required=""></textarea>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Extremidades:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto14()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto14()"></button>
-					<textarea class="form-control" name="extsup" rows="5" id="respuesta14" required=""></textarea>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Neurologico:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto15()" ></button>
-					<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto15()"></button>
-					<textarea class="form-control" name="neurologico" rows="5" id="respuesta15" required=""></textarea>
-				</article>
-
-			</section>
-</section>
-<section class="panel-body">
-			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#exmental" >Examen Mental y Analisis<span class="glyphicon glyphicon-arrow-down"></span> </a>
+				<a data-toggle="collapse" class="ac" data-target="#exmental" >EXAMENES DIAGNOSTICOS<span class="glyphicon glyphicon-arrow-down"></span> </a>
 				<span class="badge">OK</span>
 			</div>
 			<section id="exmental" class="collapse">
@@ -214,28 +161,31 @@
 		</div>
 			<section id="dxingreso" class="collapse">
 				<article class="col-xs-12">
-					<label class="alert-success">Diagnostico Principal</label>
-					<?php include("diagnosticos/dx.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label class="alert-Info">Diagnostico Relacionado 1</label>
-					<?php include("diagnosticos/dx1.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label class="alert-Info">Diagnostico Relacionado 2</label>
-					<?php include("diagnosticos/dx2.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label class="alert-Info">Diagnostico Relacionado 3</label>
-					<?php include("diagnosticos/dx3.php");?>
+					<?php include("dxbusqueda.php");?>
 				</article>
 			</section>
 	</section>
+	<section class="panel-body">
+			<div class="botonhc">
+				<a data-toggle="collapse" class="ac" data-target="#plan" >Plan tratamiento y recomendaciones<span class="glyphicon glyphicon-arrow-down"></span> </a>
+				<span class="badge text-left">OK</span>
+			</div>
+				<section id="plan" class="collapse">
+					<article class="col-xs-12">
+						<label for="">Describa aqui el Plan de tratamiento</label>
+						<textarea name="plan_tratamiento" rows="8" class="form-control"></textarea>
+					</article>
+					<article class="col-xs-12">
+						<label for="">Describaaqui las recomendaciones</label>
+						<textarea name="reco" rows="8" class="form-control"></textarea>
+					</article>
+				</section>
+		</section>
 
 	<div class="row text-center">
 	  	<input type="submit" class="btn btn-primary" name="aceptar" Value="<?php echo $boton; ?>" />
 		<input type="hidden" class="btn btn-primary" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
 		<input type="hidden" class="btn btn-primary" name="operacion" Value="<?php echo $_GET["mante"];?>"/>
 	</div>
-  </section>
+
 </form>

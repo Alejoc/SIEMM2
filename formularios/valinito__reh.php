@@ -16,11 +16,11 @@
 					<section class="collapse" id="anamnesis">
 						<article class="col-xs-3">
 							<label for="">Fecha de registro:</label>
-							<input type="text" name="freg_ts" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
+							<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
 						</article>
 						<article class="col-xs-3">
 							<label for="">Hora de registro</label>
-							<input type="text" name="hreg_ts" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1?>>
+							<input type="text" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1?>>
 						</article>
 						<div class="col-xs-10">
 

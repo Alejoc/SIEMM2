@@ -32,7 +32,7 @@ require_once('tcpdf/tcpdf.php');
 class MYPDF extends TCPDF {
 	public function Header() {
         // Logo
-        $image_file = 'images/logo3p.png';
+        $image_file = 'images/logoP.png';
         $date=date('Y-m-d');
         $mes= date('m') ;
         $mes1=date('m');
@@ -79,7 +79,7 @@ class MYPDF extends TCPDF {
         $cie=$_GET["cie"];
         $f1=$_GET["f1"];
         $f2=$_GET["f2"];
-        $this->multicell(180,15,$this->image($image_file, $this->GetX(), $this->GetY(),70,40),0,'L');
+        $this->multicell(180,10,$this->image($image_file, $this->GetX(), $this->GetY(),50,20),0,'L');
         // Set font
         $this->SetFont('helvetica', 'B', 12);
         // Title
@@ -198,6 +198,39 @@ class MYPDF extends TCPDF {
       $this->Cell(16,5,'Municipio:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
       $this->Cell(30,5, utf8_encode($row['descrimuni']),1,0,'C');
+      $this->Ln();
+      $this->Cell(180,5,'Datos Acudiente:',1,0,'C',1);
+      $this->Ln();
+      $this->SetFont('helvetica', 'B', 8);
+      $this->Cell(28,5,'Nombre Acudiente:',1,0,'C',1);
+      $this->SetFont('helvetica', '',8);
+      $this->Cell(84,5, utf8_encode($row['nombre_acu']),1,0,'C');
+      $this->SetFont('helvetica', 'B', 8);
+      $this->Cell(35,5,'Parentesco:',1,0,'C',1);
+      $this->SetFont('helvetica', '',8);
+      $this->Cell(33,5, utf8_encode($row['parentesco_acu']),1,0,'C');
+      $this->SetFont('helvetica', 'B', 8);
+      $this->Ln();
+      $this->SetFont('helvetica', 'B', 8);
+      $this->Cell(28,5,'Direccion:',1,0,'C',1);
+      $this->SetFont('helvetica', '',8);
+      $this->Cell(84,5, utf8_encode($row['dir_acu']),1,0,'C');
+      $this->SetFont('helvetica', 'B', 8);
+      $this->Cell(35,5,'Telefono:',1,0,'C',1);
+      $this->SetFont('helvetica', '',8);
+      $this->Cell(33,5, utf8_encode($row['tel_acu']),1,0,'C');
+      $this->SetFont('helvetica', 'B', 8);
+      $this->Ln();
+      $this->SetFont('helvetica', 'B',8);
+      $this->Cell(180,0,'FINALIDAD DE CONSULTA',1,0,'C',1);
+      $this->Ln();
+      $this->SetFont('helvetica', '',8);
+      $this->multiCell(180,0, utf8_encode($row['finalidad']),1,'L');
+      $this->SetFont('helvetica', 'B',8);
+      $this->Cell(180,0,'CAUSA EXTERNA',1,0,'C',1);
+      $this->Ln();
+      $this->SetFont('helvetica', '',8);
+      $this->multiCell(180,0, utf8_encode($row['causa_externa']),1,'L');
   		$this->Ln(10);
       $this->SetFont('helvetica', 'B', 8);
       $this->Cell(22,5,'Fecha Registro:',1,0,'C',1);
@@ -218,7 +251,7 @@ class MYPDF extends TCPDF {
       $this->SetFont('helvetica', '',8);
       $this->multiCell(180,0, utf8_encode($row['enfer_actual']),1,'L');
       $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Historia Personal:',1,0,'L',1);
+      $this->Cell(180,0,'Historia Familiar:',1,0,'L',1);
       $this->Ln();
       $this->Cell(180,0,'ANTECEDENTES PERSONALES',1,0,'C',1);
       $this->Ln();
@@ -274,46 +307,9 @@ class MYPDF extends TCPDF {
       $this->SetFont('helvetica', 'B', 8);
       $this->Cell(180,0,'Otros Antecedentes:',1,0,'L',1);
       $this->Ln();
+
       $this->SetFont('helvetica', 'B', 9);
-      $this->Cell(180,0,'EXPLORACION GENERAL Y REGIONAL',1,0,'C',1);
-      $this->Ln();
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Estado General:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['estado_general']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Cabeza y cuello:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['cabcuello']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Torax:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['torax']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Abdomen:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['abdomen']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Genitourinario:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['genitourinario']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Extremidades:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['ext']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(180,0,'Neurologico:',1,0,'L',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['neurologico']),1,'L');
-      $this->SetFont('helvetica', 'B', 9);
-      $this->Cell(180,0,'ANALISIS',1,0,'C',1);
+      $this->Cell(180,0,'EXAMENES DIAGNOSTICOS',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',8);
       $this->multiCell(180,0, utf8_encode($row['analisis']),1,'L');
@@ -324,29 +320,30 @@ class MYPDF extends TCPDF {
       $this->Cell(100,0,'Diagnostico principal:',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['dxp'].' - '.$row['ddxp'].' --- '.$row['tdxp']),1,'L');
+      $this->multiCell(180,0, utf8_encode($row['ddxp'].' --- '.$row['tdxp']),1,'L');
       $this->SetFont('helvetica', 'B',8);
       $this->Cell(100,0,'Diagnostico Relacionado 1:',1,0,'C',1);
       $this->Ln();
-      $this->multiCell(180,0, utf8_encode($row['dx1'].' - '.$row['ddx1'].' --- '.$row['tdx1']),1,'L');
+      $this->multiCell(180,0, utf8_encode($row['ddx1'].' --- '.$row['tdx1']),1,'L');
       $this->SetFont('helvetica', 'B',8);
       $this->Cell(100,0,'Diagnostico Relacionado 2:',1,0,'C',1);
       $this->Ln();
-      $this->multiCell(180,0, utf8_encode($row['dx2'].' - '.$row['ddx2'].' --- '.$row['tdx2']),1,'L');
+      $this->multiCell(180,0, utf8_encode($row['ddx2'].' --- '.$row['tdx2']),1,'L');
       $this->SetFont('helvetica', 'B',8);
       $this->Cell(100,0,'Diagnostico Relacionado 3:',1,0,'C',1);
       $this->Ln();
-      $this->multiCell(180,0, utf8_encode($row['dx3'].' - '.$row['ddx3'].' --- '.$row['tdx3']),1,'L');
+      $this->multiCell(180,0, utf8_encode($row['ddx3'].' --- '.$row['tdx3']),1,'L');
       $this->SetFont('helvetica', 'B',8);
-      $this->Cell(180,0,'FINALIDAD DE CONSULTA',1,0,'C',1);
+      $this->Cell(180,0,'PLAN DE TRATAMIENTO',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['finalidad']),1,'L');
+      $this->multiCell(180,0, utf8_encode($row['plan_tratamiento']),1,'L');
+      $this->Ln();
       $this->SetFont('helvetica', 'B',8);
-      $this->Cell(180,0,'CAUSA EXTERNA',1,0,'C',1);
+      $this->Cell(180,0,'RECOMENDACIONES',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['causa_externa']),1,'L');
+      $this->multiCell(180,0, utf8_encode($row['recomendaciones']),1,'L');
       $this->Ln();
       $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),40,30),0,'J');
       $this->SetFont('helvetica', 'BI',10);
@@ -416,8 +413,9 @@ g.descripdep,
 h.descrimuni,
 i.descripuedad,
 j.nom_eps,
-k.id_hchosp,freg_hchosp, hreg_hchosp, motivo_consulta, enfer_actual, ant_alergicos, ant_patologico, ant_quirurgico, ant_toxicologico, ant_farmaco, ant_gineco, ant_psiquiatrico, ant_hospitalario, ant_traumatologico, ant_familiar, otros_ant, estado_general, cabcuello, torax, ext, abdomen, neurologico, genitourinario, analisis, finalidad, causa_externa, dxp, ddxp, tdxp, dx1, ddx1, tdx1, dx2, ddx2, tdx2, dx3, ddx3, tdx3, estado_hchosp,
-l.nombre,rm_profesional,l.especialidad espec_user,firma
+k.id_hchosp,freg_hchosp, hreg_hchosp, motivo_consulta, enfer_actual, ant_alergicos, ant_patologico, ant_quirurgico, ant_toxicologico, ant_farmaco, ant_gineco, ant_psiquiatrico, ant_hospitalario, ant_traumatologico, ant_familiar, otros_ant, analisis, finalidad, causa_externa, ddxp, tdxp, ddx1, tdx1, ddx2, tdx2, ddx3, tdx3,plan_tratamiento,recomendaciones, estado_hchosp,
+l.nombre,rm_profesional,l.especialidad espec_user,firma,
+m.nombre_acu,dir_acu,tel_acu,parentesco_acu
 from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join estado_civil c on (c.codestadoc = a.estadocivil)
       left join tusuario e on (e.codtusuario=b.tipo_usuario)
@@ -429,6 +427,7 @@ from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join eps j on (j.id_eps=b.id_eps)
       left join hcini_reh k on (k.id_adm_hosp=b.id_adm_hosp)
       left join user l on (l.id_user=k.id_user)
+      left join info_acudiente m on (m.id_adm_hosp=b.id_adm_hosp)
 where b.id_adm_hosp ='".$_GET["idadmhosp"]."' ";
 //echo $sql;
 $rs = mysql_query($sql);
@@ -447,7 +446,7 @@ $pdf->ColoredTable($header, $data);
 
 // ---------------------------------------------------------
 // Change the path to whatever you like, even public:// will do or you could also make use of the private file system by using private://
-$nombre=$_GET["nom"];
+$nombre=$row["nom1"];
 // close and output PDF document
 $pdf->Output($nombre.'.pdf', 'I');
 

@@ -38,7 +38,7 @@ class MYPDF extends TCPDF {
         $y=date('Y');
         $this->multicell(40,0,$this->image($image_file, $this->GetX(), $this->GetY(),45,10),0,'J');
         if ($date1==1) {
-          $mes='Diciembre';
+          $mes='enero';
           }
           if ($date1==2) {
             $mes='Febrero';
@@ -123,7 +123,7 @@ class MYPDF extends TCPDF {
       $mes1=date('m');
       $y=date('Y');
       if ($mes==1) {
-        $mes1='Diciembre';
+        $mes1='Enero';
         }
         if ($mes==2) {
           $mes1='Febrero';
@@ -178,7 +178,7 @@ class MYPDF extends TCPDF {
       $this->Cell(40,6,'Mes:',1,0,'C',1);
       $this->Cell(50,6,$mes1 ,1,0,'C');
       $this->Cell(40,6,'Año:',1,0,'C',1);
-      $this->Cell(50,6,'2016' ,1,0,'C');
+      $this->Cell(50,6,'2017' ,1,0,'C');
       $this->Ln();
       $this->SetFont('helvetica', 'B', 10);
       $this->Cell(180,6,$row['tipo_servicio'],1,0,'C',1);

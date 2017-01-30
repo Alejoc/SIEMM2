@@ -20,6 +20,7 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'fisio':
+
 				$subtitulo="Adicionada";
 				$val="Fisioterapia";
 			break;
@@ -39,35 +40,29 @@ $subtitulo="";
 				$val="Terapia Ocupacional";
 			break;
 			case 'hcini':
-			$sql="INSERT INTO hcini_reh (id_adm_hosp,id_user,freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,estado_general,cabcuello,torax,ext,abdomen,neurologico,genitourinario,analisis,finalidad,causa_externa,dxp,ddxp,tdxp,dx1,ddx1,tdx1,dx2,ddx2,tdx2,dx3,ddx3,tdx3,estado_hchosp) VALUES
-			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["motivoconsulta"]."','".$_POST["enferactual"]."','".$_POST["antalergico"]."','".$_POST["antpatologico"]."','".$_POST["antquirurgico"]."','".$_POST["anttoxicologicos"]."','".$_POST["antfarmacologico"]."','".$_POST["antgineco"]."','".$_POST["antpsiquiatrico"]."','".$_POST["anthospitalario"]."','".$_POST["anttrauma"]."','".$_POST["antfami"]."','".$_POST["antotros"]."','".$_POST["estadogen"]."','".$_POST["cabezacuello"]."','".$_POST["torax"]."','".$_POST["extsup"]."','".$_POST["abdomen"]."','".$_POST["neurologico"]."','".$_POST["genitourinario"]."','".$_POST["analisis"]."','".$_POST["finconsulta"]."','".$_POST["causaexterna"]."','".$_POST["cdxp"]."','".$_POST["descridxp"]."','".$_POST["tdxp"]."','".$_POST["cdx1"]."','".$_POST["descridx1"]."','".$_POST["tdx1"]."','".$_POST["cdx2"]."','".$_POST["descridx2"]."','".$_POST["tdx2"]."','".$_POST["cdx3"]."','".$_POST["descridx3"]."','".$_POST["tdx3"]."','Realizada')";
-
-				$subtitulo1="Adicionada";
+			$sql="INSERT INTO hcini_reh (id_adm_hosp,id_user,freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,analisis,finalidad,causa_externa,ddxp,tdxp,ddx1,tdx1,ddx2,tdx2,ddx3,tdx3,plan_tratamiento,recomendaciones,estado_hchosp) VALUES
+			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["motivoconsulta"]."','".$_POST["enferactual"]."','".$_POST["antalergico"]."','".$_POST["antpatologico"]."','".$_POST["antquirurgico"]."','".$_POST["anttoxicologicos"]."','".$_POST["antfarmacologico"]."','".$_POST["antgineco"]."','".$_POST["antpsiquiatrico"]."','".$_POST["anthospitalario"]."','".$_POST["anttrauma"]."','".$_POST["antfami"]."','".$_POST["antotros"]."','".$_POST["analisis"]."','".$_POST["finconsulta"]."','".$_POST["causaexterna"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["dx1"]."','".$_POST["tdx1"]."','".$_POST["dx2"]."','".$_POST["tdx2"]."','".$_POST["dx3"]."','".$_POST["tdx3"]."','".$_POST["plan_tratamiento"]."','".$_POST["reco"]."','Realizada')";
 				$val1="Historia clínica ingreso";
+				$subtitulo="Adicionada";
 			break;
 			case 'Meta':
 			$sql="INSERT INTO meta_reh (id_adm_hosp, id_user, freg_metareh, hreg_metareh, metagen_reh, plant_metareh, estado_metareh) VALUES
 			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["mt"]."','".$_POST["pt"]."','Realizada')";
 				$subtitulo="Adicionada";
 				$subtitulo1="Adicionada";
-				$val="Meta general y plan de tratamiento";
-				$val1="Meta general y plan de tratamiento";
+				$val1="Meta general";
 			break;
 		}
 		//echo $sql;
 		if ($bd1->consulta($sql)){
-			$subtitulo="La valoracion inicial de $val fue $subtitulo con exito!";
+			$subtitulo="La $val1 fue $subtitulo con exito!";
 			$check='si';
-			$sub1="$val $subtitulo Correctamente";
-			if($_POST["operacion"]=="X"){
-			if(is_file($fila["logo"])){
-				unlink($fila["logo"]);
-			}
-			}
+
+
 		}else{
-			$subtitulo="La valoracion inicial de $val NO fue $subtitulo !!! .";
+			$subtitulo="La $val1 NO fue $subtitulo !!! .";
 			$check='no';
-			$sub1="$val NO fue $subtitulo Correctamente";
+
 
 		}
 	}
@@ -83,6 +78,8 @@ if (isset($_GET["mante"])){					///nivel 2
                 left join eps j on (j.id_eps=b.id_eps)
     where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
 			$boton="Agregar Valoración";
+			$date=date('Y-m-d');
+			$date1=date('H:i');
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
@@ -97,6 +94,8 @@ if (isset($_GET["mante"])){					///nivel 2
                   left join eps j on (j.id_eps=b.id_eps)
       where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
 			$boton="Agregar Valoración";
+			$date=date('Y-m-d');
+			$date1=date('H:i');
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
@@ -111,6 +110,8 @@ if (isset($_GET["mante"])){					///nivel 2
                   left join eps j on (j.id_eps=b.id_eps)
       where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
 			$boton="Agregar Valoración";
+			$date=date('Y-m-d');
+			$date1=date('H:i');
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
@@ -125,6 +126,8 @@ if (isset($_GET["mante"])){					///nivel 2
                   left join eps j on (j.id_eps=b.id_eps)
       where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
 			$boton="Agregar Valoración";
+			$date=date('Y-m-d');
+			$date1=date('H:i');
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
@@ -144,7 +147,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
 			$form1='formularios/hcini_reh.php';
 			$subtitulo='Historia Clínica de ingreso';
-			$date=date('Y/m/d');
+			$date=date('Y-m-d');
 			$date1=date('H:i');
 			break;
 			case 'Meta':
@@ -160,7 +163,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
 			$form1='formularios/meta_reh.php';
 			$subtitulo='Meta general';
-			$date=date('Y/m/d');
+			$date=date('Y-m-d');
 			$date1=date('H:i');
 			break;
 		}

@@ -158,6 +158,52 @@ if ($mes==2) {
 <!-- consulta rapida TERAPIA OCUPACIONAL -->
 <section>
 <article >
+  <section class="modal fade" id="valto" role="dialog">
+    <section class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Valoracion Inicial Terapia ocupacional</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+
+            </tr>
+            <?php
+            if (isset($_REQUEST["idadmhosp"])){
+
+            $id=$_REQUEST["idadmhosp"];
+            $sql="
+            SELECT a.id_valinito_reh, id_adm_hosp, id_user, freg_valinito_reh, hreg_valinito_reh, pintegral1i, pintegral1d, pintegral2i, pintegral2d, pintegral3i, pintegra3d, pintegral4i, pintegral4d, pintegral5i, pintegral5d, pintegral6i, pintegral6d, pintegral7i, pintegral7d, pintegral8i, pintegral8d, pintegral9i, pintegral9d, pfuncional1i, pfuncional1d, pfuncional2i, pfuncional2d, pfuncional3i, pfuncional3d, pfuncional4i, pfuncional4d, pfuncional5i, pfuncional5d, pfuncional6i, pfuncional6d, pfuncional7i, pfuncional7d, palcance1i, palcance1d, palcance2i, palcance2d, palcance3i, palcance3d, palcance4i, palcance4d, palcance5i, palcance5d, pglobales1i, pglobales1d, pglobales2i, pglobales2d, pglobales3i, pglobales3d, pglobales4i, pglobales4d, pglobales5i, pglobales5d, pfund1i, pfund1d, pfund2i, pfund2d, pfund3i, pfund3d, pfund4i, pfund4d, pfund5i, pfund5d, pcoord1i, pcoord1d, pcoord2i, pcoord2d, pcoord3i, pcoord3d, pcoord4i, pcoord4d, pcoord5i, pcoord5d, ccp_orien1, ccp_orien2, ccp_atenc1, ccp_atenc2, ccp_atenc3, ccp_atenc4, ccp_atenc5, ccp_atenc6, ccp_atenc7, ccp_atenc8, ccp_graf1, ccp_graf2, ccp_graf3, ccp_graf4, ccp_graf5, ccp_percep1, ccp_percep2, ccp_percep3, ccp_percep4, ccp_percep5, ccp_percep6, ccp_percep7, ccp_memo1, ccp_memo2, ccp_memo3, ccp_memo4, ccp_memo5, ccp_instru1, ccp_instru2, ccp_instru3, ccp_instru4, ccp_instru5, ccp_instru6, ccp_supe1, ccp_supe2, ccp_supe3, ccp_supe4, ccp_supe5, cp1, cp2, cp3, cp4, cp5, cp6, cp7, juego1, juego2, juego3, juego4, juego5, juego6, juego7, juego8, avd_alimen1, avd_alimen2, avd_alimen3, avd_alimen4, avd_vestido1, avd_vestido2, avd_vestido3, avd_vestido4, avd_vestido5, avd_vestido6, avd_vestido7, avd_vestido8, avd_vestido9, avd_vestido10, avd_vestido11, avd_higiene1, avd_higiene2, avd_higiene3, avd_higiene4, avd_higiene5, avd_traslado1, avd_traslado2, avd_traslado3, avd_traslado4, abc_1, abc_2, abc_3, abc_4, abc_5, abc_6, abc_7, abc_8, abc_9, abc_10, is_auditivo1, is_auditivo2, is_auditivo3, is_auditivo4, obs_isauditivo, is_visual1, is_visual2, is_visual3, obs_isvisual, is_gusolf1, is_gusolf2, is_gusolf3, is_gusolf4, obs_isgusolf, is_vestibular1, is_vestibular2, is_vestibular3, is_vestibular4, obs_isvestibular, is_propio1, is_propio2, is_propio3, obs_ispropio, is_tactil1, is_tactil2, is_tactil3, is_tactil4, is_tactil5, obs_istactil, estado_valinito_reh, u.nombre,especialidad
+            FROM adm_hospitalario a LEFT JOIN valini_to_reh n on a.id_adm_hosp=n.id_adm_hosp
+                                    LEFT join user u on n.id_user=u.id_user
+            WHERE a.id_adm_hosp='".$id."'  order by n.freg_evoto_reh ASC
+            ";
+            if ($tabla=$bd1->sub_tuplas($sql)){
+              echo $sql;
+              foreach ($tabla as $fila ) {
+                echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong><span class="fa fa-calendar"></span> '.$fila["freg_valinito_reh"].' '.$fila["hreg_valinito_reh"].'</strong></td>';
+                  echo'<td class="text-center success"><strong><span class="fa fa-user-md"></span> '.$fila["nombre"].' </strong></td>';
+                  echo'<td  class="text-center warning"><strong><span class="fa fa-medkit"></span> '.$fila["especialidad"].' </strong></td>';
+                  echo '</tr>';
+                  echo"<tr >\n";
+
+                echo '</tr>';
+              }
+            }
+          }
+            ?>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
+</section>
+<section>
+<article >
   <section class="modal fade" id="evoto" role="dialog">
     <section class="modal-dialog modal-lg">
       <div class="modal-content">
