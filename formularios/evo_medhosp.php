@@ -12,6 +12,7 @@
 			<article class="col-xs-3">
 				<label for="">Fecha de registro:</label>
 				<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1;?> >
+				<input type="hidden" name="id" value="<?php $fila['id_adm_hosp'] ;?>" class="form-control" <?php echo $atributo1;?> >
 			</article>
 			<article class="col-xs-3">
 				<label for="">Hora de registro</label>
@@ -77,8 +78,6 @@
 				</article>
 		</section>
 </section>
-	</section>
-		</section>
 	<div class="row text-center">
 	  <input type="submit" class="btn btn-primary" name="aceptar" Value="<?php echo $boton; ?>" />
 		<input type="hidden" class="btn btn-primary" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>

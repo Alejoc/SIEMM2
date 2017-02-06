@@ -79,17 +79,7 @@ class MYPDF extends TCPDF {
         $cie=$_GET["cie"];
         $f1=$_GET["f1"];
         $f2=$_GET["f2"];
-        $this->multicell(180,15,$this->image($image_file, $this->GetX(), $this->GetY(),70,40),0,'L');
-        // Set font
-        $this->SetFont('helvetica', 'B', 12);
-        // Title
-        $this->Cell(180, 20, 'ORDENES MEDICAS', 1, false, 'R', 0, '', 0, false, 'M', 'M');
-        $this->Ln();
-        $this->SetFont('helvetica', '', 9);
-        $this->Cell(30, 5, 'IF-GDC-009', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Cell(30, 5, 'Version:00', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Cell(120, 5, 'Fecha de Emision:'.$date, 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Ln();
+
     }
 	// Load table data from file
 	public function LoadData($file) {
@@ -126,6 +116,64 @@ class MYPDF extends TCPDF {
 
 		foreach($data as $row) {
       $image_file = 'images/logo3p.png';
+      $date=date('Y-m-d');
+      $mes= date('m') ;
+      $mes1=date('m');
+      $y=date('Y');
+      if ($mes==1) {
+        $mes1='Enero';
+        }
+        if ($mes==2) {
+          $mes1='Febrero';
+          }
+          if ($mes==3) {
+            $mes1='Marzo';
+            }
+            if ($mes==4) {
+              $mes1='Abril';
+              }
+              if ($mes==5) {
+                $mes1='Mayo';
+                }
+                if ($mes==6) {
+                  $mes1='Junio';
+                  }
+                  if ($mes==7) {
+                    $mes1='Julio';
+                    }
+                    if ($mes==8) {
+                      $mes1='Agosto';
+                      }
+                      if ($mes==9) {
+                        $mes1='Septiembre';
+                        }
+                        if ($mes==10) {
+                          $mes1='Octubre';
+                          }
+                          if ($mes==11) {
+                            $mes1='Noviembre';
+                            }
+                            if ($mes==12) {
+                              $mes1='Noviembre';
+                              }
+
+      $nom=$_GET["nom"];
+      $edad=$_GET["edad"];
+      $cie=$_GET["cie"];
+      $f1=$_GET["f1"];
+      $f2=$_GET["f2"];
+
+      $this->multicell(180,15,$this->image($image_file, $this->GetX(), $this->GetY(),70,40),0,'L');
+      // Set font
+      $this->SetFont('helvetica', 'B', 12);
+      // Title
+      $this->Cell(180, 20, 'ORDENES MEDICAS', 1, false, 'R', 0, '', 0, false, 'M', 'M');
+      $this->Ln();
+      $this->SetFont('helvetica', '', 9);
+      $this->Cell(30, 5, 'IF-GDC-009', 1, false, 'C', 0, '', 0, false, 'M', 'M');
+      $this->Cell(30, 5, 'Version:00', 1, false, 'C', 0, '', 0, false, 'M', 'M');
+      $this->Cell(120, 5, 'Fecha de Emision:'.$date, 1, false, 'C', 0, '', 0, false, 'M', 'M');
+      $this->Ln();
       $this->SetFont('helvetica', 'B', 9);
       $this->Cell(180,5,'Datos Generales:',1,0,'C',1);
       $this->Ln();
@@ -218,32 +266,14 @@ class MYPDF extends TCPDF {
       $this->MultiCell(90, 15,utf8_encode($row['procedimiento']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->MultiCell(90, 15,utf8_encode($row['obs_proc']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento1']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc1']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento2']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc2']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento3']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc3']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento4']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc4']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento5']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc5']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento6']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc6']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
-      $this->MultiCell(90, 15,utf8_encode($row['procedimiento7']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->MultiCell(90, 15,utf8_encode($row['obs_proc7']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln();
       $this->SetFont('helvetica', '',7);
       $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),60,30),0,'J');
       $this->SetFont('helvetica', 'BI',10);
       $this->MultiCell(130, 0,utf8_encode('Profesional:'.$row['nombre'].' RM profesional:'.$row['rm_profesional'].' Especialidad:'.$row['espec_user']) .$txt, 0, 'R', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln(120);
+      $this->Ln(25);
+      $this->Cell(180,0,'_ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ _ _ _ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ ___ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __',0,0,'C',0);
+      $this->Ln(25);
+
     }
 
 
@@ -274,9 +304,6 @@ $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-$pdf->SetfooterMargin(PDF_MARGIN_HEADER);
 
 
 
@@ -308,7 +335,7 @@ g.descripdep,
 h.descrimuni,
 i.descripuedad,
 j.nom_eps,
-k.id_ord_med_ambu, freg_ord_med_ambu, hreg_ord_med_ambu, ts_ord_med_ambu, procedimiento, procedimiento1, procedimiento2, procedimiento3, procedimiento4, procedimiento5, procedimiento6, procedimiento7, estado_ord_med_ambu,obs_proc, obs_proc1, obs_proc2, obs_proc3, obs_proc4, obs_proc5, obs_proc6, obs_proc7,
+k.id_ord_med_ambu, freg_ord_med_ambu, hreg_ord_med_ambu, ts_ord_med_ambu, procedimiento, estado_ord_med_ambu,obs_proc,
 l.nombre,rm_profesional,l.especialidad espec_user,firma
 from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join estado_civil c on (c.codestadoc = a.estadocivil)

@@ -446,7 +446,7 @@ $pdf->ColoredTable($header, $data);
 
 // ---------------------------------------------------------
 // Change the path to whatever you like, even public:// will do or you could also make use of the private file system by using private://
-$nombre=$row["nom1"];
+$nombre='HC clinica';
 // close and output PDF document
 $pdf->Output($nombre.'.pdf', 'I');
 

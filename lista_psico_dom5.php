@@ -40,15 +40,34 @@ $subtitulo="";
 				$subtitulo2="Psicologia";
 			break;
 			case 'EVO':
-			$horaInicial=$_POST["hregevo"];
-			$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
-			$ht=date('H:i',$horat);
+			$fecha =date('Y-m-d');
+			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
+			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+			if ($nuevafecha >=  $_POST["freg"]) {
+				$horaInicial=$_POST["hregevo"];
+				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+				$ht=date('H:i',$horat);
+
+					$sql="INSERT INTO evo_psico_dom ( id_adm_hosp, id_user,freg_reg, freg_evopsico_dom, hreg_evopsico_dom, hreg_regpsico_dom, hfin_evopsico_dom, evolucionpsico_dom, estado_evopsico_dom) VALUES
+					('','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
+					$subtitulo="EVolucion";
+					$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
+
+			}
+			if ($nuevafecha < $_POST["freg"]) {
+				$horaInicial=$_POST["hregevo"];
+				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+				$ht=date('H:i',$horat);
 				$sql="INSERT INTO evo_psico_dom ( id_adm_hosp, id_user,freg_reg, freg_evopsico_dom, hreg_evopsico_dom, hreg_regpsico_dom, hfin_evopsico_dom, evolucionpsico_dom, estado_evopsico_dom) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
 				$subtitulo="EVolucion";
 				$subtitulo1="Adicionado";
-				$subtitulo2="Psicologia";
+
+			}
+
 			break;
+
 			case 'IM':
 				$sql="INSERT INTO im_psico_reh (id_adm_hosp, id_user, freg_impsico_reh, hreg_impsico_reh, objetivo_impsico_reh, actrealizada_impsico_reh, logros_impsico_reh, plant_impsico_reh, estado_impsico_reh) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregimto"]."','".$_POST["hregimto"]."','".$_POST["obj"]."','".$_POST["act"]."','".$_POST["logro"]."','".$_POST["plant"]."','Realizada')";
@@ -64,9 +83,10 @@ $subtitulo="";
 				$subtitulo2="Psicologia";
 			break;
 		}
-		//echo $sql;
+		echo $sql;
 		if ($bd1->consulta($sql)){
 			$subtitulo="El formato de $subtitulo en $subtitulo2 fue $subtitulo1 con exito!";
+			$check='si';
 			if($_POST["operacion"]=="X"){
 			if(is_file($fila["logo"])){
 				unlink($fila["logo"]);
@@ -74,6 +94,7 @@ $subtitulo="";
 			}
 		}else{
 			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!! .";
+			$check='no';
 		}
 	}
 }
@@ -174,9 +195,15 @@ if (isset($_GET["mante"])){					///nivel 2
 
 <?php
 }else{
-	echo '<div class="alert alert-success animated bounceInRight">';
-	echo $subtitulo;
-	echo '</div>';
+	if ($check=='si') {
+		echo '<div class="alert alert-success animated bounceInRight">';
+		echo $subtitulo;
+		echo '</div>';
+	}else {
+		echo '<div class="alert alert-danger animated bounceInRight">';
+		echo $subtitulo;
+		echo '</div>';
+	}
 // nivel 1?>
 <div class="panel-default">
 <div class="panel-body">

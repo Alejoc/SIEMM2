@@ -37,8 +37,8 @@ $subtitulo="";
 				$subtitulo1="Adicionado";
 			break;
 			case 'ADX':
-				$sql="INSERT INTO ord_med_hosp (id_adm_hosp, id_user, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp, procedimiento, obs_proc, procedimiento1, obs_proc1, procedimiento2, obs_proc2, procedimiento3, obs_proc3, procedimiento4, obs_proc4, procedimiento5, obs_proc5, procedimiento6, obs_proc6, procedimiento7, obs_proc7, estado_ord_med_hosp) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["cups"]."','".$_POST["obs_proc"]."','".$_POST["cups1"]."','".$_POST["obs_proc1"]."','".$_POST["cups2"]."','".$_POST["obs_proc2"]."','".$_POST["cups3"]."','".$_POST["obs_proc3"]."','".$_POST["cups4"]."','".$_POST["obs_proc4"]."','".$_POST["cups5"]."','".$_POST["obs_proc5"]."','".$_POST["cups6"]."','".$_POST["obs_proc6"]."','".$_POST["cups7"]."','".$_POST["obs_proc7"]."','Realizada')";
+				$sql="INSERT INTO ord_med_hosp (id_adm_hosp, id_user, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp, procedimiento, obs_proc, estado_ord_med_hosp) VALUES
+				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["cups"]."','".$_POST["obs_proc"]."','Realizada')";
 				$subtitulo="Ordenes Medicas";
 				$subtitulo1="Adicionado";
 			break;

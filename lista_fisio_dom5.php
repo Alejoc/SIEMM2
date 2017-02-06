@@ -49,29 +49,33 @@ $subtitulo="";
 				$subtitulo2="Terapia Fisica";
 			break;
 			case 'EVO':
-			$horaInicial=$_POST["hregevo"];
-			$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
-			$ht=date('H:i',$horat);
+			$fecha =date('Y-m-d');
+			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
+			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+			if ($nuevafecha >=  $_POST["freg"]) {
+				$horaInicial=$_POST["hregevo"];
+				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+				$ht=date('H:i',$horat);
+
+				$sql="INSERT INTO evo_fisio_dom ( ,freg_reg,freg_evofisio_dom, hreg_evofisio_dom, hreg_regfisio_dom, hfin_evofisio_dom, evolucionfisio_dom, estado_evofisio_dom) VALUES
+				('".$_POST["idadmhosp"]."',,'".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
+				$subtitulo="Evolucion";
+					$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
+				$subtitulo2="Terapia Fisica";
+			}
+				if ($nuevafecha < $_POST["freg"]) {
+					$horaInicial=$_POST["hregevo"];
+					$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+					$ht=date('H:i',$horat);
 				$sql="INSERT INTO evo_fisio_dom ( id_adm_hosp, id_user,freg_reg,freg_evofisio_dom, hreg_evofisio_dom, hreg_regfisio_dom, hfin_evofisio_dom, evolucionfisio_dom, estado_evofisio_dom) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
 				$subtitulo="Evolucion";
 				$subtitulo1="Adicionado";
 				$subtitulo2="Terapia Fisica";
+			}
 			break;
-			case 'IM':
-				$sql="INSERT INTO im_psico_reh (id_adm_hosp, id_user, freg_impsico_reh, hreg_impsico_reh, objetivo_impsico_reh, actrealizada_impsico_reh, logros_impsico_reh, plant_impsico_reh, estado_impsico_reh) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregimto"]."','".$_POST["hregimto"]."','".$_POST["obj"]."','".$_POST["act"]."','".$_POST["logro"]."','".$_POST["plant"]."','Realizada')";
-				$subtitulo="Informe Mensual";
-				$subtitulo1="Adicionado";
-				$subtitulo2="Psicologia";
-			break;
-			case 'PT':
-				$sql="INSERT INTO plantrimestral_psico_reh(id_adm_hosp, id_user, freg_ptpsico_reh, hreg_ptpsico_reh, obgen_psico_reh, obespec1_psico_reh, obespec2_psico_reh, obespec3_psico_reh, estado_ptpsico_reh) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregptto"]."','".$_POST["hregptto"]."','".$_POST["obgen_reh"]."','".$_POST["obespec1_reh"]."','".$_POST["obespec2_reh"]."','".$_POST["obespec3_reh"]."','Realizada')";
-				$subtitulo="Plan Trimestral";
-				$subtitulo1="Adicionado";
-				$subtitulo2="Psicologia";
-			break;
+
 		}
 		//echo $sql;
 		if ($bd1->consulta($sql)){
@@ -122,38 +126,6 @@ if (isset($_GET["mante"])){					///nivel 2
 			$date1=date('H:i');
 			$form1='formularios/evo_fisio_dom5.php';
 			$subtitulo='Evolucion Diaria Terapia Fisica';
-			break;
-			case 'IM':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Informe Mensual";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/impsico_reh5.php';
-			$subtitulo='Informe Mensual Psicologia';
-			break;
-			case 'PT':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Plan tratamiento";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/planfono_reh.php';
-			$subtitulo='Plan Trimestral Psicologia ';
 			break;
 
 		}

@@ -7,8 +7,8 @@ $subtitulo="";
 
 			switch ($_POST["operacion"]) {
       case 'E':
-			$sql="INSERT INTO ord_med_ambu (id_adm_hosp, id_user, freg_ord_med_ambu, hreg_ord_med_ambu, ts_ord_med_ambu, procedimiento, procedimiento1, procedimiento2, procedimiento3, procedimiento4, procedimiento5, procedimiento6, procedimiento7, estado_ord_med_ambu, obs_proc, obs_proc1, obs_proc2, obs_proc3, obs_proc4, obs_proc5, obs_proc6, obs_proc7 ) VALUES
-			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["cups"]."','".$_POST["cups1"]."','".$_POST["cups2"]."','".$_POST["cups3"]."','".$_POST["cups4"]."','".$_POST["cups5"]."','".$_POST["cups6"]."','".$_POST["cups7"]."','Realizada','".$_POST["obs_proc"]."','".$_POST["obs_proc1"]."','".$_POST["obs_proc2"]."','".$_POST["obs_proc3"]."','".$_POST["obs_proc4"]."','".$_POST["obs_proc5"]."','".$_POST["obs_proc6"]."','".$_POST["obs_proc7"]."')";
+			$sql="INSERT INTO ord_med_ambu (id_adm_hosp, id_user, freg_ord_med_ambu, hreg_ord_med_ambu, ts_ord_med_ambu, procedimiento, estado_ord_med_ambu, obs_proc ) VALUES
+			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["cups"]."','Realizada','".$_POST["obs_proc"]."')";
 			$subtitulo="Generada";
 			break;
 			case 'A':
@@ -61,6 +61,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$freg1='hidden';
 			$freg='text';
 			$ext='date';
+			$id=$_GET["idadmhosp"];
 			break;
 		}
 		if($sql!=""){
@@ -71,12 +72,17 @@ if (isset($_GET["mante"])){					///nivel 2
 					$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"");
 			}
 		?>
-    <form action="<?php echo PROGRAMA.'?opcion=83';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+    <form action="<?php echo PROGRAMA.'?opcion=83&idadmhosp='.$id;?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
     	<section>
     		<marquee class="fuente1 banermarquee">
     			<?php echo $subtitulo;?>
     		</marquee>
     	</section>
+			<section>
+				<?php
+					include("consulta_ultimaEpi.php");
+				?>
+			</section>
     	<section class="panel panel-default">
     	<section class="panel-body">
     		<article class="col-xs-3">

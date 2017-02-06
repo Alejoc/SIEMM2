@@ -41,7 +41,7 @@ class MYPDF extends TCPDF {
           $mes1='Diciembre';
           }
           if ($mes==2) {
-            $mes1='Febrero';
+            $mes1='Enero';
             }
             if ($mes==3) {
               $mes1='Marzo';
@@ -105,7 +105,7 @@ class MYPDF extends TCPDF {
         $this->Cell(30,6,'Mes:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Cell(45,6,$mes1 , 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Cell(30,6,'Año:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Cell(45,6,'2016' , 1, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(45,6,'2017' , 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Ln();
         $this->SetFont('helvetica', '', 7);
         $this->Cell(180,6, utf8_encode($cie), 1, false, 'C', 0, '', 0, false, 'M', 'M');

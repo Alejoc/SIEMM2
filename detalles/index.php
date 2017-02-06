@@ -1,103 +1,131 @@
-<?php
-	include('class/classAsistencias.php');
-	$clase = new sistema;
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Lista de Alumnos</title> 
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="css/estilos.css" rel="stylesheet">
-<script src="js/jquery.js"></script>
-<script src="js/myjava.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
+    <meta charset="UTF-8">
+        <!-- Bootstrap CSS File  -->
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap.css"/>
 </head>
 <body>
-<section>
-    <h2>Historial de Asistencias</h2>
-    <br />
-    <input type="button" value="GENERAR NUEVO REGISTRO" id="nuevaAsistencia" class="btn btn-primary"/>
-    <br />
-    <br />
-    <table class="table table-bordered table-condensed table-hover">
-        <thead>
-            <tr>
-                <th>ITEM</th>
-                <th>CODIGO DE ASISTENCIA</th>
-                <th>FECHA REGISTRADA</th>
-                <th>ESTUDIANTES</th>
-                <th>ACCION</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $clase->conexion();
-                     $clase->mostrarAsistencias(); ?>
-        </tbody>
-    </table>
-</section>
 
-<!-- MODAL DE REGISTRO -->
+<!-- Content Section -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Demo: nuevos modulos</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-success" data-toggle="modal" data-target="#add_new_record_modal">Add New Record</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Records:</h3>
 
- <div class="modal fade" id="modalAsistencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+            <div class="records_content"></div>
+        </div>
+    </div>
+</div>
+<!-- /Content Section -->
+
+
+<!-- Bootstrap Modals -->
+<!-- Modal - Add New Record/User -->
+<div class="modal fade" id="add_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel"><b>Registro de Asistencias</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Adicionar Usuario</h4>
             </div>
             <div class="modal-body">
-            <fieldset><legend>1. Generar Registro</legend>
-				<table class="tbl-registro" width="100%">
-                	<tr>
-                    	<td>Codigo: </td>
-                        <td><input type="text" class="form-control" id="codRegistro" maxlength="5"/></td>
-                    	<td>Fecha: </td>
-                        <td><input type="text" class="form-control" value="<?php echo date('Y-m-d'); ?>" disabled="disabled"/></td>
-                    </tr>
-                    <tr>
-                    	<td colspan="4"><input type="button" id="generarAsistencia" class="btn btn-success" value="Ingresar Alumnos" /></td>
-                    </tr>
-                </table>
-                </fieldset>
-                <div id="mensaje"></div>
-                <fieldset><legend>2. Registrar Alumnos</legend>
-                <table class="tbl-registro" width="100%">
-                	<tr>
-                    	<td><input type="text" placeholder="Escriba el nombre y apellido del estudiante..." class="form-control" id="nombEstudiante" disabled="disabled"/></td>
-                        <td><input type="button" id="regEstudiante" class="btn btn-primary" value="+" disabled="disabled"/></td>
-                    </tr>
-                </table>
-                </fieldset>
-                <br />
-                <div id="contenidoRegistro"></div>
-                <div class="modal-footer">
-                	<input type="button" id="guardar" class="btn btn-default" value="Guardar"/>
+
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" placeholder="First Name" class="form-control"/>
                 </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" placeholder="Last Name" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="text" id="email" placeholder="Email Address" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="clave">clave</label>
+                    <input type="text" id="clave" placeholder="Email Address" class="form-control"/>
+                </div>
+
             </div>
-          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addRecord()">Add Record</button>
+            </div>
         </div>
-      </div>
-      
-      
-   <!-- MODAL PARA MOSTRAR EL DETALLE -->
+    </div>
+</div>
+<!-- // Modal -->
 
- <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+<!-- Modal - Update User details -->
+<div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel"><b>Registro de Asistencias</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Update</h4>
             </div>
-            <div class="modal-body" id="datosAqui">
-            </div>
-          </div>
-       </div>
-   </div>   
+            <div class="modal-body">
 
+                <div class="form-group">
+                    <label for="update_first_name">First Name</label>
+                    <input type="text" id="update_first_name" placeholder="First Name" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="update_last_name">Last Name</label>
+                    <input type="text" id="update_last_name" placeholder="Last Name" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="update_email">Email Address</label>
+                    <input type="text" id="update_email" placeholder="Email Address" class="form-control"/>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Save Changes</button>
+                <input type="hidden" id="hidden_user_id">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // Modal -->
+
+<!-- Jquery JS file -->
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+
+<!-- Bootstrap JS file -->
+<script type="text/javascript" src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+<!-- Custom JS file -->
+<script type="text/javascript" src="js/script.js"></script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75591362-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>

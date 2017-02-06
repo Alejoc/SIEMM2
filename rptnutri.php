@@ -143,7 +143,7 @@ $pdf->ColoredTable($header, $data);
 // ---------------------------------------------------------
 
 // close and output PDF document
-$pdf->Output('example_011.pdf', 'I');
+$pdf->Output('Nutricion.pdf', 'I');
 
 //============================================================+
 // END OF FILE

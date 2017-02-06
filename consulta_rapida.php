@@ -2,6 +2,15 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav " id="barra">
       <li class="dropdown">
+        <button class="btn btn-success dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Datos administrativos <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a  data-toggle="modal" data-target="#censobta" type="button" ><span class="fa fa-search"> Censo Diario Bogota</span></a></li>
+          <li><a  data-toggle="modal" data-target="#censofaca" type="button" ><span class="fa fa-search"> Censo Diario Facatativa</span></a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav " id="barra">
+      <li class="dropdown">
         <button class="btn btn-success dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Medicos <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><a  data-toggle="modal" data-target="#hc" type="button" ><span class="fa fa-search"> HC</span></a></li>
@@ -65,6 +74,140 @@
     </ul>
   </div>
 </article>
+<section >
+    <section>
+      <section class="modal fade" id="censobta" role="dialog">
+        <section class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" >Censo Diario Bogota</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <tr>
+                  <td class="text-center"><strong>Identificacion</strong></td>
+                  <td class="text-center"><strong>Nombre completo</strong></td>
+                  <td class="text-center"><strong>ID</strong></td>
+                  <td class="text-center"><strong>Edad</strong></td>
+                  <td class="text-center"><strong>Genero</strong></td>
+                  <td class="text-center"><strong>Clasificacion Diagnostica</strong></td>
+                </tr>
+                <?php
+                if (isset($_REQUEST["idadmhosp"])){
+                $id=$_REQUEST["idadmhosp"];
+                $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,fotopac,
+                b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,zona_residencia,nivel,tipo_servicio,resp_admhosp,
+                c.descripestadoc,
+                d.descriafiliado,
+                e.descritusuario,
+                f.descriocu,
+                g.descripdep,
+                h.descrimuni,
+                i.descripuedad,
+                j.nom_eps,
+                k.clasificacion_dx,dxp,ddxp
+                from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
+                      left join estado_civil c on (c.codestadoc = a.estadocivil)
+                      left join tusuario e on (e.codtusuario=b.tipo_usuario)
+                      left join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
+                      left join ocupacion f on (f.codocu=b.ocupacion)
+                      left join departamento g on (g.coddep=b.dep_residencia)
+                      left join municipios h on (h.codmuni=b.mun_residencia)
+                      left join uedad i on (i.coduedad=a.uedad)
+                      left join eps j on (j.id_eps=b.id_eps)
+                      left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
+
+                where b.id_sedes_ips ='8' and b.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
+                  //echo $sql;
+                if ($tabla=$bd1->sub_tuplas($sql)){
+                  //echo $sql;
+                  foreach ($tabla as $fila ) {
+
+                    echo"<tr >\n";
+                    echo'<td class="text-center success"><strong><span class="fa fa-user-md"></span> '.$fila["tdoc_pac"].' : '.$fila["doc_pac"].' </strong></td>';
+                    echo'<td class="text-left info"> '.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+                    echo'<td class="text-left info"> '.$fila["id_adm_hosp"].'</td>';
+                    echo'<td class="text-left info"> '.$fila["edad"].'</td>';
+                    echo'<td class="text-left info"> '.$fila["genero"].'</td>';
+                    echo'<td class="text-left info"> '.$fila["clasificacion_dx"].'</td>';
+                    echo '</tr>';
+
+
+                  }
+                }
+              }
+                ?>
+              </table>
+            </div>
+
+          </div>
+        </section>
+      </section>
+    </section>
+</section>
+<section >
+    <section>
+      <section class="modal fade" id="censofaca" role="dialog">
+        <section class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" >Censo Diario Facatativa</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <tr>
+
+                </tr>
+                <?php
+                if (isset($_REQUEST["idadmhosp"])){
+                $id=$_REQUEST["idadmhosp"];
+                $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,fotopac,
+                b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,zona_residencia,nivel,tipo_servicio,resp_admhosp,
+                c.descripestadoc,
+                d.descriafiliado,
+                e.descritusuario,
+                f.descriocu,
+                g.descripdep,
+                h.descrimuni,
+                i.descripuedad,
+                j.nom_eps
+                from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
+                      left join estado_civil c on (c.codestadoc = a.estadocivil)
+                      left join tusuario e on (e.codtusuario=b.tipo_usuario)
+                      left join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
+                      left join ocupacion f on (f.codocu=b.ocupacion)
+                      left join departamento g on (g.coddep=b.dep_residencia)
+                      left join municipios h on (h.codmuni=b.mun_residencia)
+                      left join uedad i on (i.coduedad=a.uedad)
+                      left join eps j on (j.id_eps=b.id_eps)
+
+                where b.id_sedes_ips ='2' and b.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
+                  //echo $sql;
+                if ($tabla=$bd1->sub_tuplas($sql)){
+                  //echo $sql;
+                  $numero=1;
+                  foreach ($tabla as $fila ) {
+
+                    echo"<tr >\n";
+                    echo'<td class="text-center warning"><strong> '.$fila["tdoc_pac"].' : '.$fila["doc_pac"].' </strong></td>';
+                    echo'<td class="text-left info"> '.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+                    echo '</tr>';
+                    $numero++;
+
+                  }
+                }
+              }
+                ?>
+              </table>
+            </div>
+
+          </div>
+        </section>
+      </section>
+    </section>
+</section>
 <section >
     <section>
       <section class="modal fade" id="hc" role="dialog">
@@ -326,7 +469,7 @@
                 <?php
                 if (isset($_REQUEST["idadmhosp"])){
                 $id=$_REQUEST["idadmhosp"];
-                $sql="SELECT e.id_adm_hosp,freg_evomed,hreg_evomed,max(id_evomed),max(objetivo),max(subjetivo),max(analisis_evomed),max(plan_tratamiento),u.cuenta,nombre,doc,rm_profesional,especialidad,firma FROM evolucion_medica e LEFT JOIN user u on e.id_user=u.id_user  where e.id_adm_hosp='".$_GET["idadmhosp"]."' group by e.id_adm_hosp,e.freg_evomed,e.hreg_evomed,u.cuenta,nombre,doc,rm_profesional,especialidad,firma ORDER BY freg_evomed DESC";
+                $sql="SELECT e.id_adm_hosp,freg_evomed,hreg_evomed,max(id_evomed),max(objetivo),max(subjetivo),max(analisis_evomed),max(plan_tratamiento),dxp,ddxp,tdxp,u.cuenta,nombre,doc,rm_profesional,especialidad,firma FROM evolucion_medica e LEFT JOIN user u on e.id_user=u.id_user  where e.id_adm_hosp='".$_GET["idadmhosp"]."' group by e.id_adm_hosp,e.freg_evomed,e.hreg_evomed,u.cuenta,nombre,doc,rm_profesional,especialidad,firma ORDER BY freg_evomed DESC";
                   //echo $sql;
                 if ($tabla=$bd1->sub_tuplas($sql)){
                   //echo $sql;
@@ -353,9 +496,10 @@
                     echo'<td class="text-center info" ><b>PLAN TRATAMIENTO</b></td>';
                     echo'<td class="text-left">'.$fila["max(plan_tratamiento)"].'</td>';
                     echo '</tr>';
-                    echo "<tr>";
-                    echo'<td class="text-center"></td>';
-                    echo "</tr>\n";
+                    echo"<tr >\n";
+                    echo'<td class="text-center info" ><b>DIAGNOSTICO</b></td>';
+                    echo'<td class="text-left">'.$fila["dxp"].' -- '.$fila["ddxp"].' -- '.$fila["tdxp"].'</td>';
+                    echo '</tr>';
 
 
                   }

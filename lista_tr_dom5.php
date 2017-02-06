@@ -57,20 +57,37 @@ $subtitulo="";
 				$subtitulo2="Terapia Respiratoria";
 			break;
 			case 'EVO':
-			$horaInicial=$_POST["hregevo"];
-			$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
-			$ht=date('H:i',$horat);
+			$fecha =date('Y-m-d');
+			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
+			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+			if ($nuevafecha >=  $_POST["freg"]) {
+				$horaInicial=$_POST["hregevo"];
+				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+				$ht=date('H:i',$horat);
+				$sql="INSERT INTO evo_tr_dom( freg_reg, freg_evotr_dom, hreg_evotr_dom, hreg_regtr_dom, hfin_evotr_dom, evoluciontr_dom, estado_evotr_dom) VALUES
+				('','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
+				$subtitulo="Evolucion";
+				$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
+				$subtitulo2="Terapia Respiratoria";
+			}
+				if ($nuevafecha < $_POST["freg"]) {
+					$horaInicial=$_POST["hregevo"];
+					$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+					$ht=date('H:i',$horat);
 				$sql="INSERT INTO evo_tr_dom(  id_adm_hosp, id_user, freg_reg, freg_evotr_dom, hreg_evotr_dom, hreg_regtr_dom, hfin_evotr_dom, evoluciontr_dom, estado_evotr_dom) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
 				$subtitulo="EVolucion";
 				$subtitulo1="Adicionado";
 				$subtitulo2="Terapia Respiratoria";
+			}
 			break;
 
 		}
 		//echo $sql;
 		if ($bd1->consulta($sql)){
 			$subtitulo="El formato de $subtitulo en $subtitulo2 fue $subtitulo1 con exito!";
+			$check='si';
 			if($_POST["operacion"]=="X"){
 			if(is_file($fila["logo"])){
 				unlink($fila["logo"]);
@@ -78,6 +95,7 @@ $subtitulo="";
 			}
 		}else{
 			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!! .";
+			$check='no';
 		}
 	}
 }
@@ -147,9 +165,15 @@ if (isset($_GET["mante"])){					///nivel 2
 
 <?php
 }else{
-	echo '<div class="alert alert-success animated bounceInRight">';
-	echo $subtitulo;
-	echo '</div>';
+	if ($check=='si') {
+		echo '<div class="alert alert-success animated bounceInRight">';
+		echo $subtitulo;
+		echo '</div>';
+	}else {
+		echo '<div class="alert alert-danger animated bounceInRight">';
+		echo $subtitulo;
+		echo '</div>';
+	}
 // nivel 1?>
 <div class="panel-default">
 <div class="panel-body">

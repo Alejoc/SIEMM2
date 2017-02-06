@@ -331,7 +331,7 @@ $pdf->ColoredTable($header, $data);
 
 // ---------------------------------------------------------
 // Change the path to whatever you like, even public:// will do or you could also make use of the private file system by using private://
-$nombre=$_GET["nom"];
+$nombre='ValoracionNutricion';
 // close and output PDF document
 $pdf->Output($nombre.'.pdf', 'I');
 

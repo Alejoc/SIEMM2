@@ -153,34 +153,38 @@ $subtitulo="Valoracion inicial";
 				$subtitulo2="Terapia Ocupacional";
 			break;
 			case 'EVO':
-			$horaInicial=$_POST["hregevo"];
-			$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
-			$ht=date('H:i',$horat);
+			$fecha =date('Y-m-d');
+			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
+			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
-				$sql="INSERT INTO evo_to_dom (  id_adm_hosp, id_user,freg_reg, freg_evoto_dom, hreg_evoto_dom, hreg_regto_dom, hfin_evoto_dom, evolucionto_dom, estado_evoto_dom) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
-				$subtitulo="EVolucion";
-				$subtitulo1="Adicionado";
+			if ($nuevafecha >=  $_POST["freg"]) {
+				$horaInicial=$_POST["hregevo"];
+				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+				$ht=date('H:i',$horat);
+
+				$sql="INSERT INTO evo_to_dom ( freg_reg, freg_evoto_dom, hreg_evoto_dom, hreg_regto_dom, hfin_evoto_dom, evolucionto_dom, estado_evoto_dom) VALUES
+				('','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
+				$subtitulo="Evolucion";
+				$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
 				$subtitulo2="Terapia Ocupacional";
+			}
+				if ($nuevafecha < $_POST["freg"]) {
+					$horaInicial=$_POST["hregevo"];
+					$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
+					$ht=date('H:i',$horat);
+					$sql="INSERT INTO evo_to_dom (  id_adm_hosp, id_user,freg_reg, freg_evoto_dom, hreg_evoto_dom, hreg_regto_dom, hfin_evoto_dom, evolucionto_dom, estado_evoto_dom) VALUES
+					('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
+					$subtitulo="EVolucion";
+					$subtitulo1="Adicionado";
+					$subtitulo2="Terapia Ocupacional";
+				}
 			break;
-			case 'IM':
-				$sql="INSERT INTO im_psico_reh (id_adm_hosp, id_user, freg_impsico_reh, hreg_impsico_reh, objetivo_impsico_reh, actrealizada_impsico_reh, logros_impsico_reh, plant_impsico_reh, estado_impsico_reh) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregimto"]."','".$_POST["hregimto"]."','".$_POST["obj"]."','".$_POST["act"]."','".$_POST["logro"]."','".$_POST["plant"]."','Realizada')";
-				$subtitulo="Informe Mensual";
-				$subtitulo1="Adicionado";
-				$subtitulo2="Psicologia";
-			break;
-			case 'PT':
-				$sql="INSERT INTO plantrimestral_psico_reh(id_adm_hosp, id_user, freg_ptpsico_reh, hreg_ptpsico_reh, obgen_psico_reh, obespec1_psico_reh, obespec2_psico_reh, obespec3_psico_reh, estado_ptpsico_reh) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregptto"]."','".$_POST["hregptto"]."','".$_POST["obgen_reh"]."','".$_POST["obespec1_reh"]."','".$_POST["obespec2_reh"]."','".$_POST["obespec3_reh"]."','Realizada')";
-				$subtitulo="Plan Trimestral";
-				$subtitulo1="Adicionado";
-				$subtitulo2="Psicologia";
-			break;
+			
 		}
 		//echo $sql;
 		if ($bd1->consulta($sql)){
 			$subtitulo="El formato de $subtitulo en $subtitulo2 fue $subtitulo1 con exito!";
+			$check='si';
 			if($_POST["operacion"]=="X"){
 			if(is_file($fila["logo"])){
 				unlink($fila["logo"]);
@@ -188,6 +192,7 @@ $subtitulo="Valoracion inicial";
 			}
 		}else{
 			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!! .";
+			$check='no';
 		}
 	}
 }
@@ -288,9 +293,15 @@ if (isset($_GET["mante"])){					///nivel 2
 
 <?php
 }else{
-	echo '<div class="alert alert-success animated bounceInRight">';
-	echo $subtitulo;
-	echo '</div>';
+	if ($check=='si') {
+		echo '<div class="alert alert-success animated bounceInRight">';
+		echo $subtitulo;
+		echo '</div>';
+	}else {
+		echo '<div class="alert alert-danger animated bounceInRight">';
+		echo $subtitulo;
+		echo '</div>';
+	}
 // nivel 1?>
 <div class="panel-default">
 <div class="panel-body">

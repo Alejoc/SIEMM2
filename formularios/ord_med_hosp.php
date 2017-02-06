@@ -1,11 +1,16 @@
 <form action="<?php echo PROGRAMA.'?opcion=19';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+
 <section class="panel panel-default">
 	<section class="panel-body">
 		<?php
 			include("consulta_paciente.php");
 		?>
 	</section>
-
+	<section>
+		<?php
+			include("consulta_ultimaEvo.php");
+		?>
+	</section>
 	<section class="panel-body">
 		<article class="col-xs-3">
 			<label for="">Fecha Registro:</label>
