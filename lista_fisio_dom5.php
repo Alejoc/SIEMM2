@@ -49,7 +49,7 @@ $subtitulo="";
 				$subtitulo2="Terapia Fisica";
 			break;
 			case 'EVO':
-			$fecha =date('Y-m-d');
+			/*$fecha =date('Y-m-d');
 			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
 			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
@@ -64,7 +64,7 @@ $subtitulo="";
 					$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
 				$subtitulo2="Terapia Fisica";
 			}
-				if ($nuevafecha < $_POST["freg"]) {
+				if ($nuevafecha < $_POST["freg"]) {*/
 					$horaInicial=$_POST["hregevo"];
 					$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
 					$ht=date('H:i',$horat);
@@ -73,7 +73,7 @@ $subtitulo="";
 				$subtitulo="Evolucion";
 				$subtitulo1="Adicionado";
 				$subtitulo2="Terapia Fisica";
-			}
+			//}
 			break;
 
 		}

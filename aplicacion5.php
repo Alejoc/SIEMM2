@@ -226,14 +226,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 							</ul>
 						</li>
 					</ul>
-				 <ul class="nav navbar-nav" id="barra">
-					 <li class="dropdown">
-						 <button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Rehabilitacion <span class="caret"></span></button>
-						 <ul class="dropdown-menu">
-							 <li><?php include("menuREH".VERSION.".php");?></li>
-						 </ul>
-					 </li>
-				 </ul>
+
 				 <ul class="nav navbar-nav" id="barra">
 					 <li class="dropdown">
 						 <button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Domiciliarios <span class="caret"></span></button>
