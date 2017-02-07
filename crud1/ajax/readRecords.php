@@ -6,7 +6,7 @@
 	$data = '<table class="table table-bordered table-striped">
 						<tr>
 							<th>No.</th>
-							<th>Nombre Completo</th>
+							<th>Nombre</th>
 							<th>Cuenta</th>
 							<th>Email</th>
 							<th>Perfil</th>
