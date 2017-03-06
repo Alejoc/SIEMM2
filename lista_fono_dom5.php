@@ -85,21 +85,7 @@ $subtitulo="";
 				$subtitulo2="Fonoaudiologia";
 			break;
 			case 'EVO':
-			$fecha =date('Y-m-d');
-			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
-			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
-			if ($nuevafecha >=  $_POST["freg"]) {
-				$horaInicial=$_POST["hregevo"];
-				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
-				$ht=date('H:i',$horat);
-
-				$sql="INSERT INTO evo_fono_dom (,freg_reg, freg_evofono_dom, hreg_evofono_dom, hreg_regfono_dom, hfin_evofono_dom, evolucionfono_dom, estado_evofono_dom) VALUES
-				('".$_POST["idadmhosp"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
-				$subtitulo="EVolucion";
-				$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
-				$subtitulo2="Fonoaudiologia";
-			}
 				if ($nuevafecha < $_POST["freg"]) {
 					$horaInicial=$_POST["hregevo"];
 					$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;

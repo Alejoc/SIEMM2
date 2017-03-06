@@ -40,7 +40,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-
+	<script type = "text/javascript" src = "con.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 	     var consulta;

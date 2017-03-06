@@ -251,16 +251,16 @@ class MYPDF extends TCPDF {
       $this->Cell(180,0,'DATOS DE ORDEN MEDICA',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(22,5,'Fecha registro:',1,0,'C',1);
+      $this->MultiCell(180,0, utf8_encode($row['cdxp_epi'] .' | '.$row['ddxp_epi']. ' -' .$row['tdxp_epi']),1,0,'L');
+      $this->Cell(22,0,'Fecha registro:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
-      $this->Cell(30,5, utf8_encode($row['freg_ord_med_ambu'].''.$row['hreg_ord_med_ambu']),1,0,'C');
+      $this->Cell(30,0, utf8_encode($row['freg_ord_med_ambu'].''.$row['hreg_ord_med_ambu']),1,0,'C');
       $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(20,5,'Tipo atención:',1,0,'C',1);
+      $this->Cell(20,0,'Tipo atención:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['ts_ord_med_ambu']),1,0,'C');
-      $this->Ln();
+      $this->Cell(25,0, utf8_encode($row['ts_ord_med_ambu']),1,0,'C');
       $this->SetFont('helvetica', 'B',8);
-      $this->Cell(100,0,'Procedimientos ordenados:',1,0,'C',1);
+      $this->Cell(83,0,'Procedimientos ordenados:',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',7);
       $this->MultiCell(90, 15,utf8_encode($row['procedimiento']) .$txt, 1, 'L', 0, 0, '', '', true, 0, false, true, 80, 'T');
@@ -272,7 +272,7 @@ class MYPDF extends TCPDF {
       $this->MultiCell(130, 0,utf8_encode('Profesional:'.$row['nombre'].' RM profesional:'.$row['rm_profesional'].' Especialidad:'.$row['espec_user']) .$txt, 0, 'R', 0, 0, '', '', true, 0, false, true, 80, 'T');
       $this->Ln(25);
       $this->Cell(180,0,'_ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ _ _ _ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ ___ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __',0,0,'C',0);
-      $this->Ln(25);
+      $this->Ln(10);
 
     }
 
@@ -336,8 +336,10 @@ h.descrimuni,
 i.descripuedad,
 j.nom_eps,
 k.id_ord_med_ambu, freg_ord_med_ambu, hreg_ord_med_ambu, ts_ord_med_ambu, procedimiento, estado_ord_med_ambu,obs_proc,
-l.nombre,rm_profesional,l.especialidad espec_user,firma
-from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
+l.nombre,rm_profesional,l.especialidad espec_user,firma,
+m.id_hchosp,
+n.cdxp_epi,ddxp_epi,tdxp_epi
+from pacientes a inner join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join estado_civil c on (c.codestadoc = a.estadocivil)
       left join tusuario e on (e.codtusuario=b.tipo_usuario)
       left join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
@@ -348,6 +350,8 @@ from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join eps j on (j.id_eps=b.id_eps)
       left join ord_med_ambu k on (k.id_adm_hosp=b.id_adm_hosp)
       left join user l on (l.id_user=k.id_user)
+      left join hc_hospitalario m on (m.id_adm_hosp=b.id_adm_hosp)
+      left join epicrisis n on (n.id_hchosp=m.id_hchosp)
 where b.id_adm_hosp ='".$_GET["idadmhosp"]."' ";
 //echo $sql;
 $rs = mysql_query($sql);

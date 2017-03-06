@@ -78,7 +78,7 @@ $subtitulo="";
 if (isset($_GET["mante"])){					///nivel 2
 	switch ($_GET["mante"]) {
 		case 'E':
-			$sql="SELECT id_user,nombre,cuenta,tdoc,doc,dir_user,tel_user,email,rm_profesional,foto,estado,id_perfil,firma FROM  user where id_user=".$_GET["idu"];
+			$sql="SELECT id_user,nombre,cuenta,tdoc,doc,dir_user,tel_user,email,rm_profesional,especialidad,foto,estado,id_perfil,firma FROM  user where id_user=".$_GET["idu"];
 			$color="green";
 			$boton="Actualizar";
 			$atributo1=' readonly="readonly"';
@@ -87,7 +87,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$subtitulo='Edición de datos del Usuario';
 			break;
 			case 'X':
-			$sql="SELECT id_user,nombre,cuenta,tdoc,doc,dir_user,tel_user,email,rm_profesional,foto,estado,id_perfil,firma FROM  user where id_user=".$_GET["idu"];
+			$sql="SELECT id_user,nombre,cuenta,tdoc,doc,dir_user,tel_user,email,rm_profesional,especialidad,foto,estado,id_perfil,firma FROM  user where id_user=".$_GET["idu"];
 			$color="red";
 			$boton="Eliminar";
 			$atributo1=' readonly="readonly"';
@@ -107,10 +107,10 @@ if (isset($_GET["mante"])){					///nivel 2
 		}
 		if($sql!=""){
 			if (!$fila=$bd1->sub_fila($sql)){
-				$fila=array("id_user"=>"","nombre"=>"","cuenta"=>"","foto"=>"","email"=>"","tdoc"=>"","doc"=>"","estado"=>"","id_perfil"=>"","firma"=>"");
+				$fila=array("id_user"=>"","nombre"=>"","cuenta"=>"","foto"=>"","email"=>"","tdoc"=>"","doc"=>"","estado"=>"","id_perfil"=>"","firma"=>"","especialidad"=>"");
 			}
 		}else{
-				$fila=array("id_user"=>"","nombre"=>"","cuenta"=>"","foto"=>"","email"=>"","tdoc"=>"","doc"=>"","estado"=>"","id_perfil"=>"","firma"=>"");
+				$fila=array("id_user"=>"","nombre"=>"","cuenta"=>"","foto"=>"","email"=>"","tdoc"=>"","doc"=>"","estado"=>"","id_perfil"=>"","firma"=>"","especialidad"=>"");
 			}
 
 		?>
@@ -163,6 +163,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<article class="col-xs-3">
 			<label class="text-center">Tipo Documento:</label><br>
 			<select name="tdoc" class="form-control" <?php echo atributo3; ?>>
+				<option value="<?php echo $fila["tdoc"];?>"><?php echo $fila["tdoc"];?></option>
 				<?php
 				$sql="SELECT tipo,descri_tipo from tdocumentos ORDER BY descri_tipo ASC";
 				if($tabla=$bd1->sub_tuplas($sql)){
@@ -241,6 +242,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<article class="col-xs-4">
 			<label for="">Especialidad:</label>
 			<select name="especialidad" class="form-control" <?php echo atributo3; ?>>
+				<option value="<?php echo $fila["especialidad"];?>"><?php echo $fila["especialidad"];?></option>
 				<?php
 				$sql="SELECT descripespec from ESPECIALIDADES ORDER BY descripespec ASC";
 				if($tabla=$bd1->sub_tuplas($sql)){

@@ -32,7 +32,7 @@ $subtitulo="";
 			break;
 			case 'EVO':
 				$sql="INSERT INTO evolucion_medica (id_adm_hosp,id_user,freg_evomed,hreg_evomed,objetivo,subjetivo,analisis_evomed,plan_tratamiento,remision_sintomas,conciencia_enfermedad,adherencia_terapeutica,dxp,ddxp,tdxp,dx1,ddx1,tdx1,dx2,ddx2,tdx2,resp_evomed,estado_evomed) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["objetivo"]."','".$_POST["subjetivo"]."','".$_POST["analisis"]."','".$_POST["plantratamiento"]."','".$_POST["remision_sintomas"]."','".$_POST["conciencia_enfermedad"]."','".$_POST["adherencia_terapeutica"]."','".$_POST["cdxp"]."','".$_POST["descridxp"]."','".$_POST["tdxp"]."','".$_POST["cdx1"]."','".$_POST["descridx1"]."','".$_POST["tdx1"]."','".$_POST["cdx2"]."','".$_POST["descridx2"]."','".$_POST["tdx2"]."','".$_SESSION["AUT"]["nombre"]."','Realizada')";
+				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["objetivo"]."','".$_POST["subjetivo"]."','".$_POST["analisis"]."','".$_POST["plantratamiento"]."','".$_POST["remision_sintomas"]."','".$_POST["conciencia_enfermedad"]."','".$_POST["adherencia_terapeutica"]."','".$_POST["dx"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["dx1"]."','".$_POST["dx1"]."','".$_POST["tdx1"]."','".$_POST["dx2"]."','".$_POST["dx2"]."','".$_POST["tdx2"]."','".$_SESSION["AUT"]["nombre"]."','Realizada')";
 				$subtitulo="Evolución Medica";
 				$subtitulo1="Adicionado";
 			break;
@@ -40,6 +40,13 @@ $subtitulo="";
 				$sql="INSERT INTO ord_med_hosp (id_adm_hosp, id_user, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp, procedimiento, obs_proc, estado_ord_med_hosp) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["cups"]."','".$_POST["obs_proc"]."','Realizada')";
 				$subtitulo="Ordenes Medicas";
+				$subtitulo1="Adicionado";
+			break;
+			case 'MED':
+			$f=date('Y-m-d');
+				$sql="INSERT INTO formula_hospitalaria (id_bodega,id_adm_hosp, id_user, fcreacion, fejecucion, producto1, via1,frecuencia, d1_1, d2_1, d3_1, d4_1, obs_1, estado_pro1, producto2, via2,frecuencia2, d1_2, d2_2, d3_2, d4_2, obs_2, estado_pro2, producto3, via3,frecuencia3, d1_3, d2_3, d3_3, d4_3, obs_3, estado_pro3, producto4, via4,frecuencia4, d1_4, d2_4, d3_4, d4_4, obs_4, estado_pro4, producto5, via5,frecuencia5, d1_5, d2_5, d3_5, d4_5, obs_5, estado_pro5, estado_formu_hosp) VALUES
+				('".$_POST["bodega"]."','".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["fejecucion"]."','".$_POST["producto1"]."','".$_POST["via1"]."','".$_POST["frecuencia"]."','".$_POST["d1_1"]."','".$_POST["d1_2"]."','".$_POST["d1_3"]."','".$_POST["d1_4"]."','".$_POST["obs_1"]."','formulado','".$_POST["producto2"]."', '".$_POST["via2"]."','".$_POST["frecuencia2"]."', '".$_POST["d1_2"]."', '".$_POST["d2_2"]."', '".$_POST["d3_2"]."', '".$_POST["d4_2"]."', '".$_POST["obs_2"]."', 'formulado','".$_POST["producto3"]."', '".$_POST["via3"]."','".$_POST["frecuencia3"]."', '".$_POST["d1_3"]."', '".$_POST["d2_3"]."', '".$_POST["d3_3"]."', '".$_POST["d4_3"]."', '".$_POST["obs_3"]."', 'formulado','".$_POST["producto4"]."', '".$_POST["via4"]."','".$_POST["frecuencia4"]."', '".$_POST["d1_4"]."', '".$_POST["d2_4"]."', '".$_POST["d3_4"]."', '".$_POST["d4_4"]."', '".$_POST["obs_4"]."', 'formulado','".$_POST["producto5"]."', '".$_POST["via5"]."','".$_POST["frecuencia5"]."', '".$_POST["d1_5"]."', '".$_POST["d2_5"]."', '".$_POST["d3_5"]."', '".$_POST["d4_5"]."', '".$_POST["obs_5"]."', 'formulado','Realizada')";
+				$subtitulo="Formula medica hospitalaria";
 				$subtitulo1="Adicionado";
 			break;
 			case 'ORDVER':
@@ -118,17 +125,21 @@ if (isset($_GET["mante"])){					///nivel 2
 			case 'MED':
       $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
       b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
+      j.nom_eps,
+			k.id_sedes_ips,nom_sedes
+      from pacientes a inner join adm_hospitalario b on a.id_paciente=b.id_paciente
+                  inner join eps j on (j.id_eps=b.id_eps)
+									inner join sedes_ips k on (k.id_sedes_ips=b.id_sedes_ips)
+
       where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Plan tratamiento";
+			$boton="Agregar Formula Hospitalaria";
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
+			$sede=$fila["id_sedes_ips"];
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='formularios/planto_reh.php';
+			$form1='formularios/formula_hosp.php';
 			$subtitulo='Solicitud de Medicamentos y/o insumos';
 			break;
 			case 'RES':
@@ -137,6 +148,7 @@ if (isset($_GET["mante"])){					///nivel 2
       j.nom_eps
       from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
                   left join eps j on (j.id_eps=b.id_eps)
+
       where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
 			$boton="Agregar Plan tratamiento";
 			$atributo1=' readonly="readonly"';
@@ -184,10 +196,10 @@ if (isset($_GET["mante"])){					///nivel 2
 //echo $sql;
 		if($sql!=""){
 			if (!$fila=$bd1->sub_fila($sql)){
-				$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"");
+				$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"","id_sedes_ips"=>"");
 			}
 		}else{
-				$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"");
+				$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"","id_sedes_ips"=>"");
 			}
 
 		?>
@@ -202,9 +214,11 @@ if (isset($_GET["mante"])){					///nivel 2
 			}
 		</script>
 		<script type="text/javascript" src="/js/jquery.js"></script>
+
 		<div class="alert alert-info animated bounceInRight">
-			<?php echo $subtitulo;?>
+
 		</div>
+
 		<?php include($form1);?>
 
 <?php
@@ -221,6 +235,11 @@ if (isset($_GET["mante"])){					///nivel 2
 // nivel 1?>
 <div class="panel-default">
 <div class="panel-body">
+	<section class="panel-body">
+		<?php
+			include("consulta_rapida1.php");
+		?>
+	</section>
 	<section class="panel panel-default" class="col-xs-7">
 		<form class="navbar-form navbar-center" role="search" >
         	<section class="form-group col-xs-3">
@@ -258,7 +277,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<?php
 		if (isset($_REQUEST["doc"])){
 		$doc=$_REQUEST["doc"];
-		$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,tipo_servicio,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.doc_pac='".$doc."' and a.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
+		$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,tipo_servicio,s.id_sedes_ips,nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.doc_pac='".$doc."' and a.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
 
 		if ($tabla=$bd1->sub_tuplas($sql)){
 			//echo $sql;
@@ -275,7 +294,7 @@ if (isset($_GET["mante"])){					///nivel 2
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=HC&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-stethoscope"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ADX&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-flask"></span></button></a></th>';
-				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
+				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idadmhosp='.$fila["id_adm_hosp"].'&idsede='.$fila["id_sedes_ips"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=37&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-share"></span></button></a></th>';
 				echo "</tr>\n";
@@ -302,7 +321,7 @@ if (isset($_GET["mante"])){					///nivel 2
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=HC&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-stethoscope"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ADX&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-flask"></span></button></a></th>';
-				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
+				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idadmhosp='.$fila["id_adm_hosp"].'&idsede='.$fila["id_sedes_ips"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=37&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-share"></span></button></a></th>';
 				echo "</tr>\n";

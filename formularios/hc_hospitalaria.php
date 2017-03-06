@@ -224,7 +224,7 @@
 					<textarea class="form-control" name="exmental" rows="5" id="comment" required=""></textarea>
 				</article>
 				<article class="col-xs-10">
-					<label for="">Analisis y Diagnostico:</label>
+					<label for="">Analisis:</label>
 					<textarea class="form-control" name="analisis" rows="5" id="comment" required=""></textarea>
 				</article>
 				<article class="col-xs-5">
@@ -272,6 +272,7 @@
 						<option value="Psiquiatria">Psiquiatria</option>
 						<option value="Rhb. farmacodependencia">Rhb. farmacodependencia</option>
 						<option value="Rhb. trastornos alimenticios">Rhb. trastornos alimenticios</option>
+						<option value="Cronico">Cronico</option>
 					</select>
 				</article>
 			</section>

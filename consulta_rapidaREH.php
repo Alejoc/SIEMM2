@@ -331,11 +331,10 @@ if ($mes==2) {
             if (isset($_REQUEST["idadmhosp"])){
 
             $id=$_REQUEST["idadmhosp"];
-            $sql="
-            SELECT a.id_adm_hosp,n.id_ptto_reh,freg_ptto_reh, hreg_ptto_reh,obgen_to_reh,obespec1_to_reh,obespec2_to_reh,obespec3_to_reh, estado_ptto_reh, u.nombre,especialidad
+            $sql="SELECT a.id_adm_hosp,n.id_ptto_reh,freg_ptto_reh, hreg_ptto_reh,obgen_to_reh,obespec1_to_reh,obespec2_to_reh,obespec3_to_reh, estado_ptto_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_to_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptto_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptto_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -512,7 +511,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_ptfisio_reh,freg_ptfisio_reh, hreg_ptfisio_reh,obgen_fisio_reh,obespec1_fisio_reh,obespec2_fisio_reh,obespec3_fisio_reh, estado_ptfisio_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_fisio_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptfisio_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptfisio_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -687,7 +686,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_ptfono_reh,freg_ptfono_reh, hreg_ptfono_reh,obgen_fono_reh,obespec1_fono_reh,obespec2_fono_reh,obespec3_fono_reh, estado_ptfono_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_fono_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptfono_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptfono_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -862,7 +861,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_ptpsico_reh,freg_ptpsico_reh, hreg_ptpsico_reh,obgen_psico_reh,obespec1_psico_reh,obespec2_psico_reh,obespec3_psico_reh, estado_ptpsico_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_psico_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptpsico_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptpsico_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -1037,7 +1036,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_ptequino_reh,freg_ptequino_reh, hreg_ptequino_reh,obgen_equino_reh,obespec1_equino_reh,obespec2_equino_reh,obespec3_equino_reh, estado_ptequino_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_equino_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptequino_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptequino_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -1212,7 +1211,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_pthidro_reh,freg_pthidro_reh, hreg_pthidro_reh,obgen_hidro_reh,obespec1_hidro_reh,obespec2_hidro_reh,obespec3_hidro_reh, estado_pthidro_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_hidro_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_pthidro_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_pthidro_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -1387,7 +1386,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_ptmusico_reh,freg_ptmusico_reh, hreg_ptmusico_reh,obgen_musico_reh,obespec1_musico_reh,obespec2_musico_reh,obespec3_musico_reh, estado_ptmusico_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_musico_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptmusico_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptmusico_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -1562,7 +1561,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_ptpsicocog_reh,freg_ptpsicocog_reh, hreg_ptpsicocog_reh,obgen_psicocog_reh,obespec1_psicocog_reh,obespec2_psicocog_reh,obespec3_psicocog_reh, estado_ptpsicocog_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_psicocog_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_ptpsicocog_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_ptpsicocog_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;
@@ -1737,7 +1736,7 @@ if ($mes==2) {
             SELECT a.id_adm_hosp,n.id_pttap_reh,freg_pttap_reh, hreg_pttap_reh,obgen_tap_reh,obespec1_tap_reh,obespec2_tap_reh,obespec3_tap_reh, estado_pttap_reh, u.nombre,especialidad
             FROM adm_hospitalario a LEFT JOIN plantrimestral_tap_reh n on a.id_adm_hosp=n.id_adm_hosp
                                     LEFT join user u on n.id_user=u.id_user
-            WHERE a.id_adm_hosp='".$id."' order by n.id_pttap_reh ASC LIMIT 1
+            WHERE a.id_adm_hosp='".$id."' order by n.id_pttap_reh ASC
             ";
             if ($tabla=$bd1->sub_tuplas($sql)){
               //echo $sql;

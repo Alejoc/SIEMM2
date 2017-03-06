@@ -149,14 +149,22 @@ if (isset($_GET["mante"])){					///nivel 2
 		<th id="th-estilo1">ADMISION</th>
 		<th id="th-estilo1">NOMBRE COMPLETO</th>
 		<th id="th-estilo1">FECHA Y HORA INGRESO</th>
+		<th id="th-estilo2">FECHA TRASLADO</th>
+		<th id="th-estilo2">QUIEN SOLICITA TRASLADO</th>
 		<th id="th-estilo2">ESTADO TRASLADO</th>
 		<th id="th-estilo4">Accion</th>
 	</tr>
 	<?php
 
-	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,t.id_traslado,estado_traslado
-	FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente
-									 LEFT JOIN traslados t on a.id_adm_hosp=t.id_adm_hosp
+	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,
+	a.id_adm_hosp,fingreso_hosp,hingreso_hosp,
+	t.id_traslado,fprog_envio,hprog_envio,estado_traslado,
+	u.nombre
+
+	FROM pacientes p inner JOIN adm_hospitalario a on p.id_paciente=a.id_paciente
+									 inner JOIN traslados t on a.id_adm_hosp=t.id_adm_hosp
+									 inner join user u on t.id_user=u.id_user
+
 	WHERE a.tipo_servicio='Hospitalario' and t.estado_traslado='Enviado'";
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
@@ -165,6 +173,8 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<td class="text-center Warning">'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center Warning">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center Warning">'.$fila["fingreso_hosp"].' '.$fila["hingreso_hosp"].'</td>';
+			echo'<td class="text-center Warning">'.$fila["fprog_envio"].' '.$fila["hprog_envio"].'</td>';
+			echo'<td class="text-center Warning">'.$fila["nombre"].'</td>';
 			echo'<td class="text-center Warning">'.$fila["estado_traslado"].'</td>';
 			$idtraslado=$fila["id_traslado"];
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&id='.$idtraslado.'&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-square-o"></span></button></a></th>';

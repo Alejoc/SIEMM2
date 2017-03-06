@@ -61,7 +61,12 @@
       </article>
       <article class="col-xs-4">
         <label for="">Departamento:</label>
-        <input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["nom_eps"];?>"<?php echo $atributo1?>/>
+        <input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["departamento"];?>"<?php echo $atributo1?>/>
+      </article>
+      <article class="col-xs-4">
+        <label for="">Sede Actual:</label>
+        <input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["nom_sedes"];?>"<?php echo $atributo1?>/>
+          <input type="text" name="idsede" class="form-control" value="<?php echo $fila["id_sedes_ips"];?>"<?php echo $atributo1?>/>
       </article>
     </section>
   </section>

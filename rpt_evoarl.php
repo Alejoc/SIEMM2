@@ -44,7 +44,7 @@ class MYPDF extends TCPDF {
             $mes1='Enero';
             }
             if ($mes==3) {
-              $mes1='Marzo';
+              $mes1='Febrero';
               }
               if ($mes==4) {
                 $mes1='Abril';

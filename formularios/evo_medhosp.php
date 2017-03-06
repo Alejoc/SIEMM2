@@ -62,20 +62,9 @@
 					</select>
 				</article>
 				<article class="col-xs-12">
-					<h4 id="th-estilot">Selección de Diagnostico</h4>
+					<?php include("dxbusqueda.php");?>
 				</article>
-				<article class="col-xs-12">
-					<label for="" class="alert-success">Diagnostico Principal</label>
-					<?php include("diagnosticos/dx.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label for="" class="alert-Info">Diagnostico Principal</label>
-					<?php include("diagnosticos/dx1.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label for="" class="alert-Info">Diagnostico Principal</label>
-					<?php include("diagnosticos/dx2.php");?>
-				</article>
+
 		</section>
 </section>
 	<div class="row text-center">

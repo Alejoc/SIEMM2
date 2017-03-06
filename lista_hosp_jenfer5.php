@@ -162,6 +162,11 @@ if (isset($_GET["mante"])){					///nivel 2
 // nivel 1?>
 <div class="panel-default">
 <div class="panel-body">
+	<section class="panel-body">
+		<?php
+			include("consulta_rapida1.php");
+		?>
+	</section>
 	<section class="panel panel-default" class="col-xs-7">
 		<form class="navbar-form navbar-center" role="search" >
         	<section class="form-group col-xs-3">

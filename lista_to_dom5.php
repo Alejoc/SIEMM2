@@ -153,25 +153,10 @@ $subtitulo="Valoracion inicial";
 				$subtitulo2="Terapia Ocupacional";
 			break;
 			case 'EVO':
-			$fecha =date('Y-m-d');
-			$nuevafecha = strtotime ( '-8 day' , strtotime ( $fecha ) ) ;
-			$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
-
-			if ($nuevafecha >=  $_POST["freg"]) {
+			if ($nuevafecha < $_POST["freg"]) {
 				$horaInicial=$_POST["hregevo"];
 				$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
 				$ht=date('H:i',$horat);
-
-				$sql="INSERT INTO evo_to_dom ( freg_reg, freg_evoto_dom, hreg_evoto_dom, hreg_regto_dom, hfin_evoto_dom, evolucionto_dom, estado_evoto_dom) VALUES
-				('','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
-				$subtitulo="Evolucion";
-				$subtitulo1="Adicionado, Debido a que la fecha de evolucion no puede superar los 7 dias de retraso";
-				$subtitulo2="Terapia Ocupacional";
-			}
-				if ($nuevafecha < $_POST["freg"]) {
-					$horaInicial=$_POST["hregevo"];
-					$horat= strtotime ( '+40 minute' , strtotime ( $horaInicial ) ) ;
-					$ht=date('H:i',$horat);
 					$sql="INSERT INTO evo_to_dom (  id_adm_hosp, id_user,freg_reg, freg_evoto_dom, hreg_evoto_dom, hreg_regto_dom, hfin_evoto_dom, evolucionto_dom, estado_evoto_dom) VALUES
 					('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregreg"]."','".$_POST["freg"]."','".$_POST["hregevo"]."','".$_POST["hreg"]."','$ht','".$_POST["evoto"]."','Realizada')";
 					$subtitulo="EVolucion";
@@ -179,7 +164,7 @@ $subtitulo="Valoracion inicial";
 					$subtitulo2="Terapia Ocupacional";
 				}
 			break;
-			
+
 		}
 		//echo $sql;
 		if ($bd1->consulta($sql)){

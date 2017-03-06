@@ -33,40 +33,20 @@ $subtitulo="";
 			break;
 			case 'MED':
 				$f=date('Y-m-d H:m');
-				$factual=date('Y-m-d');
-				$fecha = $_POST["fvencimiento"];
-				$verde = strtotime ( '+1 year' , strtotime ( $fecha ) ) ;
-				$verde = date ( 'Y-m-d' , $verde );
-
-				$fecha = $_POST["fvencimiento"];
-				$amarillo = strtotime ( '+6 month' , strtotime ( $fecha ) ) ;
-				$amarillo = date ( 'Y-m-d' , $amarillo );
-
-				$fecha = $_POST["fvencimiento"];
-				$rojo = strtotime ( '-6 month' , strtotime ( $fecha ) ) ;
-				$rojo = date ( 'Y-m-d' , $rojo );
-
-				if ($verde >= $factual) {
-					$sem="Verde";
-					echo $sem;
-				}
-				if ($amarillo > $factual) {
-					if ($verde < $factual) {
-						$sem='Amarillo';
-						echo $sem;
-					}
-				}
-				if ($rojo < $factual) {
-					# code...
-				}
-
-				//$sql="INSERT INTO pro_medicametos(id_bodega, id_user,fcreacion, cod_atc, descrip_atc, prin_activo, concentracion, presentacion, clas_pos, ffabricacion, fvencimiento, lote, reg_invima, laboratorio, cum, precio_compra, cantidad_total, cantidad_fraccion, tipo_unidad_f, cod_barras, semaforo, estado_pro_med) values
-				//('".$_POST["idb"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["cod_atc"]."','".$_POST["descrip_atc"]."','".$_POST["prin_activo"]."','".$_POST["concentracion"]."','".$_POST["presentacion"]."','".$_POST["clas_pos"]."','".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."','".$_POST["lote"]."','".$_POST["reg_invima"]."','".$_POST["laboratorio"]."','".$_POST["cum"]."','".$_POST["precio_compra"]."','".$_POST["cantidad_total"]."','".$_POST["cantidad_fraccion"]."','".$_POST["tipo_unidad_f"]."','".$_POST["cod_barras"]."','".$_POST["semaforo"]."','Activo')";
+				$sql="INSERT INTO pro_medicametos(id_bodega, id_user,fcreacion, cod_atc, descrip_atc, prin_activo, concentracion, presentacion, clas_pos, ffabricacion, fvencimiento, lote, reg_invima, laboratorio, cum, precio_compra, cantidad_total, cantidad_fraccion, tipo_unidad_f, cod_barras, semaforo, estado_pro_med) values
+				('".$_POST["idb"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["cod_atc"]."','".$_POST["descrip_atc"]."','".$_POST["prin_activo"]."','".$_POST["concentracion"]."','".$_POST["presentacion"]."','".$_POST["clas_pos"]."','".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."','".$_POST["lote"]."','".$_POST["reg_invima"]."','".$_POST["laboratorio"]."','".$_POST["cum"]."','".$_POST["precio_compra"]."','".$_POST["cantidad_total"]."','".$_POST["cantidad_fraccion"]."','".$_POST["tipo_unidad_f"]."','".$_POST["cod_barras"]."','".$_POST["semaforo"]."','Activo')";
 				$subtitulo1="El medicamento";
 				$subtitulo="Adicionado";
 			break;
+			case 'INS':
+				$f=date('Y-m-d H:m');
+				$sql="INSERT INTO pro_insumos(id_bodega,id_user, fcreacion, nom_insumo, fabricante, cod_barras, ffabricacion, fvencimiento, lote, reg_invima, clasi_riesgo, clasi_tipo, cantidad_t, precio_compra, semaforo, estado_pro_insumo) values
+				('".$_POST["idb"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["nom_insumo"]."','".$_POST["fabricante"]."','".$_POST["cod_barras"]."','".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."','".$_POST["lote"]."','".$_POST["reg_invima"]."','".$_POST["clasi_riesgo"]."','".$_POST["clasi_tipo"]."','".$_POST["cantidad_t"]."','".$_POST["precio_compra"]."','".$_POST["semaforo"]."','Activo')";
+				$subtitulo1="El insumo o dispositivo medico";
+				$subtitulo="Adicionado";
+			break;
 		}
-		//echo $sql;
+	//	echo $sql;
 		if ($bd1->consulta($sql)){
 			$subtitulo="$subtitulo1 fue  $subtitulo con exito!";
 			$check='si';
@@ -118,30 +98,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$form1='formularios/bodega.php';
 			$subtitulo='Creacion de bodega';
 			break;
-			case 'MED':
-			$sql="SELECT b.id_bodega, fcreacion, nom_bodega,tipo_bodega,s.nom_sedes  FROM bodega b left join sedes_ips s on b.id_sedes_ips=s.id_sedes_ips where id_bodega=".$_GET["idbog"];
-			$color="yellow";
-			$boton="Agregar Medicamento";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/inv_medicamentos.php';
-			$subtitulo='Creacion de Medicamentos';
-			break;
-			case 'INS':
-			$sql="SELECT b.id_bodega, fcreacion, nom_bodega,tipo_bodega,s.nom_sedes  FROM bodega b left join sedes_ips s on b.id_sedes_ips=s.id_sedes_ips where id_bodega=".$_GET["idbog"];
-			$color="yellow";
-			$boton="Agregar Insumo o dispositivo medico";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/inv_insumos.php';
-			$subtitulo='Creacion de Medicamentos';
-			break;
+
 		}
 
 		if($sql!=""){
@@ -185,8 +142,6 @@ if (isset($_GET["mante"])){					///nivel 2
 		<th id="th-estilo2">ID</th>
 		<th id="th-estilo2">NOMBRE BODEGA</th>
 		<th id="th-estilo3">NOMBRE SEDE</th>
-		<th id="th-estilo4">INV. Medicamentos</th>
-		<th id="th-estilo4">INV. Insumos</th>
 	</tr>
 
 	<?php
@@ -199,8 +154,6 @@ if ($tabla=$bd1->sub_tuplas($sql)){
 		echo'<td class="text-right">'.$fila["id_bodega"].'</td>';
 		echo'<td class="text-left">'.$fila["nom_bodega"].'</td>';
 		echo'<td class="text-center">'.$fila["nom_sedes"].'</td>';
-		echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idbog='.$fila["id_bodega"].'"><button type="button" class="btn btn-danger fa fa-medkit"></button></a></th>';
-		echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=INS&idbog='.$fila["id_bodega"].'"><button type="button" class="btn btn-warning fa fa-heartbeat"></button></a></th>';
 		echo "</tr>\n";
 	}
 }
@@ -208,7 +161,7 @@ if ($tabla=$bd1->sub_tuplas($sql)){
 	<tr>
 		<th colspan="11" class="text-center"><a href="<?php echo PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=A'?>" align="center" ><button type="button" class="btn btn-primary" >Adicionar Bodega</button>
 		</a></th>
-	<tr>
+	</tr>
 </table>
 </div>
 </div>

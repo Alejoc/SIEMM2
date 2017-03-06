@@ -24,6 +24,11 @@
   padding: .5em .5em;
 
   }
+  .ltdxmodal .modal{
+    color: red;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 5%;
+    }
 .fondoder{
     background-color: rgba(217, 163, 26, 0.5);
     box-shadow: 2px 2px 2px rgba(217, 134, 26, 0.9);
@@ -67,6 +72,25 @@
 .fuente_alerta_fijo{
   color:#FB1900;
 }
+.botonformula{
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 2px 2px 5px rgba(227, 66, 98, 0.9);
+  border-radius: .3em;
+  color: #000;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: .2em .2em;
+  width: 70%;
+  text-align: center;
+  transition: all 1s ease;
+}
+.botonformula:hover{
+  background-color: rgba(184, 15, 23, 0.9);
+  font-size: 1.1em;
+  transform: scale(1,1.4);
+}
+
 .botonhc{
   background-color: rgba(105, 156, 207, 0.9);
   box-shadow: 2px 2px 5px rgba(105, 156, 207, 0.9);
@@ -85,6 +109,7 @@
   font-size: 1.1em;
   transform: scale(1,1.4);
 }
+
 .ac{
   width: 100%;
   color: white;
@@ -94,7 +119,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.ac:
+
 #logintitle{
   font-family: 'Josefin Sans', sans-serif;
   font-size: 3em;

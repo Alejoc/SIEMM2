@@ -34,11 +34,11 @@
         <tr>
             <td class="alert-info">
               <label for="">Diagnostico Principal</label>
-              <input type="text" name="dx" class="form-control" value="" id="buscardx">
+              <input type="text" name="dx" class="form-control" value="" id="buscardx" required="">
             </td>
             <td class="alert-info">
               <label for=""></label>
-              <select class="form-control" name="tdx">
+              <select class="form-control" name="tdx" required="">
                 <option value=""></option>
                 <option value="Impresion Diagnostica">Impresion Diagnostica</option>
                 <option value="Confirmado Nuevo">Confirmado Nuevo</option>
