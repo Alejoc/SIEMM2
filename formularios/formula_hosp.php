@@ -5,9 +5,10 @@
 	  ?>
 	</section>
   <?php include("consulta_ultimaEvo.php");?>
+
   <h4 id="th-estilot">Generacion de formulas medicas hospitalarias</h4>
   <section class="panel-body">
-    <article class="col-md-4">
+    <article class="col-md-3 form-group">
       <label for="">Seleccione bodega:</label>
       <select name="bodega" class="form-control"  required=""  <?php echo atributo3; ?>>
         <option value=""></option>
@@ -29,7 +30,11 @@
         ?>
       </select>
     </article>
-		<article class="col-xs-3">
+		<article class="col-xs-3 form-group">
+			<label for="">Fecha final de formula:</label>
+			<input type="date" class="form-control" name="ffinalformu" value="<?php echo date('Y-m-d') ;?>">
+		</article>
+		<article class="col-xs-3 form-group">
 			<label for="">Fecha final de formula:</label>
 			<input type="date" class="form-control" name="ffinalformu" value="<?php echo date('Y-m-d') ;?>">
 		</article>

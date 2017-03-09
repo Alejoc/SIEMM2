@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("config/config5.php");
+include('conexion.php');
 if (isset($_GET["salir"])){
 	if ($_GET["salir"] == $_SESSION["AUT"]["id_user"]){
 	    session_unset();
@@ -24,6 +25,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 	<link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/font-awesome.css">
 	<link rel="stylesheet" href="css/social.css">
+	<link rel="stylesheet" href="css/jqueryui.css">
 	<link rel="shortcut icon" href="images/favicon.png">
 	<link rel="stylesheet" href="css/fuentes.css" media="screen" title="no title" charset="utf-8">
   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -31,6 +33,9 @@ if (!isset($_SESSION["AUT"]["id_user"])){
   <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
 	<script src="js/jquery-3.1.1.min.js" charset="utf-8"></script>
 	<script src="js/jquery-ui.min.js" charset="utf-8"></script>
+	<script src="js2/jquery.js" charset="utf-8"></script>
+	<script src="js2/jqueryui.js" charset="utf-8"></script>
+	<script src="js2/tool.js" charset="utf-8"></script>
   <script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -40,36 +45,31 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script type = "text/javascript" src = "con.js"></script>
+	<script>
+	  $( function() {
+	    $( "#tabs" ).tabs();
+	  } );
+	</script>
+	<script>
+	  $( function() {
+	    $( "#accordion" ).accordion();
+	  } );
+	</script>
+	<script>
+			function mostrarprov(){
+				var bodega = $("#bodega").val();
+				$.ajax({
+					url: "proveedores.php",
+					data: {idpais:bodega},
+					type: "POST",
+					success: function(resultado){
+	        			$("#proveedores").html(resultado);
+	    			}
+	    		});
+	    	}
+
+	</script>
 	<script type="text/javascript">
-	$(document).ready(function(){
-	     var consulta;
-	     //hacemos focus al campo de bÃºsqueda
-	     $("#busqueda").focus();
-	     //comprobamos si se pulsa una tecla
-	     $("#busqueda").keyup(function(e){
-	           //obtenemos el texto introducido en el campo de bÃºsqueda
-	           consulta = $("#busqueda").val();
-	           //hace la bÃºsqueda
-	           $.ajax({
-	                 type: "POST",
-	                 url: "bus_cie_descripcion.php",
-	                 data: "b="+consulta,
-	                 dataType: "html",
-	                 beforeSend: function(){
-	                 //imagen de carga
-	                 $("#resultado").html("<p align='center'><input type='text' name='coddxp' value='' > </p>");
-	                 },
-	                 error: function(){
-	                 alert("error peticion de diagnostico");
-	                 },
-	                 success: function(data){
-	                 $("#resultado").empty();
-	                 $("#resultado").append(data);
-	                 }
-	           });
-	     });
-	});
 	$(document).ready(function(){
 		cargar_paises();
 		$("#pais").change(function(){dependencia_estado();});

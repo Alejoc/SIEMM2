@@ -20,17 +20,17 @@ if(isset($_POST["operacion"])){	//nivel3
     }
     switch ($_POST["operacion"]) {
 
-    /*case 'INVMED':
+    case 'A':
     $fv=$_POST['fvencimiento'];
     $fecha=$fv;
     $segundos= strtotime($fecha) - strtotime('now');
     $diferencia_dias=intval($segundos/60/60/24);
 
     if ($diferencia_dias>'365') {
-      $semaforo='verde';
+      $semaforo='Verde';
       $f=date('Y-m-d H:m');
-      $sql="INSERT INTO subpro_medicametos( id_user, id_pro_med, id_proveedor, fcreacion, cod_atc, prin_activo, concentracion, presentacion, clas_pos, clas_controlado, clas_psiquiatrico, ffabricacion, fvencimiento, lote, reg_invima, laboratorio, cum, num_factura, precio_compra, cantidad_total, cod_barras, semaforo, estado_inv_med) values
-      ('".$_SESSION["AUT"]["id_user"]."','".$_POST["idb"]."','".$_POST["id_proveedor"]."','$f','".$_POST["cod_atc"]."','".$_POST["prin_activo"]."','".$_POST["concentracion"]."','".$_POST["presentacion"]."','".$_POST["clas_pos"]."','".$_POST["clas_controlado"]."','".$_POST["clas_psiquiatrico"]."','".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."','".$_POST["lote"]."','".$_POST["reg_invima"]."','".$_POST["laboratorio"]."','".$_POST["cum"]."','".$_POST["num_factura"]."','".$_POST["precio_compra"]."','".$_POST["cantidad_total"]."','".$_POST["cod_barras"]."','$semaforo','Activo')";
+      $sql="INSERT INTO producto_medicamento( id_generico_med, id_bodega, id_user, fcreacion, nom_med,concentracion, presentacion, ffarma, atc, cum, lote, reg_invima, laboratorio, ffabricacion,fvencimiento, factura, precio_compra, cantidad, codbarra, semaforo, clase_pos, clase_regulado,clase_psiquiatrico, estado_pro_med, id_proveedor) values
+      ('".$_POST["id_gen"]."','".$_POST["id_bodega"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["nom_med"]."','".$_POST["concentracion"]."', '".$_POST["presentacion"]."', '".$_POST["ffarma"]."', '".$_POST["atc"]."', '".$_POST["cum"]."', '".$_POST["lote"]."', '".$_POST["reg_invima"]."', '".$_POST["laboratorio"]."', '".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."', '".$_POST["factura"]."', '".$_POST["precio_compra"]."', '".$_POST["cantidad"]."', '".$_POST["codbarra"]."', '$semaforo', '".$_POST["clase_pos"]."', '".$_POST["clase_regulado"]."','".$_POST["clase_psiquiatrico"]."', 'Activo', '".$_POST["id_proveedor"]."')";
       $subtitulo1="El medicamento";
       $subtitulo="Adicionado";
       $t=$_POST['nombog'];
@@ -38,25 +38,25 @@ if(isset($_POST["operacion"])){	//nivel3
     if ($diferencia_dias >= '183' && $diferencia_dias <= '365') {
       $semaforo='Amarillo';
       $f=date('Y-m-d H:m');
-      $sql="INSERT INTO subpro_medicametos( id_user, id_pro_med, id_proveedor, fcreacion, cod_atc, prin_activo, concentracion, presentacion, clas_pos, clas_controlado, clas_psiquiatrico, ffabricacion, fvencimiento, lote, reg_invima, laboratorio, cum, num_factura, precio_compra, cantidad_total, cod_barras, semaforo, estado_inv_med) values
-      ('".$_SESSION["AUT"]["id_user"]."','".$_POST["idb"]."','".$_POST["id_proveedor"]."','$f','".$_POST["cod_atc"]."','".$_POST["prin_activo"]."','".$_POST["concentracion"]."','".$_POST["presentacion"]."','".$_POST["clas_pos"]."','".$_POST["clas_controlado"]."','".$_POST["clas_psiquiatrico"]."','".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."','".$_POST["lote"]."','".$_POST["reg_invima"]."','".$_POST["laboratorio"]."','".$_POST["cum"]."','".$_POST["num_factura"]."','".$_POST["precio_compra"]."','".$_POST["cantidad_total"]."','".$_POST["cod_barras"]."','$semaforo','Activo')";
-      $subtitulo1="El medicamento";
+      $sql="INSERT INTO producto_medicamento( id_generico_med, id_bodega, id_user, fcreacion, nom_med,concentracion, presentacion, ffarma, atc, cum, lote, reg_invima, laboratorio, ffabricacion,fvencimiento, factura, precio_compra, cantidad, codbarra, semaforo, clase_pos, clase_regulado,clase_psiquiatrico, estado_pro_med, id_proveedor) values
+      ('".$_POST["id_gen"]."','".$_POST["id_bodega"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["nom_med"]."','".$_POST["concentracion"]."', '".$_POST["presentacion"]."', '".$_POST["ffarma"]."', '".$_POST["atc"]."', '".$_POST["cum"]."', '".$_POST["lote"]."', '".$_POST["reg_invima"]."', '".$_POST["laboratorio"]."', '".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."', '".$_POST["factura"]."', '".$_POST["precio_compra"]."', '".$_POST["cantidad"]."', '".$_POST["codbarra"]."', '$semaforo', '".$_POST["clase_pos"]."', '".$_POST["clase_regulado"]."','".$_POST["clase_psiquiatrico"]."', 'Activo', '".$_POST["id_proveedor"]."')";
+        $subtitulo1="El medicamento";
       $subtitulo="Adicionado";
       $t=$_POST['nombog'];
     }
     if ($diferencia_dias < '183') {
       $semaforo='Rojo';
       $f=date('Y-m-d H:m');
-      $sql="INSERT INTO subpro_medicametos( id_user, id_pro_med, id_proveedor, fcreacion, cod_atc, prin_activo, concentracion, presentacion, clas_pos, clas_controlado, clas_psiquiatrico, ffabricacion, fvencimiento, lote, reg_invima, laboratorio, cum, num_factura, precio_compra, cantidad_total, cod_barras, semaforo, estado_inv_med) values
-      ('".$_SESSION["AUT"]["id_user"]."','".$_POST["idb"]."','".$_POST["id_proveedor"]."','$f','".$_POST["cod_atc"]."','".$_POST["prin_activo"]."','".$_POST["concentracion"]."','".$_POST["presentacion"]."','".$_POST["clas_pos"]."','".$_POST["clas_controlado"]."','".$_POST["clas_psiquiatrico"]."','".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."','".$_POST["lote"]."','".$_POST["reg_invima"]."','".$_POST["laboratorio"]."','".$_POST["cum"]."','".$_POST["num_factura"]."','".$_POST["precio_compra"]."','".$_POST["cantidad_total"]."','".$_POST["cod_barras"]."','$semaforo','Activo')";
+      $sql="INSERT INTO producto_medicamento( id_generico_med, id_bodega, id_user, fcreacion, nom_med,concentracion, presentacion, ffarma, atc, cum, lote, reg_invima, laboratorio, ffabricacion,fvencimiento, factura, precio_compra, cantidad, codbarra, semaforo, clase_pos, clase_regulado,clase_psiquiatrico, estado_pro_med, id_proveedor) values
+      ('".$_POST["id_gen"]."','".$_POST["id_bodega"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["nom_med"]."','".$_POST["concentracion"]."', '".$_POST["presentacion"]."', '".$_POST["ffarma"]."', '".$_POST["atc"]."', '".$_POST["cum"]."', '".$_POST["lote"]."', '".$_POST["reg_invima"]."', '".$_POST["laboratorio"]."', '".$_POST["ffabricacion"]."','".$_POST["fvencimiento"]."', '".$_POST["factura"]."', '".$_POST["precio_compra"]."', '".$_POST["cantidad"]."', '".$_POST["codbarra"]."', '$semaforo', '".$_POST["clase_pos"]."', '".$_POST["clase_regulado"]."','".$_POST["clase_psiquiatrico"]."', 'Activo', '".$_POST["id_proveedor"]."')";
       $subtitulo1="El medicamento";
       $subtitulo="Adicionado";
       $t=$_POST['nombog'];
     }
-    break;*/
+    break;
 
   }
-echo $sql;
+//echo $sql;
   if ($bd1->consulta($sql)){
     $subtitulo="$subtitulo1 fue  $subtitulo con exito al inventario de $t.";
     $check='si';
@@ -73,9 +73,9 @@ echo $sql;
 }
 
 if (isset($_GET["mante"])){					///nivel 2
-switch ($_GET["mante"]) {
+  switch ($_GET["mante"]) {
   case 'E':
-    $sql="SELECT id_generico_med,nom_generico FROM generico_medicamento  where id_generico_med='".$_GET['idgenerico']."'";
+    $sql="SELECT a.id_generico_med,nom_generico,b.* from generico_medicamento a INNER JOIN producto_medicamento b on a.id_generico_med=b.id_generico_med where id_pro_med=".$_GET['idproducto'];
     $color="green";
     $boton="Actualizar Generico";
     $atributo1=' readonly="readonly"';
@@ -83,12 +83,12 @@ switch ($_GET["mante"]) {
     $atributo3='';
     $date=date('Y-m-d');
     $date1=date('H:i');
-    $form1='formularios/agr_generico.php';
-    $subtitulo='Edicion del Generico';
+    $form1='formularios/inv_medicamentos.php';
+    $subtitulo='Edicion del producto';
     break;
 
     case 'A':
-    $sql="SELECT * from generico_medicamento where  ";
+    $sql="SELECT * from generico_medicamento where id_generico_med= ".$_GET['idgen'];
     $color="yellow";
     $boton="Crear Producto";
     $atributo1=' readonly="readonly"';
@@ -101,15 +101,14 @@ switch ($_GET["mante"]) {
     $subtitulo='Creacion de productos (Medicamentos)';
     break;
   }
-
   if($sql!=""){
     if (!$fila=$bd1->sub_fila($sql)){
 
-      $fila=array("id_generico_med"=>"", "nom_generico"=>"");
+      $fila=array("id_generico_med"=>"", "nom_generico"=>"","id_pro_med"=>"", "id_bodega"=>"", "id_user"=>"", "fcreacion"=>"", "nom_med"=>"", "concentracion"=>"", "presentacion"=>"", "ffarma"=>"", "atc"=>"", "cum"=>"", "lote"=>"", "reg_invima"=>"", "laboratorio"=>"", "ffabricacion"=>"", "fvencimiento"=>"", "factura"=>"", "precio_compra"=>"", "cantidad"=>"", "codbarra"=>"", "semaforo"=>"", "clase_pos"=>"", "clase_regulado"=>"", "clase_psiquiatrico"=>"", "estado_pro_med"=>"", "id_proveedor"=>"");
 
     }
   }else{
-      $fila=array("id_generico_med"=>"", "nom_generico"=>"");
+      $fila=array("id_generico_med"=>"", "nom_generico"=>"","id_pro_med"=>"", "id_bodega"=>"", "id_user"=>"", "fcreacion"=>"", "nom_med"=>"", "concentracion"=>"", "presentacion"=>"", "ffarma"=>"", "atc"=>"", "cum"=>"", "lote"=>"", "reg_invima"=>"", "laboratorio"=>"", "ffabricacion"=>"", "fvencimiento"=>"", "factura"=>"", "precio_compra"=>"", "cantidad"=>"", "codbarra"=>"", "semaforo"=>"", "clase_pos"=>"", "clase_regulado"=>"", "clase_psiquiatrico"=>"", "estado_pro_med"=>"", "id_proveedor"=>"");
     }
 
   ?>
@@ -144,46 +143,57 @@ if ($check=='si') {
   echo '</div>';
 }// nivel 1?>
 <div class="panel-default">
-  <section class="panel panel-body">
-    <form >
-      <article class="col-md-5 col-xs-5	">
-        <label>Filtro:</label><br>
-        <input type="text" class="form-control" name="nom" placeholder="Digite nombre del medicamento">
-      </article>
-      <div>
-        <label></label>
-        <input type="submit" name="buscar" class="btn btn-primary" value="Consultar">
-        <input type="hidden" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
-      </div>
-    </form>
-  </section>
+
   <table class="table table-responsive">
     <tr>
-      <th id="th-estilo4">Agregar Nuevo producto</th>
+      <th id="th-estilo4">Editar producto</th>
       <th id="th-estilo1">PRODUCTO</th>
       <th id="th-estilo1">LABORATORIO</th>
       <th id="th-estilo1">SEMAFORIZACION</th>
+      <th id="th-estilo1">CANTIDAD</th>
       <th id="th-estilo4">Ver detalles</th>
     </tr>
 
     <?php
 
-  if (isset($_REQUEST["nom"])){
-    $doc=$_REQUEST["nom"];
-    $sql="SELECT a.id_generico_med,nom_generico,b.id_bodega,nom_med,concentracion,presentacion,laboratorio,fvencimiento,cantidad,semaforo from generico_medicamento a INNER JOIN producto_medicamento b on a.id_generico_med=b.id_generico_med
-    where b.nom_med LIKE '%".$doc."%' ";
+  if (isset($_REQUEST["idgen"])){
+    $doc=$_REQUEST["idgen"];
+    $sql="SELECT id_pro_med, id_generico_med, id_bodega, id_user, fcreacion, nom_med, concentracion, presentacion, ffarma, atc, cum, lote, reg_invima, laboratorio, ffabricacion, fvencimiento, factura, precio_compra, cantidad, codbarra, semaforo, clase_pos, clase_regulado, clase_psiquiatrico, estado_pro_med, id_proveedor from producto_medicamento where id_generico_med=".$doc;
 
     if ($tabla=$bd1->sub_tuplas($sql)){
 
       foreach ($tabla as $fila ) {
-//echo $sql;
-        echo"<tr >	\n";
-        echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idgenerico='.$fila["id_generico_med"].'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-pencil"></span></button></a></th>';
-        echo'<td class="text-center">'.$fila["nom_med"].' '.$fila["concentracion"].' '.$fila["presentacion"].'</td>';
-        echo'<td class="text-center">'.$fila["laboratorio"].'</td>';
-        echo'<td class="text-center">'.$fila["semaforo"].'</td>';
-        echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=94&idgen='.$fila["id_generico_med"].'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
-        echo "</tr>\n";
+        if ($fila['semaforo']=='Verde') {
+          echo"<tr>\n";
+          $idpro=$fila['id_pro_med'];
+          echo'<th class="text-center alert-success" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idproducto='.$idpro.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-pencil"></span></button></a></th>';
+          echo'<td class="text-center alert-success">'.$fila["nom_med"].' '.$fila["concentracion"].' '.$fila["presentacion"].'</td>';
+          echo'<td class="text-center alert-success">'.$fila["laboratorio"].'</td>';
+          echo'<td class="text-center alert-success">'.$fila["semaforo"].'</td>';
+          echo'<td class="text-center alert-success">'.$fila["cantidad"].'</td>';
+          echo'<th class="text-center alert-success" ><a class="btn btn-success" data-toggle="modal" data-target="#detalle_producto" type="button" ><span class="fa fa-eye"></span></a></th>';
+          echo "</tr>\n";
+        }
+        if ($fila['semaforo']=='Amarillo') {
+          echo"<tr >	\n";
+          echo'<th class="text-center alert-warning" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idgenerico='.$fila["id_generico_med"].'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-pencil"></span></button></a></th>';
+          echo'<td class="text-center alert-warning">'.$fila["nom_med"].' '.$fila["concentracion"].' '.$fila["presentacion"].'</td>';
+          echo'<td class="text-center alert-warning">'.$fila["laboratorio"].'</td>';
+          echo'<td class="text-center alert-warning">'.$fila["semaforo"].'</td>';
+          echo'<td class="text-center alert-success">'.$fila["cantidad"].'</td>';
+          echo'<th class="text-center alert-success" ><a class="btn btn-success" data-toggle="modal" data-target="#detalle_producto" type="button" ><span class="fa fa-eye"></span></a></th>';
+          echo "</tr>\n";
+        }
+        if ($fila['semaforo']=='Rojo') {
+          echo"<tr >	\n";
+          echo'<th class="text-center alert-danger" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idgenerico='.$fila["id_generico_med"].'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-pencil"></span></button></a></th>';
+          echo'<td class="text-center alert-danger">'.$fila["nom_med"].' '.$fila["concentracion"].' '.$fila["presentacion"].'</td>';
+          echo'<td class="text-center alert-danger">'.$fila["laboratorio"].'</td>';
+          echo'<td class="text-center alert-danger">'.$fila["semaforo"].'</td>';
+          echo'<td class="text-center alert-success">'.$fila["cantidad"].'</td>';
+          echo'<th class="text-center alert-success" ><a class="btn btn-success" data-toggle="modal" data-target="#detalle_producto" type="button" ><span class="fa fa-eye"></span></a></th>';
+          echo "</tr>\n";
+        }
       }
     }
   }
@@ -197,3 +207,62 @@ if ($check=='si') {
     <?php
   }
   ?>
+  <section class="modal fade" id="detalle_producto" role="dialog">
+    <section class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Detalle producto seleccionado</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+
+            </tr>
+            <?php
+            if (isset($_REQUEST["idgen"])){
+            $id=$_REQUEST["idgen"];
+            $sql="SELECT * from producto_medicamento where id_generico_med=".$id;
+              //echo $sql;
+            if ($tabla=$bd1->sub_tuplas($sql)){
+              //echo $sql;
+              foreach ($tabla as $fila ) {
+
+                echo"<tr>\n";
+                echo'<td class="text-center info"><b>Principio activo</b></td>';
+                echo'<td class="text-left">'.$fila["nom_med"].' '.$fila["concentracion"].' '.$fila["ffarma"].' '.$fila["presentacion"].'</td>';
+                echo '</tr>';
+                echo"<tr >\n";
+                echo'<td class="text-center info" ><b>Laboratorio</b></td>';
+                echo'<td class="text-center info" ><b>Fecha vencimiento</b></td>';
+                echo'<td class="text-center info" ><b>CUM</b></td>';
+                echo '</tr>';
+                echo"<tr >\n";
+                echo'<td class="text-left">'.$fila["laboratorio"].'</td>';
+                echo'<td class="text-left">'.$fila["fvencimiento"].'</td>';
+                echo'<td class="text-left">'.$fila["cum"].'</td>';
+                echo '</tr>';
+                echo"<tr >\n";
+                echo'<td class="text-center info" ><b>ATC</b></td>';
+                echo'<td class="text-center info" ><b>Registro INVIMA</b></td>';
+                echo'<td class="text-center info" ><b>Cantidad</b></td>';
+                echo '</tr>';
+                echo"<tr >\n";
+                echo'<td class="text-left">'.$fila["atc"].'</td>';
+                echo'<td class="text-left">'.$fila["reg_invima"].'</td>';
+                echo'<td class="text-left">'.$fila["cantidad"].'</td>';
+                echo '</tr>';
+                echo '<tr>';
+                echo'<td class="text-center info" ><b>Semaforizacion</b></td>';
+                echo'<td class="text-left">'.$fila["semaforo"].'</td>';
+                echo '</tr>';
+
+              }
+            }
+          }
+            ?>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>

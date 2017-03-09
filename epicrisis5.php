@@ -7,7 +7,7 @@ $subtitulo="";
 			switch ($_POST["operacion"]) {
 			case 'E':
 			$sql="INSERT INTO epicrisis (id_hchosp,id_user,freg_epicrisis,hreg_epicrisis,cdxp_epi,ddxp_epi,tdxp_epi,subjetivo_epicrisis,objetivo_epicrisis, analisis_epicrisis,plant_epicrisis) VALUES
-			('".$_POST["idhc"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregepi"]."','".$_POST["hregepi"]."','".$_POST["cdxp"]."','".$_POST["ddxp"]."','".$_POST["tdxp"]."','".$_POST["subjetivoepi"]."','".$_POST["objetivoepi"]."','".$_POST["analisisepi"]."','".$_POST["plantratamientoepi"]."')";
+			('".$_POST["idhc"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregepi"]."','".$_POST["hregepi"]."','".$_POST["dx"]."','".$_POST["dx"]."','".$_POST["tdxp"]."','".$_POST["subjetivoepi"]."','".$_POST["objetivoepi"]."','".$_POST["analisisepi"]."','".$_POST["plantratamientoepi"]."')";
 			$subtitulo="Adicionada";
 			break;
 			case 'A':
@@ -97,61 +97,60 @@ if (isset($_GET["mante"])){					///nivel 2
 				</script>
 
 <form action="<?php echo PROGRAMA;?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
-<section class="panel-body">
-	<?php
-		include("consulta_paciente.php");
-	?>
-</section>
-	<article>
-		<h4 id="th-estiloE">Datos de Epicrisis</h4>
-		<?php include("consulta_rapida.php");?>
-	<section class="panel panel-default">
-		<section class="panel-body">
+	<section class="panel-body">
+		<?php
+			include("consulta_paciente.php");
+		?>
+	</section>
+	<?php include("consulta_rapida.php");?>
+	<div id="accordion">
+		<h3>Impresion Diagnostica</h3>
+		<div>
 			<article class="col-xs-3">
 				<label for="">Fecha de registro:</label>
 				<input type="text" name="fregepi" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1;?> >
-<input type="hidden" name="idhc" value="<?php echo $_GET["idhc"] ;?>" class="form-control" <?php echo $atributo1;?> >
+				<input type="hidden" name="idhc" value="<?php echo $_GET["idhc"] ;?>" class="form-control" <?php echo $atributo1;?> >
 			</article>
 			<article class="col-xs-3">
 				<label for="">Hora de registro</label>
 				<input type="time" name="hregepi" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1;?>>
 			</article>
 			<article class="col-xs-12">
-				<label class="alert-success">Diagnostico Principal</label>
-				<?php include("diagnosticos/dx.php");?>
+				<?php include("dxbusqueda.php");?>
 			</article>
-			<article class="col-xs-10">
-				<label for="">Subjetivo: <span class="fa fa-info-circle" data-toggle="popover" title="Versión de la realidad proporcionada por el paciente" data-content=""></span></label>
-				<textarea class="form-control" name="subjetivoepi" rows="5" id="comment" ></textarea>
-			</article>
-			<article class="col-xs-10">
-				<label for="" >Objetivo: <span class="fa fa-info-circle" data-toggle="popover" title="Realidad encontrada por el medico con relación al paciente" data-content=""></span></label>
-				<textarea class="form-control" name="objetivoepi" rows="5" id="comment" ></textarea>
-			</article>
-			<article class="col-xs-5">
-				<label >Analisis: <span class="fa fa-info-circle" data-toggle="popover" title="Consolidado de la realidad del paciente" data-content=""></span></label>
-				<textarea class="form-control" name="analisisepi" rows="6" id="comment" ></textarea>
-			</article>
-			<article class="col-xs-5">
-				<label for="">Plan tratramiento: <span class="fa fa-info-circle" data-toggle="popover" title="Definición de conducta y procedimientos a realizar en relación a la realidad del paciente" data-content=""></span></label>
-				<textarea class="form-control" name="plantratamientoepi" rows="6" id="comment" ></textarea>
-			</article>
-
-		</section>
-
-		<div class="panel panel-body text-center">
-		  <input type="submit" class="btn btn-primary sombra_movil" name="aceptar" Value="<?php echo $boton; ?>" />
+  	</div>
+  	<h3>Registro de epicrisis</h3>
+  	<div>
+		<article class="col-xs-10">
+			<label for="">Subjetivo: <span class="fa fa-info-circle" data-toggle="popover" title="Versión de la realidad proporcionada por el paciente" data-content=""></span></label>
+			<textarea class="form-control" name="subjetivoepi" rows="5" id="comment" ></textarea>
+		</article>
+		<article class="col-xs-10">
+			<label for="" >Objetivo: <span class="fa fa-info-circle" data-toggle="popover" title="Realidad encontrada por el medico con relación al paciente" data-content=""></span></label>
+			<textarea class="form-control" name="objetivoepi" rows="5" id="comment" ></textarea>
+		</article>
+		<article class="col-xs-5">
+			<label >Analisis: <span class="fa fa-info-circle" data-toggle="popover" title="Consolidado de la realidad del paciente" data-content=""></span></label>
+			<textarea class="form-control" name="analisisepi" rows="6" id="comment" ></textarea>
+		</article>
+		<article class="col-xs-5">
+			<label for="">Plan tratramiento: <span class="fa fa-info-circle" data-toggle="popover" title="Definición de conducta y procedimientos a realizar en relación a la realidad del paciente" data-content=""></span></label>
+			<textarea class="form-control" name="plantratamientoepi" rows="6" id="comment" ></textarea>
+		</article>
+		<div class="text-center">
+			<input type="submit" class="btn btn-primary sombra_movil" name="aceptar" Value="<?php echo $boton; ?>" />
 			<input type="hidden" class="btn btn-primary sombra_movil" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
 			<input type="hidden" class="btn btn-primary sombra_movil" name="operacion" Value="<?php echo $_GET["mante"];?>"/>
 		</div>
-	</section>
-
+  	</div>
+	</div>
 </form>
 
 <?php
 }else{
-	echo '<div class="animated bounceInRight">';
+	echo '<div class="animated bounceInRight alert alert-success">';
 	echo $subtitulo;
+	echo '</div>';
 	echo'<a href="aplicacion5.php?opcion=39&idadmhosp='.$_REQUEST["idadmhosp"].'" class="botontool">  Formula Ambulatoria </a>';
 	echo'<a href="aplicacion5.php?opcion=42&idadmhosp='.$_REQUEST["idadmhosp"].'" class="botontool">  Incapacidad </a>';
 	echo'<a href="aplicacion5.php?opcion=83&idadmhosp='.$_REQUEST["idadmhosp"].'" class="botontool">  Ordenes Medicas Ambulatorias </a>';
@@ -178,7 +177,7 @@ if (isset($_GET["mante"])){					///nivel 2
 	<?php
 	if (isset($_REQUEST["idadmhosp"])){
 	$idpaciente=$_GET["idadmhosp"];
-	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
+	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p inner JOIN adm_hospitalario a on p.id_paciente=a.id_paciente inner JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
@@ -192,6 +191,9 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idhc='.$fila["id_hchosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-square-o"></span></button></a></th>';
 			echo "</tr>\n";
 		}
+	}else {
+		echo '<div class="animated bounceInRight">';
+		echo '<h3 class="alert-danger">Paciente no tiene registro de HISTORIA CLINICA DE INGRESO. Por lo tanto no puede registrar Epicrisis</h3></div>';
 	}
 }
 	?>

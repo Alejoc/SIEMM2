@@ -37,8 +37,6 @@
                   d.descriafiliado,
                   e.descritusuario,
                   f.descriocu,
-                  g.descripdep,
-                  h.descrimuni,
                   i.descripuedad,
                   j.nom_eps,
                   k.clasificacion_dx,dxp,ddxp
@@ -48,8 +46,6 @@
                         inner join tusuario e on (e.codtusuario=b.tipo_usuario)
                         inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
                         inner join ocupacion f on (f.codocu=b.ocupacion)
-                        inner join departamento g on (g.coddep=b.dep_residencia)
-                        inner join municipios h on (h.codmuni=b.mun_residencia)
                         inner join uedad i on (i.coduedad=a.uedad)
                         left join eps j on (j.id_eps=b.id_eps)
                         left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
@@ -93,8 +89,6 @@
                         d.descriafiliado,
                         e.descritusuario,
                         f.descriocu,
-                        g.descripdep,
-                        h.descrimuni,
                         i.descripuedad,
                         j.nom_eps,
                         k.clasificacion_dx,dxp,ddxp
@@ -103,8 +97,6 @@
                               inner join tusuario e on (e.codtusuario=b.tipo_usuario)
                               inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
                               inner join ocupacion f on (f.codocu=b.ocupacion)
-                              inner join departamento g on (g.coddep=b.dep_residencia)
-                              inner join municipios h on (h.codmuni=b.mun_residencia)
                               inner join uedad i on (i.coduedad=a.uedad)
                               left join eps j on (j.id_eps=b.id_eps)
                               left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
@@ -137,8 +129,6 @@
                                   inner join tusuario e on (e.codtusuario=b.tipo_usuario)
                                   inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
                                   inner join ocupacion f on (f.codocu=b.ocupacion)
-                                  inner join departamento g on (g.coddep=b.dep_residencia)
-                                  inner join municipios h on (h.codmuni=b.mun_residencia)
                                   inner join uedad i on (i.coduedad=a.uedad)
                                   left join eps j on (j.id_eps=b.id_eps)
                                   left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
@@ -196,8 +186,6 @@
                   d.descriafiliado,
                   e.descritusuario,
                   f.descriocu,
-                  g.descripdep,
-                  h.descrimuni,
                   i.descripuedad,
                   j.nom_eps,
                   k.clasificacion_dx,dxp,ddxp
@@ -207,8 +195,6 @@
                         inner join tusuario e on (e.codtusuario=b.tipo_usuario)
                         inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
                         inner join ocupacion f on (f.codocu=b.ocupacion)
-                        inner join departamento g on (g.coddep=b.dep_residencia)
-                        inner join municipios h on (h.codmuni=b.mun_residencia)
                         inner join uedad i on (i.coduedad=a.uedad)
                         left join eps j on (j.id_eps=b.id_eps)
                         left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
@@ -252,8 +238,6 @@
                         d.descriafiliado,
                         e.descritusuario,
                         f.descriocu,
-                        g.descripdep,
-                        h.descrimuni,
                         i.descripuedad,
                         j.nom_eps,
                         k.clasificacion_dx,dxp,ddxp
@@ -262,8 +246,6 @@
                               inner join tusuario e on (e.codtusuario=b.tipo_usuario)
                               inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
                               inner join ocupacion f on (f.codocu=b.ocupacion)
-                              inner join departamento g on (g.coddep=b.dep_residencia)
-                              inner join municipios h on (h.codmuni=b.mun_residencia)
                               inner join uedad i on (i.coduedad=a.uedad)
                               left join eps j on (j.id_eps=b.id_eps)
                               left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
@@ -286,8 +268,6 @@
                             d.descriafiliado,
                             e.descritusuario,
                             f.descriocu,
-                            g.descripdep,
-                            h.descrimuni,
                             i.descripuedad,
                             j.nom_eps,
                             k.clasificacion_dx,dxp,ddxp
@@ -296,8 +276,6 @@
                                   inner join tusuario e on (e.codtusuario=b.tipo_usuario)
                                   inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
                                   inner join ocupacion f on (f.codocu=b.ocupacion)
-                                  inner join departamento g on (g.coddep=b.dep_residencia)
-                                  inner join municipios h on (h.codmuni=b.mun_residencia)
                                   inner join uedad i on (i.coduedad=a.uedad)
                                   left join eps j on (j.id_eps=b.id_eps)
                                   left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)

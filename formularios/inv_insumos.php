@@ -1,45 +1,35 @@
 <form action="<?php echo PROGRAMA.'?&opcion=89';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
-
 	<article>
 		<h4 id="th-estilot">Registro de inventario Insumos y/o dispositivos medicos</h4>
 		<section class="panel-body text-center">
 			<section class="panel-body text-center"><!--section de eps-->
-	      <article class="col-xs-3 text-center">
-	        <label for="">Nombre Bodega:</label>
-	        <input type="text" name="nombog" class="form-control text-center" value="<?php echo $fila["nom_bodega"];?>" <?php echo $atributo1;?>/>
-					<input type="hidden" name="idb" value="<?php echo $fila["id_pro_insumos"];?>">
-	      </article>
-	      <article class="col-xs-2">
-	        <label for="">Tipo bodega:</label>
-	        <input type="text" name="identificacion" class="form-control text-center" value="<?php echo $fila["tipo_bodega"];?>"<?php echo $atributo1;?>/>
-	      </article>
-	      <article class="col-xs-3">
-	        <label for="">Sede de la bodega:</label>
-	        <input type="text" name="edad" class="form-control text-center" value="<?php echo $fila["nom_sedes"];?>"<?php echo $atributo1;?>/>
-					<input type="hidden" name="ids" value="<?php echo $fila["id_sedes_ips"];?>">
-	      </article>
 				<article class="col-xs-3">
 	        <label for="">Nombre del generico:</label>
-	        <input type="text" name="nomgenerico" class="form-control text-center" value="<?php echo $fila["nom_insumo"];?>"<?php echo $atributo1;?>/>
+	        <input type="text" name="nom_generico" class="form-control text-center" value="<?php echo $fila["nom_generico"];?>"<?php echo $atributo1;?>/>
 	      </article>
-				<article class="col-xs-6 col-md-6">
-					<label for="">Seleccione proveedor:</label>
-					<select name="id_proveedor" class="form-control" <?php echo atributo3; ?>>
-						<option value=""></option>
+				<article class="col-xs-3 col-md-3">
+					<label for="">Seleccione Bodega:</label>
+					<select name="id_bodega" class="form-control" id="bodega" onchange="mostrarprov()">
+						<option value="0">Seleccionar Bodega ...</option>
 						<?php
-						$s=$_POST['ids'];
-						$sql="SELECT id_proveedor,razon_social,di_proveedor from proveedores where estado_proveedor='Activo' and id_sedes_ips='".$_GET['ids']."' ORDER BY razon_social ASC";
-						if($tabla=$bd1->sub_tuplas($sql)){
-							foreach ($tabla as $fila2) {
-								if ($fila["id_proveedor"]==$fila2["id_proveedor"]){
-									$sw=' selected="selected"';
-								}else{
-									$sw="";
-								}
-							echo '<option value="'.$fila2["id_proveedor"].'"'.$sw.'>'.$fila2["razon_social"].' | '.$fila2["di_proveedor"].'</option>';
-							}
-						}
+							$sql_pais = "SELECT * FROM bodega";
+							$resultado = $conex->query($sql_pais);
+							if($conex->errno) die($conex->error);
+
+							while ($fila = $resultado ->fetch_assoc()){
 						?>
+							<option value="<?php echo $fila['id_bodega'] ?>"><?php echo $fila['nom_bodega']; ?></option>
+						<?php
+							}
+
+						?>
+
+					</select>
+				</article>
+				<article class="col-xs-6 col-md-4">
+					<label for="">Seleccione proveedor:</label>
+					<select name="id_proveedor" class="form-control" id="proveedores">
+
 					</select>
 				</article>
 				<article class="col-xs-2 col-md-2">
