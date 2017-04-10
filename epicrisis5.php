@@ -172,12 +172,13 @@ if (isset($_GET["mante"])){					///nivel 2
 		<th id="th-estilo2">HC  </th>
 		<th id="th-estilo1">FECHA Y HORA INGRESO</th>
 		<th id="th-estilo2">FOTO</th>
+		<th id="th-estilo2">TIPO SERVICIO</th>
 		<th id="th-estilo4">Crear Epicrisis</th>
 	</tr>
 	<?php
 	if (isset($_REQUEST["idadmhosp"])){
 	$idpaciente=$_GET["idadmhosp"];
-	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p inner JOIN adm_hospitalario a on p.id_paciente=a.id_paciente inner JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
+	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,tipo_servicio,h.id_hchosp FROM pacientes p inner JOIN adm_hospitalario a on p.id_paciente=a.id_paciente inner JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
@@ -187,6 +188,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<td class="text-center info">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center info">'.$fila["id_hchosp"].'</td>';
 			echo'<td class="text-center info">'.$fila["fingreso_hosp"].' '.$fila["hingreso_hosp"].'</td>';
+			echo'<td class="text-center info">'.$fila["tipo_servicio"].' </td>';
 			echo'<td class="text-left info"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login"> </td>';
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idhc='.$fila["id_hchosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-square-o"></span></button></a></th>';
 			echo "</tr>\n";

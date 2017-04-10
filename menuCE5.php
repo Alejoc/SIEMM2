@@ -12,7 +12,7 @@ if ($tabla=$bd1->sub_tuplas($sql))
 	}
 }else
 {
-	echo"Upsss!!! No tienes opciones de menÃº, Comunicate con el departamento TIC.";
+	echo"Upsss!!! No tienes opciones de menu, Comunicate con el departamento TIC.";
 }
 
 ?>

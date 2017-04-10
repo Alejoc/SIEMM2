@@ -1,4 +1,4 @@
-<?php 
+<?php
 	//Recibimos datos
 	$nombre = $_POST['nombre'];
 	$email = $_POST['email'];
@@ -10,7 +10,7 @@
 
 	if(isset($email)){
 
-		
+
 
 		$sql_insertar="INSERT INTO usuario SET nombre='$nombre',email='$email',
 		pais='$pais',genero='$genero',comentario='$comentario'";
@@ -23,7 +23,7 @@
 ?>
 		<script language = javascript>
 		alert("Los datos han sido guardados correctamente")
-		self.location = "registro.php"
+		self.location = "lista_formulas.php"
 		</script>
 
 <?php } else { ?>

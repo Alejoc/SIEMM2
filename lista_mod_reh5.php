@@ -560,9 +560,6 @@ where b.tipo_servicio = 'Rehabilitacion' and e.id_evofisio_reh='".$idevo."'";
 			</section>
 	  </form>
 
-
-
-
 	<table class="table table-bordered">
 	<tr>
 		<th id="th-estilo1">IDENTIFICACIÓN</th>

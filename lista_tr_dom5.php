@@ -19,7 +19,7 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'VI':
-				$sql="INSERT INTO terapia_respiratoria_ce (  id_adm_hosp, id_user, freg_tr_ce, hreg_tr_ce, motivo_consulta, ant_per_fumador, ant_per_leña, ant_per_ambiental, ant_patologico, ant_quirurgicos, ant_traumatologico, ant_terapeutico, ant_toxicologicos, ant_alergicos, ant_farmacologico, ascultacion, fr, fc, so2, petibucal, distal, toracica, abdominal, amplitud, tintercostal, sis_oxigenoterapia, obs_sisoxigeno, obj_general, obj_especifico, pronostico, recomendaciones, estado_tr_ce) VALUES
+				$sql="INSERT INTO val_initr_dom (id_adm_hosp, id_user, freg_tr_dom, hreg_tr_dom, motivo_consulta, ant_per_fumador, ant_per_lena, ant_per_ambiental, ant_patologico, ant_quirurgicos, ant_traumatologico, ant_terapeutico, ant_toxicologicos, ant_alergicos, ant_farmacologico, ascultacion, fr, fc, so2, petibucal, distal, toracica, abdominal, amplitud, tintercostal, sis_oxigenoterapia, obs_sisoxigeno, obj_general, obj_especifico, pronostico, recomendaciones, estado_tr_dom) VALUES
 				('".$_POST["idadmhosp"]."',
 '".$_SESSION["AUT"]["id_user"]."',
 '".$_POST["freg"]."',
@@ -102,7 +102,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='formularios/valinitr_ce.php';
+			$form1='formularios/val_initr_dom.php';
 			$subtitulo='Valoracion inicial Terapia Respiratoria';
 			break;
 			case 'EVO':

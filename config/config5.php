@@ -40,6 +40,8 @@ define("IVEHI","/var/www/html/");               ///opt/lampp/htdocs/nombre corre
 define("VEHICULOS","ivehiculos/");
 define("PLANILLA","planillas/");
 define("PACIENTES","fotopaciente/");
+define("PQ","/var/www/html/");
+define("PQRS","pqrssoportes/");
 define("SOPORTE","soportesPESV/");
 define("CLAVE5","123");
 

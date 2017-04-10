@@ -525,7 +525,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center">'.$fila["fingreso_hosp"].' | '.$fila["hingreso_hosp"].'</td>';
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1 text-center" data-toggle="modal" data-target="#modalpac"> </td>';
-			echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_hcCESM.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rptceSM.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_valpsico_sm.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_valnutri_sm.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$_POST["fecha1"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';

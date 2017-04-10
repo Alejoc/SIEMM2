@@ -145,7 +145,6 @@ class MYPDF extends TCPDF {
 
 		foreach($data as $row) {
 
-
       $this->SetFont('','B',10);
       $this->Cell(180,0, utf8_encode($row['tipo_evo']),1,0,'C',1);
       $this->SetFont('','B',8);

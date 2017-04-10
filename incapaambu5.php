@@ -29,7 +29,7 @@ $subtitulo="";
 			$hora=60*$min;
 			$dia=24*$hora;
 			$diast=floor($fechafin/$dia)-floor($fechaini/$dia);
-			
+
 			$sql="INSERT INTO incapacidad_medica (id_adm_hosp, id_user, freg_incapa_med, tipo_atencion, origen_atencion, coddx_incapa_med, ddx_incapa_med, tdx_incapa_med, fini_incapa_med, ffin_incapa_med, total_dias_incapa, obs_incapa_med, estado_incapa) VALUES
 			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg_incapa_hosp"]."','".$_POST["tipo_atencion"]."','".$_POST["origen_atencion"]."','".$_POST["cdxp"]."','".$_POST["descridxp"]."','".$_POST["tdxp"]."','".$_POST["fini_incapa"]."','".$_POST["ffin_incapa"]."','$diast','".$_POST["obs_incapa_med"]."','Realizada')";
 			$subtitulo="Realizada";
@@ -138,7 +138,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<section class="panel-body">
 			<article class="col-xs-3">
 				<label for="">Fecha Inicio Incapacidad:</label>
-				<input type="text" name="fini_incapa" class="form-control" value="<?php echo $fila["fingreso_hosp"];?>" <?php echo $atributo1; ?>>
+				<input type="date" name="fini_incapa" class="form-control" value="<?php echo $fila["fingreso_hosp"];?>" <?php echo $atributo2; ?>>
 			</article>
 			<article class="col-xs-3">
 				<label for="">Fecha Final Incapacidad:</label>
@@ -199,9 +199,10 @@ echo '</div>';
 		<?php
 		if (isset($_REQUEST["idadmhosp"])){
 		$idpaciente=$_GET["idadmhosp"];
-		$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
+		$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."'";
+		echo $sql;
 		if ($tabla=$bd1->sub_tuplas($sql)){
-			//echo $sql;
+			echo $sql;
 			foreach ($tabla as $fila ) {
 				echo"<tr >\n";
 

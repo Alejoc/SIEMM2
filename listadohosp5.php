@@ -37,15 +37,28 @@ $subtitulo="";
 				$subtitulo1="Adicionado";
 			break;
 			case 'ADX':
-				$sql="INSERT INTO ord_med_hosp (id_adm_hosp, id_user, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp, procedimiento, obs_proc, estado_ord_med_hosp) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["cups"]."','".$_POST["obs_proc"]."','Realizada')";
+				$sql="INSERT INTO ord_med_hosp (id_adm_hosp, id_user, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp,dx,tdx, procedimiento, obs_proc, estado_ord_med_hosp) VALUES
+				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["cups"]."','".$_POST["obs_proc"]."','Realizada')";
 				$subtitulo="Ordenes Medicas";
 				$subtitulo1="Adicionado";
 			break;
 			case 'MED':
-			$f=date('Y-m-d');
-				$sql="INSERT INTO formula_hospitalaria (id_bodega,id_adm_hosp, id_user, fcreacion, fejecucion, producto1, via1,frecuencia, d1_1, d2_1, d3_1, d4_1, obs_1, estado_pro1, producto2, via2,frecuencia2, d1_2, d2_2, d3_2, d4_2, obs_2, estado_pro2, producto3, via3,frecuencia3, d1_3, d2_3, d3_3, d4_3, obs_3, estado_pro3, producto4, via4,frecuencia4, d1_4, d2_4, d3_4, d4_4, obs_4, estado_pro4, producto5, via5,frecuencia5, d1_5, d2_5, d3_5, d4_5, obs_5, estado_pro5, estado_formu_hosp) VALUES
-				('".$_POST["bodega"]."','".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','$f','".$_POST["fejecucion"]."','".$_POST["producto1"]."','".$_POST["via1"]."','".$_POST["frecuencia"]."','".$_POST["d1_1"]."','".$_POST["d1_2"]."','".$_POST["d1_3"]."','".$_POST["d1_4"]."','".$_POST["obs_1"]."','formulado','".$_POST["producto2"]."', '".$_POST["via2"]."','".$_POST["frecuencia2"]."', '".$_POST["d1_2"]."', '".$_POST["d2_2"]."', '".$_POST["d3_2"]."', '".$_POST["d4_2"]."', '".$_POST["obs_2"]."', 'formulado','".$_POST["producto3"]."', '".$_POST["via3"]."','".$_POST["frecuencia3"]."', '".$_POST["d1_3"]."', '".$_POST["d2_3"]."', '".$_POST["d3_3"]."', '".$_POST["d4_3"]."', '".$_POST["obs_3"]."', 'formulado','".$_POST["producto4"]."', '".$_POST["via4"]."','".$_POST["frecuencia4"]."', '".$_POST["d1_4"]."', '".$_POST["d2_4"]."', '".$_POST["d3_4"]."', '".$_POST["d4_4"]."', '".$_POST["obs_4"]."', 'formulado','".$_POST["producto5"]."', '".$_POST["via5"]."','".$_POST["frecuencia5"]."', '".$_POST["d1_5"]."', '".$_POST["d2_5"]."', '".$_POST["d3_5"]."', '".$_POST["d4_5"]."', '".$_POST["obs_5"]."', 'formulado','Realizada')";
+				$d1='';
+				$f=date('Y-m-d');
+				$sql="INSERT INTO formula_hospitalaria (id_bodega, id_adm_hosp, id_user, fcreacion, tipo_formula, finicial, ffinal, med, via, frec, dosis1, dosis2, dosis3, dosis4, obs_formula, med1, via1, frec1, dosis11, dosis21, dosis31, dosis41, obs_formula1, med2, via2, frec2, dosis12, dosis22, dosis32, dosis42, obs_formula2, med3, via3, frec3, dosis13, dosis23, dosis33, dosis43, obs_formula3, med4, via4, frec4, dosis14, dosis24, dosis34, dosis44, obs_formula4, estado_formula_hosp) VALUES
+				('".$_POST["bodega"]."','".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','$f',
+				'".$_POST["tipo_formula"]."','".$_POST["finicial"]."','".$_POST["ffinal"]."','".$_POST["med"]."',
+				'".$_POST["via"]."','".$_POST["frec"]."','".$_POST["dosis1"]."','".$_POST["dosis2"]."',
+				'".$_POST["dosis3"]."','".$_POST["dosis4"]."','".$_POST["obs_formula"]."','".$_POST["med1"]."',
+				'".$_POST["via1"]."','".$_POST["frec1"]."','".$_POST["dosis11"]."','".$_POST["dosis21"]."',
+				'".$_POST["dosis31"]."','".$_POST["dosis41"]."','".$_POST["obs_formula1"]."',
+				'".$_POST["med2"]."','".$_POST["via2"]."','".$_POST["frec2"]."','".$_POST["dosis12"]."',
+				'".$_POST["dosis22"]."','".$_POST["dosis32"]."','".$_POST["dosis42"]."','".$_POST["obs_formula2"]."'
+				,'".$_POST["med3"]."','".$_POST["via3"]."','".$_POST["frec3"]."','".$_POST["dosis13"]."',
+				'".$_POST["dosis23"]."','".$_POST["dosis33"]."','".$_POST["dosis43"]."',
+				'".$_POST["obs_formula3"]."','".$_POST["med4"]."','".$_POST["via4"]."','".$_POST["frec4"]."',
+				'".$_POST["dosis14"]."','".$_POST["dosis24"]."','".$_POST["dosis34"]."','".$_POST["dosis44"]."',
+				'".$_POST["obs_formula4"]."','Realizada')";
 				$subtitulo="Formula medica hospitalaria";
 				$subtitulo1="Adicionado";
 			break;
@@ -294,7 +307,7 @@ if (isset($_GET["mante"])){					///nivel 2
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=HC&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-stethoscope"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ADX&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-flask"></span></button></a></th>';
-				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idadmhosp='.$fila["id_adm_hosp"].'&idsede='.$fila["id_sedes_ips"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
+				echo'<th class="text-center" ><a href="lista_formulas.php?idadmhosp='.$fila["id_adm_hosp"].'&idsede='.$fila["id_sedes_ips"].'&user='.$_SESSION["AUT"]["id_user"].'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-toggle-on"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=37&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-share"></span></button></a></th>';
 				echo "</tr>\n";
@@ -321,7 +334,7 @@ if (isset($_GET["mante"])){					///nivel 2
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=HC&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-stethoscope"></span></button></a></th>';
 				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ADX&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-flask"></span></button></a></th>';
-				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=MED&idadmhosp='.$fila["id_adm_hosp"].'&idsede='.$fila["id_sedes_ips"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
+				echo'<th class="text-center" ><a href="'.PROGRAMA.'?lista_formulas&idadmhosp='.$fila["id_adm_hosp"].'&idsede='.$fila["id_sedes_ips"].'&user='.$_SESSION["AUT"]["id_user"].'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-toggle-on"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 				echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=37&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-share"></span></button></a></th>';
 				echo "</tr>\n";

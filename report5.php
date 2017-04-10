@@ -167,6 +167,7 @@ if (isset($_GET["mante"])){					///nivel 2
 
 	<table class="table table-responsive">
 	<tr>
+		<th id="th-estilo4">Consentimiento</th>
 		<th id="th-estilo1">IDENTIFICACIÓN</th>
 		<th id="th-estilo2">NOMBRE COMPLETO</th>
 		<th id="th-estilo3">FECHA INGRESO</th>
@@ -185,13 +186,15 @@ if (isset($_GET["mante"])){					///nivel 2
 	$doc=$_REQUEST["doc"];
 	$f1=$_REQUEST["fecha1"];
 	$f2=$_REQUEST["fecha2"];
-	$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,edad,descricie,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,s.nom_sedes,e.nom_eps FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips left join eps e on a.id_eps=e.id_eps  WHERE p.doc_pac='".$doc."'  and tipo_servicio='Hospitalario' ";
+	$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,edad,descricie,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,tipo_servicio,s.nom_sedes,e.nom_eps FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips left join eps e on a.id_eps=e.id_eps  WHERE p.doc_pac='".$doc."'  and tipo_servicio='Hospitalario' ";
 
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
 
 			echo"<tr >\n";
+			$idpaciente=$fila["id_paciente"];
+			echo'<th class="text-center" ><a href="docpaciente/'.$idpaciente.'_Consentimiento Informado.pdf"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].' </strong>: '.$fila["doc_pac"].' <br /><strong> ADM: </strong>'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center">'.$fila["fingreso_hosp"].' | '.$fila["hingreso_hosp"].'</td>';
@@ -222,6 +225,7 @@ if (isset($_REQUEST["nom"])){
 		foreach ($tabla as $fila ) {
 
 			echo"<tr >\n";
+			echo'<th class="text-center" ><a href="docpaciente/'.$idpaciente.'_Consentimiento Informado.pdf"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].' </strong>: '.$fila["doc_pac"].' <br /><strong> ADM: </strong>'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center">'.$fila["fingreso_hosp"].' | '.$fila["hingreso_hosp"].'</td>';

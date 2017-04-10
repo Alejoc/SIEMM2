@@ -112,13 +112,11 @@ class MYPDF extends TCPDF {
         $this->SetFont('helvetica', '', 10);
         $this->Cell(70,6, utf8_encode($eps), 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->SetFont('helvetica', 'B', 9);
-        $this->Cell(10,6,'MES:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(30,6,'Tiempo de registro:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->SetFont('helvetica', '', 10);
-        $this->Cell(40,6, utf8_encode($mes1), 1, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(70,6, utf8_encode($f1).' - '.utf8_encode($f2), 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->SetFont('helvetica', 'B', 9);
-        $this->Cell(10,6,'AÑO:', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->SetFont('helvetica', '', 10);
-        $this->Cell(40,6, utf8_encode($y), 1, false, 'C', 0, '', 0, false, 'M', 'M');
+
         $this->Ln();
 
     }

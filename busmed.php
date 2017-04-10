@@ -8,13 +8,13 @@ class Ajax {
   public function Buscar($a){
     $db = new Conexion();
 
-    $sql = $db->query("Select * from pro_medicametos where prin_activo like '%$a%'  LIMIT 0,20");
+    $sql = $db->query("Select * from generico_medicamento where nom_generico like '%$a%'  LIMIT 0,20");
 
     while ($array = $db->recorrer($sql)) {
-      $resultado[] = $array['prin_activo'].' '.$array['concentracion'].' '.$array['presentacion'];
-
+      $resultado[] = $array['id_generico_med'].' |*| '.$array['nom_generico'];
     }
     return $resultado;
+
   }
 }
 

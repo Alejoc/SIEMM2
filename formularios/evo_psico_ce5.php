@@ -1,4 +1,4 @@
-<form action="<?php echo PROGRAMA;?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+<form action="<?php echo PROGRAMA.'?&opcion=99';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
 	<section class="panel-body">
 	  <?php
 	    include("consulta_paciente.php");

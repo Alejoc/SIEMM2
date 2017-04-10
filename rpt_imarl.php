@@ -81,7 +81,7 @@ class MYPDF extends TCPDF {
         $this->Ln();
         $this->Cell(30, 3, 'IF-GDC-025', 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Cell(30, 3, 'Version:00', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Cell(120, 3, 'Fecha de Emision:'.$date, 1, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(120, 3, 'Fecha de Impresion:'.$date, 1, false, 'C', 0, '', 0, false, 'M', 'M');
         $this->Ln(10);
 
     }
@@ -122,42 +122,7 @@ class MYPDF extends TCPDF {
       $mes= date('m') ;
       $mes1=date('m');
       $y=date('Y');
-      if ($mes==1) {
-        $mes1='Enero';
-        }
-        if ($mes==2) {
-          $mes1='Enero';
-          }
-          if ($mes==3) {
-            $mes1='Febrero';
-            }
-            if ($mes==4) {
-              $mes1='Abril';
-              }
-              if ($mes==5) {
-                $mes1='Mayo';
-                }
-                if ($mes==6) {
-                  $mes1='Junio';
-                  }
-                  if ($mes==7) {
-                    $mes1='Julio';
-                    }
-                    if ($mes==8) {
-                      $mes1='Agosto';
-                      }
-                      if ($mes==9) {
-                        $mes1='Septiembre';
-                        }
-                        if ($mes==10) {
-                          $mes1='Octubre';
-                          }
-                          if ($mes==11) {
-                            $mes1='Noviembre';
-                            }
-                            if ($mes==12) {
-                              $mes1='Diciembre';
-                              }
+
       $this->Cell(30,6,'Nombre Paciente:',1,0,'C',1);
       $this->Cell(80,6, utf8_encode($row['nom1']." ".$row['nom2']." ".$row['ape1']." ".$row['ape2']),1,0,'C');
       $this->Cell(35,6,'Documento Paciente:',1,0,'C',1);
@@ -171,11 +136,9 @@ class MYPDF extends TCPDF {
       $this->Cell(40,6,'Edad:',1,0,'C',1);
       $this->Cell(15,6, utf8_encode($row['edad']),1,0,'C');
       $this->Ln();
-      $this->Cell(40,6,'Mes:',1,0,'C',1);
-      $this->Cell(50,6,$mes1 ,1,0,'C');
-      $this->Cell(40,6,'Año:',1,0,'C',1);
-      $this->Cell(50,6,$y ,1,0,'C');
-      $this->Ln();
+      $this->Cell(40,6,'Fecha Registro:',1,0,'C',1);
+      $this->Cell(50,6, utf8_encode($row['fecha_Informe']),1,0,'C');
+      $this->Ln(5);
       $this->Cell(180,6,$row['tipo_servicio'],1,0,'C',1);
       $this->Ln(10);
       $this->multiCell(180,0,'Codigo Diagnostico :',1,0,'C',1);

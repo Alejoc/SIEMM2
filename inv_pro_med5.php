@@ -56,7 +56,7 @@ if(isset($_POST["operacion"])){	//nivel3
     break;
 
   }
-//echo $sql;
+echo $sql;
   if ($bd1->consulta($sql)){
     $subtitulo="$subtitulo1 fue  $subtitulo con exito al inventario de $t.";
     $check='si';

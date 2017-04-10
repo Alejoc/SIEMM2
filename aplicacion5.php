@@ -21,6 +21,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 <html>
  <head>
  	<meta charset="UTF-8">
+	<link href="css/stylish-portfolio.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/font-awesome.css">
@@ -64,6 +65,20 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 					type: "POST",
 					success: function(resultado){
 	        			$("#proveedores").html(resultado);
+	    			}
+	    		});
+	    	}
+
+	</script>
+	<script>
+			function mostrarbod(){
+				var bodega = $("#sede").val();
+				$.ajax({
+					url: "bodegasel.php",
+					data: {idpais:bodega},
+					type: "POST",
+					success: function(resultado){
+	        			$("#bodeguita").html(resultado);
 	    			}
 	    		});
 	    	}
@@ -220,7 +235,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 					</ul>
 					<ul class="nav navbar-nav" id="barra">
 						<li class="dropdown">
-							<button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Hospitalario <span class="caret"></span></button>
+							<button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Salud Mental <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li><?php include("menuAS".VERSION.".php");?></li>
 							</ul>
@@ -244,14 +259,29 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 					 </li>
 				 </ul>
 				 <ul class="nav navbar-nav" id="barra">
-						<li class="dropdown">
-							<button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Reportes <span class="caret"></span></button>
-							<ul class="dropdown-menu">
-								<li><?php include("menuR".VERSION.".php");?></li>
-							</ul>
-						</li>
-					</ul>
-
+ 						<li class="dropdown">
+ 							<button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Demencias <span class="caret"></span></button>
+ 							<ul class="dropdown-menu">
+ 								<li><?php include("menuDEM".VERSION.".php");?></li>
+ 							</ul>
+ 						</li>
+ 					</ul>
+					<ul class="nav navbar-nav" id="barra">
+ 						<li class="dropdown">
+ 							<button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">AVD <span class="caret"></span></button>
+ 							<ul class="dropdown-menu">
+ 								<li><?php include("menuAVD".VERSION.".php");?></li>
+ 							</ul>
+ 						</li>
+ 					</ul>
+					<ul class="nav navbar-nav" id="barra">
+ 						<li class="dropdown">
+ 							<button class="btn btn-primary dropdown-toggle margen1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Reportes <span class="caret"></span></button>
+ 							<ul class="dropdown-menu">
+ 								<li><?php include("menuR".VERSION.".php");?></li>
+ 							</ul>
+ 						</li>
+ 					</ul>
 		<button class="btn btn-default navbar-right dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span><?php include("usuario".VERSION.".php");?></span></button>
 			<ul class="dropdown-menu pull-right">
 				<li><a href=""><span class="fa fa-exchange"></span> Cambio de Clave</a></li>
@@ -264,298 +294,6 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 
 		</div>
 		</nav>
-<section class="modal fade" id="hcfalta" role="dialog">
-	<section class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" >Notificaciones: Admisiones sin historia de ingreso</h4>
-			</div>
-			<div class="modal-body">
-				<table class="table table-responsive lettermodal">
-					<tr>
-						<th id="th-estilo1">ID</th>
-						<th id="th-estilo1">NOMBRE PACIENTE</th>
-						<th id="th-estilo3">IDENTIFICACION</th>
-						<th id="th-estilo1">FECHA INGRESO</th>
-						<th id="th-estilo3">FECHA EGRESO</th>
-						<th id="th-estilo3">TIPO SERVICIO</th>
-					</tr>
-					<?php
-					$sql="select d.doc_pac ,d.nom1,' ',d.nom2,' ',d.ape1,' ',d.ape2 paciente ,c.Id_adm_hosp,c.tipo_servicio ,c.fingreso_hosp ,c.fegreso_hosp ,c.tipo_servicio from adm_hospitalario c,pacientes d where c.fingreso_hosp > '2016-09-01' and c.tipo_servicio = 'Hospitalario' and d.doc_pac not in ('222','11437483') and d.id_paciente = c.id_paciente and not exists (select 1 from hc_hospitalario b where b.id_adm_hosp = c.id_adm_hosp ) order by 2";
-					if ($tabla=$bd1->sub_tuplas($sql)){
-						//echo $sql;
-						foreach ($tabla as $fila ) {
-							echo"<tr >\n";
-							echo'<td class="text-center danger">'.$fila["Id_adm_hosp"].'</td>';
-							echo'<td class="text-center danger">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-							echo'<td class="text-center danger">'.$fila["doc_pac"].'</td>';
-							echo'<td class="text-center danger">'.$fila["fingreso_hosp"].' '.$fila["hingreso_hosp"].'</td>';
-							echo'<td class="text-center danger">'.$fila["fegreso_hosp"].'</td>';
-							echo'<td class="text-center danger">'.$fila["tipo_servicio"].'</td>';
-							echo "</tr>\n";
-						}
-					}
-					?>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-			</div>
-		</div>
-	</section>
-</section>
-<section class="modal fade" id="evomedfalta" role="dialog"> Modal para ver evoluciones medicas faltantes-
-	<section class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" >Notificaciones: Admisiones sin Evolucion Medica</h4>
-			</div>
-			<div class="modal-body">
-				<table class="table table-responsive lettermodal">
-					<tr>
-						<th id="th-estilo4">ID</th>
-						<th id="th-estilo1">NOMBRE PACIENTE</th>
-						<th id="th-estilo3">IDENTIFICACION</th>
-						<th id="th-estilo1">FECHA INGRESO</th>
-						<th id="th-estilo3">FECHA EGRESO</th>
-						<th id="th-estilo3">FECHA EVOLUCION FALTANTE</th>
-					</tr>
-					<?php
-					$sql="select d.doc_pac,d.nom1,' ',d.nom2,' ',d.ape1,' ',d.ape2 paciente,a.Id_adm_hosp,c.fingreso_hosp,c.fegreso_hosp,a.fecha,a.mes,c.tipo_servicio
-from calendario a,adm_hospitalario c,pacientes d
-where
-            c.fingreso_hosp <> '0000-00-00'
-and c.tipo_servicio = 'Hospitalario'
-and a.mes in (9,10,11,12)
-and d.doc_pac not in ('222','11437483')
-and c.id_adm_hosp = a.id_adm_hosp
-and a.fecha > c.fingreso_hosp and a.fecha <= if(c.fegreso_hosp='0000-00-00',(CURRENT_DATE-1),c.fegreso_hosp)
-and d.id_paciente = c.id_paciente
-and not exists (select 1 from evolucion_medica  b
-                  where b.id_adm_hosp = a.id_adm_hosp and
-                                    b.freg_evomed = a.fecha)
-order by 2";
-					if ($tabla=$bd1->sub_tuplas($sql)){
-						//echo $sql;
-						foreach ($tabla as $fila ) {
-							echo"<tr >\n";
-							echo'<td class="text-center warning">'.$fila["Id_adm_hosp"].' </td>';
-							echo'<td class="text-center warning">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-							echo'<td class="text-center warning">'.$fila["doc_pac"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fingreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fegreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fecha"].'</td>';
-							echo "</tr>\n";
-						}
-					}
-					?>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-			</div>
-		</div>
-	</section>
-</section>
-<section class="modal fade" id="evomtofalta" role="dialog">
-	<section class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" >Notificaciones: Admisiones sin Evolucion Terapia Ocupacional</h4>
-			</div>
-			<div class="modal-body">
-				<table class="table table-responsive lettermodal">
-					<tr>
-						<th id="th-estilo4">ID</th>
-						<th id="th-estilo1">NOMBRE PACIENTE</th>
-						<th id="th-estilo3">IDENTIFICACION</th>
-						<th id="th-estilo1">FECHA INGRESO</th>
-						<th id="th-estilo3">FECHA EGRESO</th>
-						<th id="th-estilo3">FECHA EVOLUCION FALTANTE</th>
-					</tr>
-					<?php
-					$sql="select d.doc_pac
-                        ,d.nom1,' ',d.nom2,' ',d.ape1,' ',d.ape2 paciente
-                        ,a.Id_adm_hosp
-                        ,c.fingreso_hosp
-        ,c.fegreso_hosp
-                        ,a.fecha
-        ,a.mes
-        ,c.tipo_servicio
-from calendario a,adm_hospitalario c,pacientes d
-where
-            c.fingreso_hosp <> '0000-00-00'
-and c.tipo_servicio = 'Hospitalario'
-and a.fecha not in ('2016-09-03','2016-09-04','2016-09-10','2016-09-11','2016-09-17','2016-09-18',
-                    '2016-09-24','2016-09-25','2016-10-01','2016-10-02','2016-10-08','2016-10-09',
-                    '2016-10-15','2016-10-16','2016-10-27','2016-10-22','2016-10-23','2016-10-29',
-                    '2016-10-30','2016-11-05','2016-11-06','2016-11-07','2016-11-12','2016-11-13',
-                    '2016-11-14','2016-11-19','2016-11-20','2016-11-26','2016-11-27','2016-12-03',
-                    '2016-12-04','2016-12-08','2016-12-10','2016-12-11','2016-12-17','2016-12-18',
-                    '2016-12-24','2016-12-25','2016-12-31')
-and a.mes in (9,10,11,12)
-and d.doc_pac not in ('222','11437483')
-and c.id_adm_hosp = a.id_adm_hosp
-and a.fecha > c.fingreso_hosp and a.fecha <= if(c.fegreso_hosp='0000-00-00',(CURRENT_DATE-1),c.fegreso_hosp)
-and d.id_paciente = c.id_paciente
-and not exists (select 1 from evo_to  b
-                  where b.id_adm_hosp = a.id_adm_hosp and
-                                    b.freg_evoto = a.fecha)
-order by 2";
-					if ($tabla=$bd1->sub_tuplas($sql)){
-						//echo $sql;
-						foreach ($tabla as $fila ) {
-							echo"<tr >\n";
-							echo'<td class="text-center warning">'.$fila["id_adm_hosp"].' </td>';
-							echo'<td class="text-center warning">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-							echo'<td class="text-center warning">'.$fila["doc_pac"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fingreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fegreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fecha"].'</td>';
-							echo "</tr>\n";
-						}
-					}
-					?>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-			</div>
-		</div>
-	</section>
-</section>
-<section class="modal fade" id="evopsicofalta" role="dialog">
-	<section class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" >Notificaciones: Admisiones sin Evolucion Psicologia</h4>
-			</div>
-			<div class="modal-body">
-				<table class="table table-responsive lettermodal">
-					<tr>
-						<th id="th-estilo4">ID</th>
-						<th id="th-estilo1">NOMBRE PACIENTE</th>
-						<th id="th-estilo3">IDENTIFICACION</th>
-						<th id="th-estilo1">FECHA INGRESO</th>
-						<th id="th-estilo3">FECHA EGRESO</th>
-						<th id="th-estilo3">FECHA EVOLUCION FALTANTE</th>
-					</tr>
-					<?php
-					$sql="select    d.doc_pac
-                                ,d.nom1,' ',d.nom2,' ',d.ape1,' ',d.ape2 paciente
-                                ,a.Id_adm_hosp
-                                ,c.fingreso_hosp
-        ,c.fegreso_hosp
-                                ,a.fecha
-        ,a.mes
-        ,c.tipo_servicio
-from calendario a,adm_hospitalario c,pacientes d
-where
-                c.fingreso_hosp <> '0000-00-00'
-and c.tipo_servicio = 'Hospitalario'
-and a.fecha not in ('2016-09-03','2016-09-04','2016-09-10','2016-09-11','2016-09-17','2016-09-18',
-                    '2016-09-24','2016-09-25','2016-10-01','2016-10-02','2016-10-08','2016-10-09',
-                    '2016-10-15','2016-10-16','2016-10-27','2016-10-22','2016-10-23','2016-10-29',
-                    '2016-10-30','2016-11-05','2016-11-06','2016-11-07','2016-11-12','2016-11-13',
-                    '2016-11-14','2016-11-19','2016-11-20','2016-11-26','2016-11-27','2016-12-03',
-                    '2016-12-04','2016-12-08','2016-12-10','2016-12-11','2016-12-17','2016-12-18',
-                    '2016-12-24','2016-12-25','2016-12-31')
-and a.mes in (9,10,11,12)
-and d.doc_pac not in ('222','11437483')
-and c.id_adm_hosp = a.id_adm_hosp
-and a.fecha > c.fingreso_hosp and a.fecha <= if(c.fegreso_hosp='0000-00-00',(CURRENT_DATE-1),c.fegreso_hosp)
-and d.id_paciente = c.id_paciente
-and not exists    (              select 1 from evo_psicologia  b
-                                                where b.id_adm_hosp = a.id_adm_hosp and
-                                                b.freg_evo_psico = a.fecha)
-order by 2";
-					if ($tabla=$bd1->sub_tuplas($sql)){
-						//echo $sql;
-						foreach ($tabla as $fila ) {
-							echo"<tr >\n";
-							echo'<td class="text-center warning">'.$fila["id_adm_hosp"].' </td>';
-							echo'<td class="text-center warning">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-							echo'<td class="text-center warning">'.$fila["doc_pac"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fingreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fegreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fecha"].'</td>';
-							echo "</tr>\n";
-						}
-					}
-					?>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-			</div>
-		</div>
-	</section>
-</section>
-<section class="modal fade" id="evoenffalta" role="dialog">
-	<section class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" >Notificaciones: Admisiones sin Notas de enfermeroa</h4>
-			</div>
-			<div class="modal-body">
-				<table class="table table-responsive lettermodal">
-					<tr>
-						<th id="th-estilo4">ID</th>
-						<th id="th-estilo1">NOMBRE PACIENTE</th>
-						<th id="th-estilo3">IDENTIFICACION</th>
-						<th id="th-estilo1">FECHA INGRESO</th>
-						<th id="th-estilo3">FECHA EGRESO</th>
-						<th id="th-estilo3">FECHA EVOLUCION FALTANTE</th>
-					</tr>
-					<?php
-					$sql="select    d.doc_pac
-                                ,d.nom1,' ',d.nom2,' ',d.ape1,' ',d.ape2 paciente
-                                ,a.Id_adm_hosp
-                                ,c.fingreso_hosp
-        ,c.fegreso_hosp
-                                ,a.fecha
-        ,a.mes
-        ,c.tipo_servicio
-from calendario a,adm_hospitalario c,pacientes d
-where
-                c.fingreso_hosp <> '0000-00-00'
-and c.tipo_servicio = 'Hospitalario'
-and a.mes in (9,10,11,12)
-and d.doc_pac not in ('222','11437483')
-and c.id_adm_hosp = a.id_adm_hosp
-and a.fecha > c.fingreso_hosp and a.fecha <= if(c.fegreso_hosp='0000-00-00',(CURRENT_DATE-1),c.fegreso_hosp)
-and d.id_paciente = c.id_paciente
-and not exists (select 1 from nota_enfermeria  b
-                  where b.id_adm_hosp = a.id_adm_hosp and
-                                                b.freg_nota = a.fecha)
-order by 2";
-					if ($tabla=$bd1->sub_tuplas($sql)){
-						//echo $sql;
-						foreach ($tabla as $fila ) {
-							echo"<tr >\n";
-							echo'<td class="text-center warning">'.$fila["id_adm_hosp"].' </td>';
-							echo'<td class="text-center warning">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-							echo'<td class="text-center warning">'.$fila["doc_pac"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fingreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fegreso_hosp"].'</td>';
-							echo'<td class="text-center warning">'.$fila["fecha"].'</td>';
-							echo "</tr>\n";
-						}
-					}
-					?>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-			</div>
-		</div>
-	</section>
-</section>
   <section class="panel panel-default">
     <article id="contenidoP" class="panel panel-body">
       <?php include("contenido".VERSION.".php");?>
@@ -566,13 +304,3 @@ order by 2";
   </footer>
 </body>
 </html>
-<script>
-$(document).ready( function(){
- $.fn.snow({
- minSize: 10, //TamaÃ±o mÃ­nimo del copo de nieve, 10 por defecto
- maxSize: 20, //TamaÃ±o mÃ¡ximo del copo de nieve, 10 por defecto
- newOn: 1250, //Frecuencia (en milisegundos) con la que aparecen los copos de nieve, 500 por defecto
- flakeColor: '#B0E0E6' //Color del copo de nieve, #FFFFFF por defecto
- });
-});
-</script>

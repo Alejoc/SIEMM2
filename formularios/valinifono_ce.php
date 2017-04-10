@@ -17,6 +17,7 @@
 					<section class="collapse" id="anamnesis">
 						<article class="col-xs-3">
 							<label for="">Fecha de registro:</label>
+							<input type="text" name="idadmhosp" value="<?php echo $_GET['idadmhosp'] ;?>" class="form-control" <?php echo $atributo1?> >
 							<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
 						</article>
 						<article class="col-xs-3">
@@ -110,7 +111,7 @@
 						</article>
 						<article class="col-xs-3">
 							<label for="">Extender labios:</label>
-							<select class="form-control" name="praxia3">
+							<select class="form-control" name="praxia5">
 								<option value="SI">SI</option>
 								<option value="NO">NO</option>
 								<option value="TORPE">TORPE</option>

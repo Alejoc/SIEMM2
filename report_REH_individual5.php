@@ -554,6 +554,7 @@ if (isset($_GET["mante"])){					///nivel 2
 
 	<table class="table table-responsive">
 	<tr>
+		
 		<th id="th-estilo1">ADMISION</th>
 		<th id="th-estilo1">IDENTIFICACION</th>
 		<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
@@ -567,6 +568,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<th id="th-estilo4">Hoja Firmas</th>
 		<th id="th-estilo4">Evoluciones sombra</th>
 		<th id="th-estilo4">Evoluciones enfermeria</th>
+		<th id="th-estilo4">Plan Trimestral</th>
 	</tr>
 
 	<?php
@@ -597,6 +599,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<th class="text-center" ><a href="rpt_hojafirmas.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_sombra.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_enfermeria.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_pt.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo "</tr>\n";
 		}
 	}
@@ -628,6 +631,7 @@ if (isset($_REQUEST["nom"])){
 			echo'<th class="text-center" ><a href="rpt_hojafirmas.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_sombra.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="rpt_enfermeria.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="rpt_pt.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
 			echo "</tr>\n";
 		}
 	}

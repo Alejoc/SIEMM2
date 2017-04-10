@@ -32,13 +32,14 @@ $subtitulo="";
 				$subtitulo="Eliminado";
 			break;
 			case 'A':
+				$docpac=$_POST['doc_pac'];
 				$tallat=$_POST["talla"] * $_POST["talla"];
 				$imc=$_POST["peso"] / $tallat;
 				$tam1=$_POST["tad"] * 2;
 				$tam2=$tam1 + $_POST["tds"];
 				$tamt=$tam2/3;
-				$sql="INSERT INTO hc_hospitalario (id_adm_hosp,id_user,freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,his_personal,his_familiar,perso_premorbida,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,estado_general,tad,tas,tam,fr,fc,so,peso,talla,temperatura,imc,cabcuello,torax,ext,abdomen,neurologico,genitourinario,examen_mental,analisis,finalidad,causa_externa,dxp,ddxp,tdxp,dx1,ddx1,tdx1,dx2,ddx2,tdx2,dx3,ddx3,tdx3,plantratamiento,especialidad,estado_hchosp) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["motivoconsulta"]."','".$_POST["enferactual"]."','".$_POST["hpersonal"]."','".$_POST["hfamiliar"]."','".$_POST["ppremorbida"]."','".$_POST["antalergico"]."','".$_POST["antpatologico"]."','".$_POST["antquirurgico"]."','".$_POST["anttoxicologicos"]."','".$_POST["antfarmacologico"]."','".$_POST["antgineco"]."','".$_POST["antpsiquiatrico"]."','".$_POST["anthospitalario"]."','".$_POST["anttrauma"]."','".$_POST["antfami"]."','".$_POST["antotros"]."','".$_POST["estadogen"]."','".$_POST["tad"]."','".$_POST["tas"]."','$tamt','".$_POST["fr"]."','".$_POST["fc"]."','".$_POST["sao2"]."','".$_POST["peso"]."','".$_POST["talla"]."','".$_POST["temperatura"]."','$imc','".$_POST["cabezacuello"]."','".$_POST["torax"]."','".$_POST["extsup"]."','".$_POST["abdomen"]."','".$_POST["neurologico"]."','".$_POST["genitourinario"]."','".$_POST["exmental"]."','".$_POST["analisis"]."','".$_POST["finconsulta"]."','".$_POST["causaexterna"]."','".$_POST["cdxp"]."','".$_POST["descridxp"]."','".$_POST["tdxp"]."','".$_POST["cdx1"]."','".$_POST["descridx1"]."','".$_POST["tdx1"]."','".$_POST["cdx2"]."','".$_POST["descridx2"]."','".$_POST["tdx2"]."','".$_POST["cdx3"]."','".$_POST["descridx3"]."','".$_POST["tdx3"]."','".$_POST["plant"]."','".$_SESSION["AUT"]["especialidad"]."','Realizada')";
+				$sql="INSERT INTO hc_sm_pv (id_adm_hosp, id_user, freg_hcsm_pv, hreg_hcsm_pv, motivo_consulta, enfer_actual, his_personal, his_familiar, perso_premorbida, ant_alergicos, ant_patologico, ant_quirurgico, ant_toxicologico, ant_farmaco, ant_gineco, ant_psiquiatrico, ant_hospitalario, ant_traumatologico, ant_familiar, otros_ant, estado_general, tad, tas, tam, fr, fc, so, peso, talla, temperatura, imc, cabcuello, torax, ext, abdomen, neurologico, genitourinario, examen_mental, analisis, finalidad, causa_externa, dxp, ddxp, tdxp, dx1, ddx1, tdx1, dx2, ddx2, tdx2, dx3, ddx3, tdx3, plantratamiento, tipo_atencion, estado_hcsm_pv) VALUES
+				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["motivoconsulta"]."','".$_POST["enferactual"]."','".$_POST["hpersonal"]."','".$_POST["hfamiliar"]."','".$_POST["ppremorbida"]."','".$_POST["antalergico"]."','".$_POST["antpatologico"]."','".$_POST["antquirurgico"]."','".$_POST["anttoxicologicos"]."','".$_POST["antfarmacologico"]."','".$_POST["antgineco"]."','".$_POST["antpsiquiatrico"]."','".$_POST["anthospitalario"]."','".$_POST["anttrauma"]."','".$_POST["antfami"]."','".$_POST["antotros"]."','".$_POST["estadogen"]."','".$_POST["tad"]."','".$_POST["tas"]."','$tamt','".$_POST["fr"]."','".$_POST["fc"]."','".$_POST["sao2"]."','".$_POST["peso"]."','".$_POST["talla"]."','".$_POST["temperatura"]."','$imc','".$_POST["cabezacuello"]."','".$_POST["torax"]."','".$_POST["extsup"]."','".$_POST["abdomen"]."','".$_POST["neurologico"]."','".$_POST["genitourinario"]."','".$_POST["exmental"]."','".$_POST["analisis"]."','".$_POST["finconsulta"]."','".$_POST["causaexterna"]."','".$_POST["dx"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["dx1"]."','".$_POST["dx1"]."','".$_POST["tdx1"]."','".$_POST["dx2"]."','".$_POST["dx2"]."','".$_POST["tdx2"]."','".$_POST["dx3"]."','".$_POST["dx3"]."','".$_POST["tdx3"]."','".$_POST["plant"]."','".$_POST["tipo_atencion"]."','Realizada')";
 				$subtitulo="Adicionado";
 
 			break;
@@ -70,7 +71,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
 			$subtitulo='Edición de datos del Vehículo';
 			break;
-			case 'X':
+			case 'EVO':
 			$sql="";
 			$color="red";
 			$boton="Eliminar";
@@ -89,13 +90,14 @@ if (isset($_GET["mante"])){					///nivel 2
 			      left join eps j on (j.id_eps=b.id_eps)
 			where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
 			$color="yellow";
-			$boton="Agregar HC";
+			$boton="Agregar HC Consulta externa";
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='disabled';
 			$date=date('Y/m/d');
 			$date1=date('H:i');
 			$subtitulo='';
+			$doc=$fila['doc_pac'];
 			break;
 		}
 //echo $sql;
@@ -108,212 +110,117 @@ if (isset($_GET["mante"])){					///nivel 2
 			}
 
 		?>
-<script src = "js/sha3.js"></script>
-		<script>
-			function validar(){
-				if (document.forms[0].nom_cliente.value == ""){
-					alert("Se requiere el nombre del cliente!");
-					document.forms[0].nom_cliente.focus();				// Ubicar el cursor
-					return(false);
-				}
-
-			}
-		</script>
-		<script type="text/javascript" src="/js/jquery.js"></script>
-		<style>
-		b{color:blue;}
-		#resultado{width:600px;border:solid 1px #dadada;text-align:justify;padding:5px;}
-		</style>
-		<script src="ajax.js"></script>
-
-<form action="<?php echo PROGRAMA;?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
-	<div class="botonhc"id="th-estilo1">
-			<a data-toggle="collapse" class="ac" data-target="#datpac" >Datos del Paciente</a> <span class="glyphicon glyphicon-arrow-down"></span>
-	</div>
-
-		<section class="collapse" id="datpac">
-			<section class="panel-body" id="secteps"><!--section de eps-->
+<form action="<?php echo PROGRAMA.'?opcion=66';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+		<section class="panel-body">
+			<?php
+				include("consulta_paciente.php");
+			?>
+		</section>
+			<div id="tabs">
+		  <ul>
+		    <li><a href="#tabs-1">Anamnesis</a></li>
+		    <li><a href="#tabs-2">Antecedentes Personales</a></li>
+		    <li><a href="#tabs-3">Examen fisico, Exploracion General y Regional</a></li>
+				<li><a href="#tabs-5">Analisis</a></li>
+				<li><a href="#tabs-6">Impresion Diagnostica</a></li>
+				<li><a href="#tabs-7">Plan tratamiento</a></li>
+		  </ul>
+		  <div id="tabs-1">
 				<article class="col-xs-3">
-					<label  for="">ID:</label>
-					<input type="text"  name="idadmhosp" class="form-control" value="<?php echo $fila["id_adm_hosp"];?>"<?php echo $atributo2;?>/>
+					<label for="">Fecha de registro:</label>
+					<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
+				</article>
+				<article class="col-xs-3">
+					<label for="">Hora de registro</label>
+					<input type="text" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1?>>
 				</article>
 				<article class="col-xs-5">
-					<label for="">Fecha y Hora Ingreso:</label>
-					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["fingreso_hosp"];?> <?php echo $fila["hingreso_hosp"];?>"<?php echo $atributo2?>/>
+					<label for="">Tipo de atencion:</label>
+					<select name="tipo_atencion" class="form-control"  required="" <?php echo atributo3; ?>>
+						<option value=""></option>
+						<option value="890202">CONSULTA DE PRIMERA VEZ POR MEDICINA ESPECIALIZADA</option>
+						<option value="890302">CONSULTA DE CONTROL O DE SEGUIMIENTO POR MEDICINA ESPECIALIZADA </option>
+					</select>
 				</article>
-				<article class="col-xs-3">
-					<label for="">Tipo Usuario:</label>
-					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["tipo_usuario"];?>"<?php echo $atributo2?>/>
+				<article class="col-xs-10">
+					<label for="">Motivo de consulta:</label>
+					<textarea class="form-control" name="motivoconsulta" rows="5" id="comment" required=""></textarea>
 				</article>
-				<article class="col-xs-4">
-					<label for="">Tipo Afiliación:</label>
-					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["tipo_afiliacion"];?>"<?php echo $atributo2?>/>
-				</article>
-				<article class="col-xs-6">
-					<label for="">Ocupación:</label>
-					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["ocupacion"];?>"<?php echo $atributo2?>/>
-				</article>
-				<article class="col-xs-6">
-					<label for="">Residencia:</label>
-					<input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["dep_residencia"];?> <?php echo $fila["mun_residencia"];?> <?php echo $fila["zona_residencia"];?>"<?php echo $atributo2?>/>
-				</article>
-			</section>
-			<section class="panel-body" id="sectpac"> <!--section de paciente-->
-				<article class="col-xs-1">
-					<label  for="">ID:</label>
-					<input type="text"  name="idpaci" class="form-control" value="<?php echo $fila["id_paciente"];?>"<?php echo $atributo2;?>/>
+				<article class="col-xs-10">
+					<label for="" >Enfermedad Actual: <span class="fa fa-info-circle" data-toggle="popover" title="Circunstancias especiales del paciente en relación con su enfermedad" data-content=""></span></label>
+					<textarea class="form-control" name="enferactual" rows="5" id="comment" required=""></textarea>
 				</article>
 				<article class="col-xs-5">
-					<label for="">Nombre Completo:</label>
-					<input type="text" name="nompac" class="form-control text-center" value="<?php echo $fila["nom1"];?> <?php echo $fila["nom2"];?> <?php echo $fila["ape1"];?> <?php echo $fila["ape2"];?>"<?php echo $atributo3;?>/>
+					<label >Historia Personal: <span class="fa fa-info-circle" data-toggle="popover" title="Embarazo, parto, lactancia y desarrollo psicomotor, niñez, adolecencia,adultez, senectud, personalidad previa, antecedentes legales" data-content=""></span></label>
+					<textarea class="form-control" name="hpersonal" rows="6" id="comment" required=""></textarea>
+				</article>
+				<article class="col-xs-5">
+					<label for="">Historia Familiar:</label>
+					<textarea class="form-control" name="hfamiliar" rows="6" id="comment" required=""></textarea>
+				</article>
+				<article class="col-xs-10">
+					<label for="">Personalidad Premorbida:</label>
+					<textarea class="form-control" name="ppremorbida" rows="3" id="comment" required=""></textarea>
+				</article>
+		  </div>
+		  <div id="tabs-2">
+				<article class="col-xs-3">
+					<label for="">Alergicos:</label>
+					<button type="button" class="btn-danger"  onclick="verTexto1()" ><span class="ui-icon ui-icon-plus"></span></button>
+					<textarea class="form-control" name="antalergico" rows="4" id="respuesta1" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
-					<label for="">Identificación:</label>
-					<input type="text" name="identificacion" class="form-control text-center" value="<?php echo $fila["tdoc_pac"];?> <?php echo $fila["doc_pac"];?>"<?php echo $atributo3;?>/>
+					<label for="">Psiquiatricos:</label>
+					<button type="button" class="btn-danger"  onclick="verTexto2()" ><span class="ui-icon ui-icon-plus"></span></button>
+					<textarea class="form-control" name="antpsiquiatrico" rows="4" id="respuesta2" required=""></textarea>
 				</article>
-				<article class="col-xs-3">
-					<label for="">Estado Civil:</label>
-					<input type="text" name="nompac" class="form-control text-center" value=""<?php echo $atributo3;?>/>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Lateralidad:</label>
-					<input type="text" name="nompac" class="form-control text-center" value=""<?php echo $atributo3;?>/>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Religión:</label>
-					<input type="text" name="nompac" class="form-control text-center" value=""<?php echo $atributo3;?>/>
-				</article>
-				<article class="col-xs-3">
-					<label for="">Edad:</label>
-					<input type="text" name="edad" class="form-control text-center" value="<?php echo $fila["edad"];?>"<?php echo $atributo3;?>/>
-				</article>
-
-				<figure class="col-xs-6">
-					<img src="<?php echo $fila["fotopac"];?>" alt ="foto" class="image_logo_admision">
-				</figure>
-			</section>
-		</section>
-
-	<article>
-		<h4 id="th-estilot">Datos de historia Clínica</h4>
-	</article>
-
-	<section class="panel-body"> <!--Anamnesis-->
-		<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#anamnesis" >Anamnesis</a>
-				<span class="glyphicon glyphicon-arrow-down"></span>
-				<span class="badge">OK</span>
-		</div>
-		<section class="collapse" id="anamnesis">
-			<article class="col-xs-3">
-				<label for="">Fecha de registro:</label>
-				<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
-			</article>
-			<article class="col-xs-3">
-				<label for="">Hora de registro</label>
-				<input type="text" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1?>>
-			</article>
-			<article class="col-xs-10">
-				<label for="">Motivo de consulta:</label>
-				<textarea class="form-control" name="motivoconsulta" rows="5" id="comment" required=""></textarea>
-			</article>
-			<article class="col-xs-10">
-				<label for="" >Enfermedad Actual: <span class="fa fa-info-circle" data-toggle="popover" title="Circunstancias especiales del paciente en relación con su enfermedad" data-content=""></span></label>
-				<textarea class="form-control" name="enferactual" rows="5" id="comment" required=""></textarea>
-			</article>
-			<article class="col-xs-5">
-				<label >Historia Personal: <span class="fa fa-info-circle" data-toggle="popover" title="Embarazo, parto, lactancia y desarrollo psicomotor, niñez, adolecencia,adultez, senectud, personalidad previa, antecedentes legales" data-content=""></span></label>
-				<textarea class="form-control" name="hpersonal" rows="6" id="comment" required=""></textarea>
-			</article>
-			<article class="col-xs-5">
-				<label for="">Historia Familiar:</label>
-				<textarea class="form-control" name="hfamiliar" rows="6" id="comment" required=""></textarea>
-			</article>
-			<article class="col-xs-10">
-				<label for="">Personalidad Premorbida:</label>
-				<textarea class="form-control" name="ppremorbida" rows="3" id="comment" required=""></textarea>
-			</article>
-		</section>
-</section>
-<section class="panel-body">
-		<div class="botonhc">
-			<a data-toggle="collapse" class="ac" data-target="#antpersonal" >Antecedentes Personales <span class="glyphicon glyphicon-arrow-down"></span> </a>
-			<span class="badge">OK</span>
-		</div>
-		  <section id="antpersonal" class="collapse">
-				<article class="col-xs-3">
-			  	<label for="">Alergicos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto1()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto1()"></button>
-			  	<textarea class="form-control" name="antalergico" rows="4" id="respuesta1" required=""></textarea>
-			  </article>
-				<article class="col-xs-3">
-			  	<label for="">Psiquiatricos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto2()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto2()"></button>
-			  	<textarea class="form-control" name="antpsiquiatrico" rows="4" id="respuesta2" required=""></textarea>
-			  </article>
 				<article class="col-xs-3">
 					<label for="">Patologicos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto3()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto3()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto3()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="antpatologico" rows="4" id="respuesta3" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Quirurgicos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto4()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto4()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto4()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="antquirurgico" rows="4" id="respuesta4" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Toxicológicos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto5()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto5()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto5()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="anttoxicologicos" rows="4" id="respuesta5" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Farmacológicos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto6()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto6()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto6()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="antfarmacologico" rows="4" id="respuesta6" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Hospitalarios:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto7()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto7()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto7()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="anthospitalario" rows="4" id="respuesta7" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Gineco-obstetricos:</label>
 					<textarea class="form-control" name="antgineco" rows="4" id="respuesta" ></textarea>
 				</article>
-				<article class="col-xs-3">
+				<article class="col-xs-4">
 					<label for="">Traumatologicos:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto8()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto8()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto8()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="anttrauma" rows="4" id="respuesta8" required=""></textarea>
 				</article>
-				<article class="col-xs-3">
+				<article class="col-xs-4">
 					<label for="">Familiares:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto9()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto9()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto9()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="antfami" rows="4" id="respuesta9" required=""></textarea>
 				</article>
-				<article class="col-xs-6">
+				<article class="col-xs-4">
 					<label for="">Otros Antecedentes:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto10()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto10()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto10()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control"  name="antotros" rows="4" id="respuesta10" required=""></textarea>
 				</article>
-		  </section>
-</section>
-<section class="panel-body">
-			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#efisico" >Examen Físico <span class="glyphicon glyphicon-arrow-down"></span> </a>
-				<span class="badge">OK</span>
-			</div>
-			<section id="efisico" class="collapse">
-<article class="col-xs-2">
+		  </div>
+		  <div id="tabs-3">
+				<article class="col-xs-2">
 					<label for="">TAS(mm/hg):</label>
 					<input type="text" name="tas" value="" class="form-control">
 				</article>
@@ -321,7 +228,6 @@ if (isset($_GET["mante"])){					///nivel 2
 					<label for="">TAD(mm/hg):</label>
 					<input type="text" name="tad" value="" class="form-control">
 				</article>
-
 				<article class="col-xs-2">
 					<label for="">FC(x min):</label>
 					<input type="text" name="fc" value="" class="form-control">
@@ -346,80 +252,58 @@ if (isset($_GET["mante"])){					///nivel 2
 					<label for="">Temp(°C):</label>
 					<input type="text" name="temperatura" value="" class="form-control">
 				</article>
-<article class="col-xs-6 animated tada fuente_alerta_fijo">
+				<article class="col-xs-6 animated tada fuente_alerta_fijo">
 					<label class="fuente_alerta_fijo" for="">Doctor(a) los datos que debe ingresar en estos campos deben ser numericos, en el campo de talla digite en metros Ejemplo: 1.95</label>
-
 				</article>
-			</section>
-</section>
-<section class="panel-body">
-			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#explogeneral" >Exploración general y regional<span class="glyphicon glyphicon-arrow-down"></span> </a>
-				<span class="badge">OK</span>
-			</div>
-			<section id="explogeneral" class="collapse">
 				<article class="col-xs-12">
 					<label for="">Estado General:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto11()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto11()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto11()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="estadogen" rows="3" id="respuesta11" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Cabeza y Cuello:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto12()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto12()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto12()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="cabezacuello" rows="5" id="respuesta12" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Torax:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto13()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto13()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto13()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="torax" rows="5" id="respuesta13" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Abdomen:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto16()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto16()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto16()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="abdomen" rows="5" id="respuesta16" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Genitourinario:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto17()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto17()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto17()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="genitourinario" rows="5" id="respuesta17" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Extremidades:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto14()" ></button>
-   				<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto14()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto14()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="extsup" rows="5" id="respuesta14" required=""></textarea>
 				</article>
 				<article class="col-xs-3">
 					<label for="">Neurologico:</label>
-					<button type="button" class="fa fa-plus btn-danger"  onclick="verTexto15()" ></button>
-					<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto15()"></button>
+					<button type="button" class="btn-danger"  onclick="verTexto15()" ><span class="ui-icon ui-icon-plus"></span></button>
 					<textarea class="form-control" name="neurologico" rows="5" id="respuesta15" required=""></textarea>
 				</article>
-
-			</section>
-</section>
-<section class="panel-body">
-			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#exmental" >Examen Mental y Analisis<span class="glyphicon glyphicon-arrow-down"></span> </a>
-				<span class="badge">OK</span>
-			</div>
-			<section id="exmental" class="collapse">
+		  </div>
+			<div id="tabs-5">
 				<article class="col-xs-10">
 					<label for="">Examen Mental:</label>
 					<textarea class="form-control" name="exmental" rows="5" id="comment" required=""></textarea>
 				</article>
 				<article class="col-xs-10">
-					<label for="">Analisis y Diagnostico:</label>
+					<label for="">Analisis:</label>
 					<textarea class="form-control" name="analisis" rows="5" id="comment" required=""></textarea>
 				</article>
 				<article class="col-xs-5">
 					<label for="">Finalidad de la consulta: </label>
-					<select name="finconsulta" class="form-control" <?php echo atributo3; ?>>
+					<select name="finconsulta" class="form-control"  required="" <?php echo atributo3; ?>>
+						<option value=""></option>
 						<?php
 						$sql="SELECT id_fconsulta,descripfconsulta from finalidad_consulta ORDER BY id_fconsulta ASC";
 						if($tabla=$bd1->sub_tuplas($sql)){
@@ -437,7 +321,8 @@ if (isset($_GET["mante"])){					///nivel 2
 				</article>
 				<article class="col-xs-5">
 					<label for="">Causa externa: </label>
-					<select name="causaexterna" class="form-control" <?php echo atributo3; ?>>
+					<select name="causaexterna" class="form-control"  required=""  <?php echo atributo3; ?>>
+						<option value=""></option>
 						<?php
 						$sql="SELECT id_cexterna,descricexterna from causa_externa ORDER BY id_cexterna ASC";
 						if($tabla=$bd1->sub_tuplas($sql)){
@@ -453,52 +338,26 @@ if (isset($_GET["mante"])){					///nivel 2
 						?>
 					</select>
 				</article>
-			</section>
-</section>
-<section class="panel-body">
-		<div class="botonhc">
-			<a data-toggle="collapse" class="ac" data-target="#dxingreso" >Diagnosticos Ingreso<span class="glyphicon glyphicon-arrow-down"></span> </a>
-			<span class="badge text-left">OK</span>
-		</div>
-			<section id="dxingreso" class="collapse">
-				<article class="col-xs-12">
-					<label class="alert-success">Diagnostico Principal</label>
-					<?php include("diagnosticos/dx.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label class="alert-Info">Diagnostico Relacionado 1</label>
-					<?php include("diagnosticos/dx1.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label class="alert-Info">Diagnostico Relacionado 2</label>
-					<?php include("diagnosticos/dx2.php");?>
-				</article>
-				<article class="col-xs-12">
-					<label class="alert-Info">Diagnostico Relacionado 3</label>
-					<?php include("diagnosticos/dx3.php");?>
-				</article>
-			</section>
-	</section>
-<section class="panel-body">
-			<div class="botonhc">
-				<a data-toggle="collapse" class="ac" data-target="#plant" >Plan Tratamiento<span class="glyphicon glyphicon-arrow-down"></span> </a>
-				<span class="badge text-left">OK</span>
+
 			</div>
-			<section id="plant" class="collapse">
+			<div id="tabs-6">
+				<article class="col-xs-12">
+					<?php include("dxbusqueda.php");?>
+				</article>
+			</div>
+			<div id="tabs-7">
 				<article class="col-xs-12">
 					<label for="">Plan de tratamiento:</label>
 					<textarea class="form-control" name="plant" rows="8" id="comment" required=""></textarea>
 				</article>
-			</section>
-
-	</section>
-	<div class="row text-center">
-	  	<input type="submit" class="btn btn-primary" name="aceptar" Value="<?php echo $boton; ?>" />
-		<input type="hidden" class="btn btn-primary" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
-		<input type="hidden" class="btn btn-primary" name="operacion" Value="<?php echo $_GET["mante"];?>"/>
-	</div>
-  </section>
-</form>
+				<section class="text-center">
+				  <input type="submit" class="btn btn-primary" name="aceptar" Value="<?php echo $boton; ?>" />
+					<input type="hidden" class="btn btn-primary" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
+					<input type="hidden" class="btn btn-primary" name="operacion" Value="<?php echo $_GET["mante"];?>"/>
+				</section>
+			</div>
+		</div>
+		</form>
 
 <?php
 }else{
@@ -547,8 +406,9 @@ if (isset($_GET["mante"])){					///nivel 2
 		<th id="th-estilo3">FOTO</th>
 		<th id="th-estilo4">HC Ingreso</th>
 		<th id="th-estilo4">Evolución</th>
-
-
+		<th id="th-estilo4">Incapacidad</th>
+		<th id="th-estilo4">Ayudas DX</th>
+		<th id="th-estilo4">Formula medica</th>
 	</tr>
 
 	<?php
@@ -569,6 +429,9 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=A&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=21&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-stethoscope"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=42&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=83&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-toggle-on"></span></button></a></th>';
 
 
 
@@ -594,9 +457,9 @@ if (isset($_REQUEST["nom"])){
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=A&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=21&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-stethoscope"></span></button></a></th>';
-
-
-
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=42&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=83&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-toggle-on"></span></button></a></th>';
 			echo "</tr>\n";
 		}
 	}

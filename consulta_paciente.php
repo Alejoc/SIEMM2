@@ -5,15 +5,20 @@
     <section class="panel-body"><!--section de eps-->
       <article class="col-xs-4 text-center">
         <label for="">Nombre Completo:</label>
+
         <input type="text" name="nompac" class="form-control text-center" value="<?php echo $fila["nom1"];?> <?php echo $fila["nom2"];?> <?php echo $fila["ape1"];?> <?php echo $fila["ape2"];?>"<?php echo $atributo1;?>/>
       </article>
       <article class="col-xs-3">
-        <label for="">Identificación:</label>
-        <input type="text" name="identificacion" class="form-control text-center" value="<?php echo $fila["tdoc_pac"];?> <?php echo $fila["doc_pac"];?>"<?php echo $atributo1;?>/>
+        <label for="">Tipo Documento:</label>
+        <input type="text" name="tdoc" class="form-control text-center" value="<?php echo $fila["tdoc_pac"];?> "<?php echo $atributo1;?>/>
+      </article>
+      <article class="col-xs-4">
+        <label for="">Documento:</label>
+        <input type="text" name="doc" class="form-control text-center" value="<?php echo $fila["doc_pac"];?> <?php echo $fila["doc_pac"];?>"<?php echo $atributo1;?>/>
       </article>
       <article class="col-xs-5">
         <label for="">Edad:</label>
-        <input type="text" name="edad" class="form-control text-center" value="<?php echo $fila["edad"];?> <?php echo $fila["descripuedad"];?> Fecha nacimiento: <?php echo $fila["fnacimiento"];?>"<?php echo $atributo1;?>/>
+        <input type="text" name="edad" class="form-control text-center" value="Edad: <?php echo $fila["edad"];?> <?php echo $fila["descripuedad"];?> | Fecha nacimiento: <?php echo $fila["fnacimiento"];?>"<?php echo $atributo1;?>/>
       </article>
       <article class="col-xs-4">
         <label for="">Genero:</label>
@@ -57,7 +62,8 @@
       </article>
       <article class="col-xs-4">
         <label for="">EPS:</label>
-        <input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["nom_eps"];?>"<?php echo $atributo1?>/>
+        <input type="hidden" name="ideps" value="<?php echo $fila["ideps"];?>">
+        <input type="text" name="eps" class="form-control" value="<?php echo $fila["nom_eps"];?>"<?php echo $atributo1?>/>
       </article>
       <article class="col-xs-4">
         <label for="">Departamento:</label>
@@ -66,7 +72,7 @@
       <article class="col-xs-4">
         <label for="">Sede Actual:</label>
         <input type="text" name="fhingreso" class="form-control" value="<?php echo $fila["nom_sedes"];?>"<?php echo $atributo1?>/>
-          <input type="text" name="idsede" class="form-control" value="<?php echo $fila["id_sedes_ips"];?>"<?php echo $atributo1?>/>
+
       </article>
     </section>
   </section>

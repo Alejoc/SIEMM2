@@ -19,7 +19,7 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'VI':
-				$sql="INSERT INTO fisioterapia_ce ( id_adm_hosp,id_user,freg_fisio_ce, hreg_fisio_ce, motivo_consulta, ant_patologico, ant_traumaticos, ant_toxicologico, ant_quirurgico, ant_farmacologico, ant_ocupacional, ant_familiar, apoyo_dx, dolor, pf, sencibilidad, fosteomuscular, postura, marcha, dx_fisioterapeutico, pron_fisioterapeutico, plan_intervencion, obj_terapeutico, estado_fisio_ce ) VALUES
+				$sql="INSERT INTO val_inifisio_dom (id_adm_hosp, id_user, freg_fisio_dom, hreg_fisio_dom, motivo_consulta, ant_patologico, ant_traumaticos, ant_toxicologico, ant_quirurgico, ant_farmacologico, ant_ocupacional, ant_familiar, apoyo_dx, dolor, pf, sencibilidad, fosteomuscular, postura, marcha, dx_fisioterapeutico, pron_fisioterapeutico, plan_intervencion, obj_terapeutico, estado_fisio_dom) VALUES
 				('".$_POST["idadmhosp"]."',
 '".$_SESSION["AUT"]["id_user"]."',
 '".$_POST["freg"]."',
@@ -108,7 +108,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='formularios/valinifisio_ce.php';
+			$form1='formularios/val_inifisio_dom.php';
 			$subtitulo='Valoracion inicial Terapia Fisica';
 			break;
 			case 'EVO':

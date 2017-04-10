@@ -126,11 +126,11 @@ if (isset($_GET["mante"])){					///nivel 2
 			</article>
 			<article class="col-xs-3">
 				<label for="">Fecha egreso:</label>
-				<input type="date" name="fegreso" class="form-control" value="<?php echo $date;?>" <?php echo $atributo1; ?>/>
+				<input type="date" name="fegreso" class="form-control" value="<?php echo $date;?>"/>
 			</article>
 			<article class="col-xs-3">
 				<label for="">Hora egreso:</label>
-				<input type="time" name="hegreso" class="form-control" value="<?php echo $date1;?>" <?php echo $atributo1; ?>/>
+				<input type="time" name="hegreso" class="form-control" value="<?php echo $date1;?>" />
 			</article>
 			<article class="col-xs-4">
 		  	<label for="">Seleccione Estado de salida:</label>
@@ -183,26 +183,30 @@ echo '</div>';
 		<th id="th-estilo1">NOMBRE Y APELLIDOS</th>
 		<th id="th-estilo2">HC  </th>
 		<th id="th-estilo1">FECHA Y HORA INGRESO</th>
+		<th id="th-estilo2">TIPO SERVICIO</th>
+		<th id="th-estilo1">FECHA Y HORA EGRESO</th>
 		<th id="th-estilo2">FOTO</th>
-		
+
 	</tr>
 	<?php
 	if (isset($_REQUEST["idpac"])){
 	$idpaciente=$_GET["idpac"];
-	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE p.id_paciente='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
+	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,tipo_servicio,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE p.id_paciente='".$idpaciente."' and estado_adm_hosp='Activo'";
 
 	if ($tabla=$bd1->sub_tuplas($sql)){
-		
+
 		foreach ($tabla as $fila ) {
 			echo"<tr >\n";
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil" ><span class="fa fa-ban"></span></button></a></th>';
-			
+
 			echo'<td class="text-center info">'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center info">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center info">'.$fila["id_hchosp"].'</td>';
-			echo'<td class="text-center info">'.$fila["fingreso_hosp"].' '.$fila["hingreso_hosp"].'</td>';
+			echo'<td class="text-center info">'.$fila["fingreso_hosp"].' | '.$fila["hingreso_hosp"].'</td>';
+			echo'<td class="text-center info">'.$fila["tipo_servicio"].'</td>';
+			echo'<td class="text-center info">'.$fila["fegreso_hosp"].' | '.$fila["hegreso_hosp"].'</td>';
 			echo'<td class="text-left info"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login"> </td>';
-			
+
 		}
 	}
 }

@@ -150,38 +150,23 @@ class MYPDF extends TCPDF {
 
 		foreach($data as $row) {
 
-
       $i=1;
+      $this->SetFont('','B',10);
+      $this->Cell(180,0, utf8_encode($row['tipo_terapia']),1,0,'C',1);
       $this->SetFont('','B',8);
-      $this->Cell(20,5, 'Tipo terapia: ',1,0,'C',1);
-      $this->SetFont('','',10);
-      $this->Cell(50,5, utf8_encode($row['tipo_terapia']),1,0,'C',1);
-      $this->Cell(30,5, 'Profesional: ',1,0,'C',1);
-      $this->Cell(80,5, utf8_encode($row['nombre_usuario']),1,0,'C',1);
       $this->Ln();
-      $this->SetFont('','B',8);
-      $this->Cell(12,5, 'Fecha: ',1,0,'C',1);
-      $this->SetFont('','',8);
-      $this->Cell(16,5, utf8_encode($row['fecha_evo']),1,0,'C',1);
-      $this->SetFont('','B',8);
-      $this->Cell(20,5, 'Hora Inicio: ',1,0,'C',1);
-      $this->SetFont('','',8);
-      $this->Cell(15,5, utf8_encode($row['hora_evo']),1,0,'C',1);
-      $this->SetFont('','B',8);
-      $this->Cell(26,5, 'Hora Finalizacion: ',1,0,'C',1);
-      $this->SetFont('','',8);
-      $this->Cell(15,5, utf8_encode($row['hora_fin']),1,0,'C',1);
-      $this->Cell(76,5, '',1,0,'C',1);
+      $this->Cell(30,0, 'Fecha de Evolucion:',1,0,'C',1);
+      $this->Cell(20,0,utf8_encode($row['fecha_evo']) ,1,0,'C',0);
+      $this->Cell(20,0, 'Hora inicial:',1,0,'C',1);
+      $this->Cell(15,0,utf8_encode($row['hora_evo']) ,1,0,'C',0);
+      $this->Cell(20,0, 'Hora final:',1,0,'C',1);
+      $this->Cell(15,0,utf8_encode($row['hora_fin']) ,1,0,'C',0);
       $this->Ln();
-      $this->SetFont('','B',8);
-      $this->Cell(140,5, 'Evolucion: ',1,0,'C',1);
-      $this->SetFont('','B',8);
-      $this->Cell(40,5, 'Firma y sello: ',1,0,'C',1);
-      $this->Ln();
+      $this->MultiCell(180,0, utf8_encode(' Profesional: ' .$row['nombre_usuario']),1,0,'L');
       $this->SetFont('','',7);
-      $this->MultiCell(140, 20,utf8_encode($row['evolucion']) .$txt, 1, 'J', 0, 0, '', '', true, 0, false, true, 60, 'T');
-      $this->cell(40,20,$this->image($row['firmat'] , $this->GetX(), $this->GetY(),45,15),0,'J');
-  		$this->Ln(35);
+      $this->multiCell(180,0, utf8_encode($row['evolucion']),1,'L');
+      $this->cell(35,20,$this->image($row['firmat'] , $this->GetX(), $this->GetY(),30,20),0,'J');
+      $this->Ln();
 		}
 
 	}

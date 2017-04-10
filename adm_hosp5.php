@@ -20,7 +20,8 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'E':
-				$sql="UPDATE pacientes SET tdoc_pac='".$_POST["tdocpac"]."',doc_pac='".$_POST["docpac"]."',nom1='".$_POST["nom1"]."',nom2='".$_POST["nom2"]."',ape1='".$_POST["ape1"]."',ape2='".$_POST["ape2"]."',fnacimiento='".$_POST["user_date"]."',edad='".$_POST["edad"]."',uedad='".$_POST["uedad"]."',dir_pac='".$_POST["dirpac"]."',tel_pac='".$_POST["telpac"]."',email_pac='".$_POST["emailpac"]."',estadocivil='".$_POST["estadocivil"]."',genero='".$_POST["genero"]."',rh='".$_POST["rh"]."',etnia='".$_POST["etnia"]."',lateralidad='".$_POST["lateralidad"]."',profesion='".$_POST["profesion"]."',religion='".$_POST["religion"]."',estado_pac='".$_POST["estado_pac"]."' where id_paciente=".$_POST["idpaci"];
+				$nom_completo=$_POST['nom1'].' '.$_POST['nom2'].' '.$_POST['ape1'].' '.$_POST['ape2'];
+				$sql="UPDATE pacientes SET tdoc_pac='".$_POST["tdocpac"]."',doc_pac='".$_POST["docpac"]."',nom1='".$_POST["nom1"]."',nom2='".$_POST["nom2"]."',ape1='".$_POST["ape1"]."',ape2='".$_POST["ape2"]."',fnacimiento='".$_POST["user_date"]."',edad='".$_POST["edad"]."',uedad='".$_POST["uedad"]."',dir_pac='".$_POST["dirpac"]."',tel_pac='".$_POST["telpac"]."',email_pac='".$_POST["emailpac"]."',estadocivil='".$_POST["estadocivil"]."',genero='".$_POST["genero"]."',rh='".$_POST["rh"]."',etnia='".$_POST["etnia"]."',lateralidad='".$_POST["lateralidad"]."',profesion='".$_POST["profesion"]."',religion='".$_POST["religion"]."',estado_pac='".$_POST["estado_pac"]."', nom_completo='$nom_completo' where id_paciente=".$_POST["idpaci"];
 				$subtitulo="Actualizado";
 			break;
 			case 'X':
@@ -32,8 +33,9 @@ $subtitulo="";
 				$subtitulo="Eliminado";
 			break;
 			case 'A':
-				$sql="INSERT INTO pacientes (tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,edad,uedad,dir_pac,tel_pac,email_pac,estadocivil,genero,rh,etnia,lateralidad,profesion$fotoA1,religion,estado_pac) VALUES
-				('".$_POST["tdocpac"]."','".$_POST["docpac"]."','".$_POST["nom1"]."','".$_POST["nom2"]."','".$_POST["ape1"]."','".$_POST["ape2"]."','".$_POST["user_date"]."','".$_POST["edad"]."','".$_POST["uedad"]."','".$_POST["dirpac"]."','".$_POST["telpac"]."','".$_POST["emailpac"]."','".$_POST["estadocivil"]."','".$_POST["genero"]."','".$_POST["rh"]."','".$_POST["etnia"]."','".$_POST["lateralidad"]."','".$_POST["profesion"]."','".$_POST["religion"]."'$fotoA2,'".$_POST["estado_pac"]."')";
+				$nom_completo=$_POST['nom1'].' '.$_POST['nom2'].' '.$_POST['ape1'].' '.$_POST['ape2'];
+				$sql="INSERT INTO pacientes (tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,edad,uedad,dir_pac,tel_pac,email_pac,estadocivil,genero,rh,etnia,lateralidad,profesion$fotoA1,religion,estado_pac,nom_completo) VALUES
+				('".$_POST["tdocpac"]."','".$_POST["docpac"]."','".$_POST["nom1"]."','".$_POST["nom2"]."','".$_POST["ape1"]."','".$_POST["ape2"]."','".$_POST["user_date"]."','".$_POST["edad"]."','".$_POST["uedad"]."','".$_POST["dirpac"]."','".$_POST["telpac"]."','".$_POST["emailpac"]."','".$_POST["estadocivil"]."','".$_POST["genero"]."','".$_POST["rh"]."','".$_POST["etnia"]."','".$_POST["lateralidad"]."','".$_POST["profesion"]."','".$_POST["religion"]."'$fotoA2,'".$_POST["estado_pac"]."','$nom_completo')";
 				$subtitulo="Adicionado";
 			break;
 		}
@@ -375,6 +377,7 @@ if (isset($_GET["mante"])){					///nivel 2
 	</section>
 <table class="table table-bordered">
 	<tr>
+		<th id="th-estilo4">Formulas</th>
 		<th colspan="3" id="th-estilo1">Edición Paciente</th>
 		<th id="th-estilo2">Cierre Admisión</th>
 		<th id="th-estilo4">ID</th>
@@ -399,7 +402,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		foreach ($tabla as $fila ) {
 
 			echo"<tr >\n";
-
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=98&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
 			echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button></a></th>';
 			echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=X&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span></button></a></th>';
 			echo'<th class="text-center" ><button class="btn btn-success" data-toggle="modal"  data-target="#datospac" type="button"><span class="fa fa-eye"></span></button></th>';
@@ -413,19 +416,21 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=26&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-user"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=27&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-text"></span></button></a></th>';
 			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=18&idpac='.$fila["id_paciente"].'&nompac='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&foto='.$fila["fotopac"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-stethoscope"></span></button></a></th>';
+
 			echo "</tr>\n";
 		}
 	}
 }
 if (isset($_REQUEST["nom"])){
 $fecha=$_REQUEST["nom"];
-$sql="SELECT id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac FROM pacientes WHERE nom1='".$fecha."'";
+$sql="SELECT id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac FROM pacientes WHERE nom_completo LIKE '%".$fecha."%'";
 
 if ($tabla=$bd1->sub_tuplas($sql)){
 	//echo $sql;
 	foreach ($tabla as $fila ) {
 
 		echo"<tr >\n";
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=98&idpac='.$fila["id_paciente"].'&nompac='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&foto='.$fila["fotopac"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
 		echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=X&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button></a></th>';
 		echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=X&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span></button></a></th>';
 		echo'<th class="text-left" ><button class="btn btn-success" data-toggle="modal"  data-target="#datospac1" type="button"><span class="fa fa-eye"></span></button></th>';
@@ -446,7 +451,7 @@ if ($tabla=$bd1->sub_tuplas($sql)){
 	?>
 
 	<tr>
-		<th colspan="13" class="text-center"><a href="<?php echo PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=A';?>"><button type="button" class="btn btn-primary" >Nuevo Paciente</button>
+		<th colspan="14" class="text-center"><a href="<?php echo PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=A';?>"><button type="button" class="btn btn-primary" >Nuevo Paciente</button>
 		</a></th>
 	</tr>
 </table>

@@ -5,8 +5,7 @@
 	  ?>
 	</section>
   <?php include("consulta_ultimaEvo.php");?>
-
-  <h4 id="th-estilot">Generacion de formulas medicas hospitalarias</h4>
+	<h4 id="th-estilot">Generacion de formulas medicas hospitalarias</h4>
   <section class="panel-body">
     <article class="col-md-3 form-group">
       <label for="">Seleccione bodega:</label>
@@ -31,24 +30,25 @@
       </select>
     </article>
 		<article class="col-xs-3 form-group">
-			<label for="">Fecha final de formula:</label>
-			<input type="date" class="form-control" name="ffinalformu" value="<?php echo date('Y-m-d') ;?>">
+			<label for="">Fecha inicial de formula:</label>
+			<input type="date" class="form-control" name="finicial" value="<?php echo date('Y-m-d') ;?>">
 		</article>
 		<article class="col-xs-3 form-group">
 			<label for="">Fecha final de formula:</label>
-			<input type="date" class="form-control" name="ffinalformu" value="<?php echo date('Y-m-d') ;?>">
+			<input type="date" class="form-control" name="ffinal" value="<?php echo date('Y-m-d') ;?>">
 		</article>
-		<article class="col-xs-3">
+		<article class="col-xs-3 form-group">
 			<label for="">Tipo de formula:</label>
 			<select class="form-control" name="tipo_formula" required="">
 				<option value=""></option>
 				<option value="Inmediata">Inmediata</option>
 				<option value="Programada">Programada</option>
+				<option value="Amulatoria">Amulatoria</option>
 			</select>
 		</article>
   </section>
 	<section class="panel-body"> <!--evolucion to-->
-    <article class="col-xs-12">
+    <article class="col-xs-12 form-group">
 			<?php include("buscarmed.php");?>
 		</article>
 	</section>

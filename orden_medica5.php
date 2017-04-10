@@ -146,7 +146,7 @@ if (isset($_GET["mante"])){					///nivel 2
 	<?php
 	if (isset($_REQUEST["idadmhosp"])){
 	$idpaciente=$_GET["idadmhosp"];
-	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' and a.tipo_servicio='Hospitalario'";
+	$sql="SELECT p.nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,h.id_hchosp FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN hc_hospitalario h on a.id_adm_hosp=h.id_adm_hosp WHERE a.id_adm_hosp='".$idpaciente."' ";
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {

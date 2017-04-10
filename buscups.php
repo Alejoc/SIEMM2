@@ -7,7 +7,7 @@ class Ajax {
 
   public function Buscar($a){
     $db = new Conexion();
-    $sql = $db->query("Select * from cups where descupsmin like '%$a%'  LIMIT 0,20");
+    $sql = $db->query("Select * from cups where descupsmin like '%$a%' or codcupsmin like '%$a%' LIMIT 0,20");
 
     while ($array = $db->recorrer($sql)) {
       $resultado[] = $array['codcupsmin'].' | '.$array['descupsmin'];

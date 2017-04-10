@@ -19,8 +19,8 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'VI':
-				$sql="INSERT INTO fonoaudiologia_ce (id_adm_hosp, id_user, freg_valini_reh, hreg_valini_reh, tmuscular_i, sencibilidad_i, sfacial_i, labios_i, lengua_i, maxilar_i, paladar_i, sialorrea_i, resp_i, toclusion_i, praxia1, praxia2, praxia3, praxia4, praxia5, praxia6, praxia7, praxia8, praxia9, praxia10, praxia11, desa_lingue, test_arti, f_alimenticias, nseman1, nseman2, nseman3, nseman4, nseman5, nseman6, nsintac1, nsintac2, nsintac3, nsintac4, nsintac5, nsintac6, nprag1, nprag2, nprag3, nprag4, nprag5, nprag6, nprag7, nprag8, senso1, senso2, senso3, senso4, senso5, senso6, senso7, senso8, codlectoescrito, dxcomunicativo, estado_valini_fono) VALUES
-				('".$_POST["id_adm_hosp"]."',
+				$sql="INSERT INTO val_inifono_dom (id_adm_hosp, id_user, freg_valini_reh, hreg_valini_reh, tmuscular_i, sencibilidad_i, sfacial_i, labios_i, lengua_i, maxilar_i, paladar_i, sialorrea_i, resp_i, toclusion_i, praxia1, praxia2, praxia3, praxia4, praxia5, praxia6, praxia7, praxia8, praxia9, praxia10, praxia11, desa_lingue, test_arti, f_alimenticias, nseman1, nseman2, nseman3, nseman4, nseman5, nseman6, nsintac1, nsintac2, nsintac3, nsintac4, nsintac5, nsintac6, nprag1, nprag2, nprag3, nprag4, nprag5, nprag6, nprag7, nprag8, senso1, senso2, senso3, senso4, senso5, senso6, senso7, senso8, codlectoescrito, dxcomunicativo, estado_valini_fono) VALUES
+				('".$_POST["idadmhosp"]."',
 '".$_SESSION["AUT"]["id_user"]."',
 '".$_POST["freg"]."',
 '".$_POST["hreg"]."',
@@ -210,7 +210,7 @@ if (isset($_GET["mante"])){					///nivel 2
 	</section>
 <table class="table table-bordered">
 	<tr>
-		<th id="th-estilo1">ADMISIOoN</th>
+		<th id="th-estilo1">ADMISION</th>
 		<th id="th-estilo1">IDENTIFICACION</th>
 		<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
 		<th id="th-estilo3">FECHA INGRESO</th>

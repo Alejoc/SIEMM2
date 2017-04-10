@@ -17,11 +17,11 @@
 		<section class="collapse" id="anamnesis">
 			<article class="col-xs-3">
 				<label for="">Fecha de registro:</label>
-				<input type="text" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo1?> >
+				<input type="date" name="freg" value="<?php echo $date ;?>" class="form-control" <?php echo $atributo3?> >
 			</article>
 			<article class="col-xs-3">
 				<label for="">Hora de registro</label>
-				<input type="text" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo1?>>
+				<input type="time" name="hreg" value="<?php echo $date1 ;?>" class="form-control" <?php echo $atributo3?>>
 			</article>
       <article class="col-xs-6">
         <label for="">Seleccione tipo de HC:</label>
@@ -206,7 +206,42 @@
 					<button type="button" class="fa fa-minus btn-danger" onclick="ocultarTexto15()"></button>
 					<textarea class="form-control" name="neurologico" rows="5" id="respuesta15" required=""></textarea>
 				</article>
-
+				<article class="col-xs-2">
+					<label for="">barthel:</label>
+					<input type="text" name="barthel" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">weefim:</label>
+					<input type="text" name="weefim" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">Cruz roja:</label>
+					<input type="text" name="cruzroja" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">Raisberg:</label>
+					<input type="text" name="raisberg" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">Karnell:</label>
+					<input type="text" name="karnell" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">Gross motor:</label>
+					<input type="text" name="grossmotor" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">Norton:</label>
+					<input type="text" name="norton" value="" class="form-control">
+				</article>
+				<article class="col-xs-2">
+					<label for="">Honenyahr:</label>
+					<input type="text" name="honenyahr" value="" class="form-control">
+				</article>
+				<article class="col-xs-10">
+					<label for="">FAC:</label>
+					<textarea class="form-control" name="fac" rows="3" required=""></textarea>
+				</article>
 			</section>
 </section>
 <section class="panel-body">

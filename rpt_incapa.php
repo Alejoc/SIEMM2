@@ -79,17 +79,7 @@ class MYPDF extends TCPDF {
         $cie=$_GET["cie"];
         $f1=$_GET["f1"];
         $f2=$_GET["f2"];
-        $this->multicell(180,15,$this->image($image_file, $this->GetX(), $this->GetY(),70,40),0,'L');
-        // Set font
-        $this->SetFont('helvetica', 'B', 12);
-        // Title
-        $this->Cell(180, 20, 'INCAPACIDAD MEDICA', 1, false, 'R', 0, '', 0, false, 'M', 'M');
-        $this->Ln();
-        $this->SetFont('helvetica', '', 9);
-        $this->Cell(30, 5, 'IF-GDC-009', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Cell(30, 5, 'Version:00', 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Cell(120, 5, 'Fecha de Emision:'.$date, 1, false, 'C', 0, '', 0, false, 'M', 'M');
-        $this->Ln();
+
     }
 	// Load table data from file
 	public function LoadData($file) {
@@ -126,121 +116,53 @@ class MYPDF extends TCPDF {
 
 		foreach($data as $row) {
       $image_file = 'images/logo3p.png';
-      $this->SetFont('helvetica', 'B', 9);
-      $this->Cell(180,5,'Datos Generales:',1,0,'C',1);
-      $this->Ln();
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(26,5,'Nombre Paciente:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(84,5, utf8_encode($row['nom1']." ".$row['nom2']." ".$row['ape1']." ".$row['ape2']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(35,5,'Documento Paciente:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(35,5, utf8_encode($row['tdoc_pac'].': '.$row['doc_pac']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Ln();
-      $this->Cell(26,5,'F. Naciemiento:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(18,5, utf8_encode($row['fnacimiento']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(12,5,'Edad:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(15,5, utf8_encode($row['edad'].' '.$row['descripuedad']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(7,5,'RH:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(7,5, utf8_encode($row['rh']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(12,5,'Genero:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(17,5, utf8_encode($row['genero']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(7,5,'Tel:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(59,5, utf8_encode($row['tel_pac']),1,0,'C');
-      $this->Ln();
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(15,5,'Direccion:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(80,5, utf8_encode($row['dir_pac']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(15,5,'Email:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(70,5, utf8_encode($row['email_pac']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Ln();
-      $this->Cell(22,5,'Fecha Ingreso:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(32,5, utf8_encode($row['fingreso_hosp'].' | '.$row['hingreso_hosp']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(22,5,'Fecha Egreso:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(32,5, utf8_encode($row['fegreso_hosp'].' | '.$row['hegreso_hosp']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(8,5,'EPS:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(64,5, utf8_encode($row['nom_eps']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Ln();
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(15,5,'T.Usuario:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['descritusuario']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(17,5,'T.Afiliacion:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['descriafiliado']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(22,5,'Departamento:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(30,5, utf8_encode($row['descripdep']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(16,5,'Municipio:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(30,5, utf8_encode($row['descrimuni']),1,0,'C');
-  		$this->Ln(10);
-      $this->SetFont('helvetica', 'B', 9);
-      $this->Cell(180,0,'DATOS DE INCAPACIDAD',1,0,'C',1);
-      $this->Ln();
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(22,5,'Fecha registro:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['freg_incapa_med']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(20,5,'Tipo atención:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['tipo_atencion']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(30,5,'Origen Atención:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(35,5, utf8_encode($row['origen_atencion']),1,0,'C');
-      $this->Ln();
-      $this->SetFont('helvetica', 'B',8);
-      $this->Cell(100,0,'Diagnostico principal:',1,0,'C',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',8);
-      $this->multiCell(180,0, utf8_encode($row['coddx_incapa_med'].' - '.$row['ddx_incapa_med'].' --- '.$row['tdx_incapa_med']),1,'L');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(22,5,'Fecha inicial:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['fini_incapa_med']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(20,5,'Fecha Final:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['ffin_incapa_med']),1,0,'C');
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(30,5,'Dias incapacidad:',1,0,'C',1);
-      $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['total_dias_incapa']),1,0,'C');
-      $this->Ln();
-      $this->Cell(100,0,'Observaciones:',1,0,'C',1);
-      $this->Ln();
-      $this->SetFont('helvetica', '',7);
-      $this->multiCell(180,0, utf8_encode($row['obs_incapa_med']),1,'L');
-      $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),25,20),0,'J');
-      $this->SetFont('helvetica', 'BI',10);
-      $this->MultiCell(130, 0,utf8_encode('Profesional:'.$row['nombre'].' RM profesional:'.$row['rm_profesional'].' Especialidad:'.$row['espec_user']) .$txt, 0, 'R', 0, 0, '', '', true, 0, false, true, 80, 'T');
-      $this->Ln(20);
+      $date=date('Y-m-d');
+      $mes= date('m') ;
+      $mes1=date('m');
+      $y=date('Y');
+      if ($mes==1) {
+        $mes1='Enero';
+        }
+        if ($mes==2) {
+          $mes1='Febrero';
+          }
+          if ($mes==3) {
+            $mes1='Marzo';
+            }
+            if ($mes==4) {
+              $mes1='Abril';
+              }
+              if ($mes==5) {
+                $mes1='Mayo';
+                }
+                if ($mes==6) {
+                  $mes1='Junio';
+                  }
+                  if ($mes==7) {
+                    $mes1='Julio';
+                    }
+                    if ($mes==8) {
+                      $mes1='Agosto';
+                      }
+                      if ($mes==9) {
+                        $mes1='Septiembre';
+                        }
+                        if ($mes==10) {
+                          $mes1='Octubre';
+                          }
+                          if ($mes==11) {
+                            $mes1='Noviembre';
+                            }
+                            if ($mes==12) {
+                              $mes1='Noviembre';
+                              }
+
+      $nom=$_GET["nom"];
+      $edad=$_GET["edad"];
+      $cie=$_GET["cie"];
+      $f1=$_GET["f1"];
+      $f2=$_GET["f2"];
+
       $this->multicell(180,15,$this->image($image_file, $this->GetX(), $this->GetY(),70,40),0,'L');
       // Set font
       $this->SetFont('helvetica', 'B', 12);
@@ -324,26 +246,24 @@ class MYPDF extends TCPDF {
       $this->Cell(16,5,'Municipio:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
       $this->Cell(30,5, utf8_encode($row['descrimuni']),1,0,'C');
-  		$this->Ln(10);
-
+  		$this->Ln();
       $this->SetFont('helvetica', 'B', 9);
       $this->Cell(180,0,'DATOS DE INCAPACIDAD',1,0,'C',1);
       $this->Ln();
-      $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(22,5,'Fecha registro:',1,0,'C',1);
+      $this->Cell(22,0,'Fecha registro:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['freg_incapa_med']),1,0,'C');
+      $this->Cell(30,0, utf8_encode($row['freg_incapa_med']),1,0,'C');
       $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(20,5,'Tipo atención:',1,0,'C',1);
+      $this->Cell(20,0,'Tipo atención:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
-      $this->Cell(25,5, utf8_encode($row['tipo_atencion']),1,0,'C');
+      $this->Cell(25,0, utf8_encode($row['tipo_atencion']),1,0,'C');
       $this->SetFont('helvetica', 'B', 8);
-      $this->Cell(30,5,'Origen Atención:',1,0,'C',1);
+      $this->Cell(30,0,'Origen atencion:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
-      $this->Cell(35,5, utf8_encode($row['origen_atencion']),1,0,'C');
+      $this->Cell(30,0, utf8_encode($row['origen_atencion']),1,0,'C');
       $this->Ln();
       $this->SetFont('helvetica', 'B',8);
-      $this->Cell(100,0,'Diagnostico principal:',1,0,'C',1);
+      $this->Cell(180,0,'Diagnostico principal:',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', '',8);
       $this->multiCell(180,0, utf8_encode($row['coddx_incapa_med'].' - '.$row['ddx_incapa_med'].' --- '.$row['tdx_incapa_med']),1,'L');
@@ -362,13 +282,16 @@ class MYPDF extends TCPDF {
       $this->Ln();
       $this->Cell(100,0,'Observaciones:',1,0,'C',1);
       $this->Ln();
-      $this->SetFont('helvetica', '',7);
+      $this->SetFont('helvetica', '',8);
       $this->multiCell(180,0, utf8_encode($row['obs_incapa_med']),1,'L');
       $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),25,20),0,'J');
       $this->SetFont('helvetica', 'BI',10);
       $this->MultiCell(130, 0,utf8_encode('Profesional:'.$row['nombre'].' RM profesional:'.$row['rm_profesional'].' Especialidad:'.$row['espec_user']) .$txt, 0, 'R', 0, 0, '', '', true, 0, false, true, 80, 'T');
+      $this->Ln(25);
+      $this->Cell(180,0,'_ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ _ _ _ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ ___ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __',0,0,'C',0);
+      $this->Ln(10);
 
-		}
+    }
 
 
 	}
@@ -398,9 +321,6 @@ $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-$pdf->SetfooterMargin(PDF_MARGIN_HEADER);
 
 
 
