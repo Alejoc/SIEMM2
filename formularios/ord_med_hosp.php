@@ -1,4 +1,4 @@
-<form action="<?php echo PROGRAMA.'?opcion=19';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+<form action="<?php echo PROGRAMA.'?opcion=133';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
 
 <section class="panel panel-default">
 	<section class="panel-body">
@@ -23,13 +23,8 @@
 		</article>
 		<article class="col-xs-3">
 			<label for="">Tipo de servicio:</label>
-			<input type="text" name="tiposervicio" class="form-control" value="Hospitalario" <?php echo $atributo1; ?>>
+			<input type="text" name="tiposervicio" class="form-control" value="<?php echo $_REQUEST['servicio']; ?>" <?php echo $atributo1; ?>>
 		</article>
-		<article class="col-xs-12">
-			<?php include("dxbusqueda.php");?>
-		</article>
-	</section>
-	<section class='panel-body'>
 		<article class="col-xs-12">
 			<?php include("cupsbusqueda.php");?>
 		</article>

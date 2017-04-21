@@ -16,14 +16,14 @@
       </ul>
     </li>
   </ul>
-  <section >   <!--  search for clinica de bogota in down-->
+  <section >   <!--  search for clinica de facatativa in down-->
       <section>
         <section class="modal fade" id="censobta" role="dialog">
           <section class="modal-dialog modal-lg" >
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title alert-success" >Censo Diario Clinica Hospital dia</h3>
+                <h3 class="modal-title alert-success" >Censo Diario Clinica Bogota</h3>
               </div>
               <div class="modal-body">
                 <table class="table table-bordered">
@@ -79,14 +79,54 @@
                       echo'<td class="text-left info"> '.$fila["dxp"].' | '.$fila["ddxp"].'</td>';
                       echo '</tr>';
                     }
+                    $sql1="Select  count(id_adm_hosp) cuantas from adm_hospitalario where  id_sedes_ips ='8 ' and estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
+                    if ($tabla=$bd1->sub_tuplas($sql1)){
+
+                          foreach ($tabla as $fila1 ) {
+
+                            echo"<tr> \n";
+                            echo'<td class="text-center alert-info">Total Pacientes: </td>';
+                            echo'<td class="text-center">'.$fila1["cuantas"].'</td>';
+                            echo "</tr>\n";
+
+                          }
+                        }
+                        $sql1="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,fotopac,
+                        b.id_adm_hosp, count(b.id_adm_hosp) cuantas,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,zona_residencia,nivel,tipo_servicio,resp_admhosp,
+                        c.descripestadoc,
+                        d.descriafiliado,
+                        e.descritusuario,
+                        f.descriocu,
+                        i.descripuedad,
+                        j.nom_eps,
+                        k.clasificacion_dx,dxp,ddxp
+                        from pacientes a inner join adm_hospitalario b on a.id_paciente=b.id_paciente
+                              left join estado_civil c on (c.codestadoc = a.estadocivil)
+                              inner join tusuario e on (e.codtusuario=b.tipo_usuario)
+                              inner join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
+                              inner join ocupacion f on (f.codocu=b.ocupacion)
+                              inner join uedad i on (i.coduedad=a.uedad)
+                              left join eps j on (j.id_eps=b.id_eps)
+                              left join hc_hospitalario k on (k.id_adm_hosp=b.id_adm_hosp)
+
+                        where b.id_sedes_ips ='8' and b.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario' and a.genero='Femenino'";
+                        if ($tabla=$bd1->sub_tuplas($sql1)){
+
+                              foreach ($tabla as $fila1 ) {
+
+                                echo"<tr> \n";
+                                echo'<td class="text-center alert-danger">Total Pacientes Femeninos: </td>';
+                                echo'<td class="text-center">'.$fila1["cuantas"].'</td>';
+                                echo "</tr>\n";
+
+                              }
+                            }
                             $sql1="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,fotopac,
                             b.id_adm_hosp, count(b.id_adm_hosp) cuantas,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,zona_residencia,nivel,tipo_servicio,resp_admhosp,
                             c.descripestadoc,
                             d.descriafiliado,
                             e.descritusuario,
                             f.descriocu,
-                            g.descripdep,
-                            h.descrimuni,
                             i.descripuedad,
                             j.nom_eps,
                             k.clasificacion_dx,dxp,ddxp
@@ -122,6 +162,7 @@
         </section>
       </section>
   </section>
+
 
   <section >   <!--  search for clinica de facatativa in down-->
       <section>

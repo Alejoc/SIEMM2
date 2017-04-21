@@ -38,8 +38,8 @@
                     echo'<td class="text-left">'.$fila["plan_tratamiento"].'</td>';
                     echo '</tr>';
                     echo"<tr >\n";
-                    echo'<td class="text-center info" ><b>DIAGNOSTICO</b></td>';
-                    echo'<td class="text-left">'.$fila["dxp"].' -- '.$fila["ddxp"].' -- '.$fila["tdxp"].'</td>';
+                    echo'<td class="text-center info" ><b>DIAGNOSTICOS</b></td>';
+                    echo'<td class="text-left"> <input type="text" name="dx" class="form-control" value="'.$fila["ddxp"].'" '.$atributo1.'></td>';
                     echo '</tr>';
                   }
                 }

@@ -8,7 +8,7 @@ if ($tabla=$bd1->sub_tuplas($sql))
 {
 	foreach ($tabla as $fila)
 	{
-		echo '<a  href="'.PROGRAMA.'?opcion='.$fila["id_menu"].'"><span class="fa fa-check"></span> '.$fila["titulo"].'</a></br>';
+		echo '<a  href="'.PROGRAMA.'?opcion='.$fila["id_menu"].'"><span class="fa fa-medkit"></span> '.$fila["titulo"].'</a></br>';
 	}
 }else
 {

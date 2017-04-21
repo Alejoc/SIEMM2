@@ -133,7 +133,7 @@
 		</article>
 		<article class="col-xs-12">
 			<label for="">Paraclinicos:</label>
-			<textarea class="form-control" name="rxs" rows="5"  required=""></textarea>
+			<textarea class="form-control" name="paraclinicos" rows="5"  required=""></textarea>
 		</article>
 	</div>
 	<div id="tabs-5" class="panel-body">

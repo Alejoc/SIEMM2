@@ -454,7 +454,7 @@ class MYPDF extends TCPDF {
       $this->cell(35,0,$this->image($row['firma'] , $this->GetX(), $this->GetY(),40,30),0,'J');
       $this->SetFont('helvetica', 'BI',10);
       $this->MultiCell(130, 0,utf8_encode('Profesional:'.$row['nombre'].' RM profesional:'.$row['rm_profesional'].' Especialidad:'.$row['espec_user']) .$txt, 0, 'R', 0, 0, '', '', true, 0, false, true, 80, 'T');
-
+      $this->Ln(160);
 		}
 
 
@@ -532,7 +532,7 @@ from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join eps j on (j.id_eps=b.id_eps)
       left join hcini_dom k on (k.id_adm_hosp=b.id_adm_hosp)
       left join user l on (l.id_user=k.id_user)
-where b.id_adm_hosp ='".$_GET["idadmhosp"]."' ";
+where b.id_adm_hosp ='".$_GET["idadmhosp"]."' and freg_hchosp between '".$_GET["f1"]."' and '".$_GET["f2"]."'";
 //echo $sql;
 $rs = mysql_query($sql);
 if (mysql_num_rows($rs)>0){

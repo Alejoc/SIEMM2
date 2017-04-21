@@ -123,105 +123,245 @@ if (isset($_GET["mante"])){					///nivel 2
 <div class="panel-default">
 <section class="panel-heading"><h4>Informe de auditoria semanal Sanitas EPS</h4></section>
 <div class="panel-body">
-	<section class="panel panel-default" class="col-xs-10" >
-		<section class="panel-body">
-			<form  >
-	        	<section class="col-xs-12">
-								<article class="col-xs-2">
-									<label>Fecha inicial:</label>
-									<input type="date" class="form-control" name="fecha1">
-								</article>
-								<article class="col-xs-2">
-									<label>Fecha Final:</label>
-									<input type="date" class="form-control" name="fecha2">
-								</article>
 
-								<input type="submit" name="buscar" class="btn btn-primary" value="Consultar">
-								<input type="hidden" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
-	        	</section>
-	    		</form>
-			</section>
-			<section>
-
-		</section>
-
-
-	<table class="table table-responsive">
+	<table class="table table-responsive table-bordered table-sm">
 	<tr>
-		<th id="th-estilo1">FECHA INGRESO</th>
-		<th id="th-estilo2">FECHA ACTUAL</th>
-		<th id="th-estilo3">DIAS</th>
-		<th id="th-estilo3">IDENTIFICACION</th>
-		<th id="th-estilo3">1 APELLIDO</th>
-    <th id="th-estilo3">2 APELLIDO</th>
-    <th id="th-estilo3">1 NOMBRE</th>
-    <th id="th-estilo3">2 NOMBRE</th>
-		<th id="th-estilo4">FECHA NACIMIENTO</th>
-		<th id="th-estilo4">SEXO</th>
-    <th id="th-estilo4">ESPECILIDAD</th>
-    <th id="th-estilo4">dx ingreso</th>
-    <th id="th-estilo4">dx 2</th>
-    <th id="th-estilo4">dx 3</th>
-    <th id="th-estilo4">dx 4</th>
-    <th id="th-estilo4">fecha egreso</th>
-    <th id="th-estilo4">estado clinico egreso</th>
-    <th id="th-estilo4">dx egreso</th>
-    <th id="th-estilo4">manejo egreso</th>
-    <th id="th-estilo4">conducta</th>
+		<th>Total Pacientes:</th>
+
+	<?php
+	$sql1="SELECT a.tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,edad,genero,
+	   count(b.id_adm_hosp) cuantos,b.fingreso_hosp,fegreso_hosp,tipo_servicio,estado_adm_hosp
+
+FROM pacientes a INNER JOIN adm_hospitalario b on a.id_paciente=b.id_paciente
+
+
+				WHERE b.id_sedes_ips in (2,8) and b.id_eps=13
+																			and b.tipo_servicio='Hospitalario'
+																			and b.estado_adm_hosp='Activo'
+
+	";
+	if ($tabla=$bd1->sub_tuplas($sql1)){
+
+		foreach ($tabla as $fila1 ) {
+
+
+			echo'<td class="text-center">'.$fila1["cuantos"].'</td>';
+
+
+		}
+	}
+	 ?>
+ 		<th>Total Sede Bogota:</th>
+
+ 	<?php
+ 	$sql1="SELECT a.tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,edad,genero,
+ 	   count(b.id_adm_hosp) cuantos,b.fingreso_hosp,fegreso_hosp,tipo_servicio,estado_adm_hosp
+
+ FROM pacientes a INNER JOIN adm_hospitalario b on a.id_paciente=b.id_paciente
+
+
+ 				WHERE b.id_sedes_ips in (8) and b.id_eps=13
+ 																			and b.tipo_servicio='Hospitalario'
+ 																			and b.estado_adm_hosp='Activo'
+
+ 	";
+ 	if ($tabla=$bd1->sub_tuplas($sql1)){
+
+ 		foreach ($tabla as $fila1 ) {
+
+
+ 			echo'<td class="text-center">'.$fila1["cuantos"].'</td>';
+
+
+ 		}
+ 	}
+ 	 ?>
+ 		<th>Total Sede Facatativa:</th>
+
+ 	<?php
+ 	$sql1="SELECT a.tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,edad,genero,
+ 	   count(b.id_adm_hosp) cuantos,b.fingreso_hosp,fegreso_hosp,tipo_servicio,estado_adm_hosp
+
+ FROM pacientes a INNER JOIN adm_hospitalario b on a.id_paciente=b.id_paciente
+
+
+ 				WHERE b.id_sedes_ips in (2) and b.id_eps=13
+ 																			and b.tipo_servicio='Hospitalario'
+ 																			and b.estado_adm_hosp='Activo'
+
+ 	";
+ 	if ($tabla=$bd1->sub_tuplas($sql1)){
+
+ 		foreach ($tabla as $fila1 ) {
+
+
+ 			echo'<td class="text-center">'.$fila1["cuantos"].'</td>';
+ 			echo "</tr>\n";
+
+ 		}
+ 	}
+ 	 ?>
+
+	<tr>
+		<th>CRONICO</th>
+		<th>FECHA INGRESO</th>
+		<th>FECHA ACTUAL</th>
+		<th>DIAS</th>
+		<th>IDENTIFICACION</th>
+		<th>1 APELLIDO</th>
+    <th>2 APELLIDO</th>
+    <th>1 NOMBRE</th>
+    <th>2 NOMBRE</th>
+		<th>FECHA NACIMIENTO</th>
+		<th>SEXO</th>
+    <th>ESPECILIDAD</th>
+    <th>dx ingreso</th>
+    <th>dx 2</th>
+    <th>dx 3</th>
+    <th>dx 4</th>
+    <th>fecha egreso</th>
+		<th>ESTADO CLINICO EGRESO</th>
+    <th>CONTROL DE SINTOMAS AL EGRESO</th>
+    <th>MANEJO FARMACOLOGICO EGRESO</th>
+		<th>SEDE</th>
+
 	</tr>
 
 	<?php
-	if (isset($_REQUEST["fecha1"])){
 
 	$f1=$_REQUEST["fecha1"];
 	$f2=$_REQUEST["fecha2"];
-	$sql="SELECT p.tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,genero,a.id_adm_hosp,estado_adm_hosp,fegreso_hosp,IFNULL(a.fegreso_hosp,'".$f2."') fecha_fin, fingreso_hosp,IF(fingreso_hosp <= '".$f1."',
-	IF(IFNULL(a.fegreso_hosp,0)=0, (CAST(IFNULL(a.fegreso_hosp,'".$f2."') AS DATE)- CAST(IF(fingreso_hosp <= '".$f1."',
-	                    '".$f1."',a.fingreso_hosp) AS DATE))+1, (CAST(IFNULL(a.fegreso_hosp,'".$f2."') AS DATE)- CAST(IF(a.fingreso_hosp <= '".$f1."',
-	                    '".$f1."',a.fingreso_hosp) AS DATE))), (CAST(IFNULL(a.fegreso_hosp,'".$f2."') AS DATE)- CAST(IF(a.fingreso_hosp <= '".$f1."',
-	                    '".$f1."',a.fingreso_hosp) AS DATE))) difer1,
-	                    IF(fingreso_hosp <= '".$f1."', '".$f1."',fingreso_hosp) fecha_inicio,(CAST(IFNULL(fegreso_hosp,'".$f2."') AS DATE)- CAST(IF(fingreso_hosp <= '".$f1."', '".$f1."',fingreso_hosp) AS DATE)) dias,
-	                    e.nom_eps,i.nom_sedes,h.ddxp,h.ddx1 dx1,h.ddx2 dx2,h.ddx3 dx3,max(objetivo),max(subjetivo),max(analisis_evomed),max(plan_tratamiento),d.ddxp_epi,analisis_epicrisis,plant_epicrisis
-
-	FROM pacientes p INNER JOIN adm_hospitalario a on p.id_paciente=a.id_paciente INNER JOIN eps e on e.id_eps=a.id_eps INNER JOIN sedes_ips i on i.id_sedes_ips=a.id_sedes_ips
-                   LEFT JOIN hc_hospitalario h on h.id_adm_hosp=a.id_adm_hosp LEFT JOIN evolucion_medica c on c.id_adm_hosp=a.id_adm_hosp LEFT JOIN epicrisis d on d.id_hchosp=h.id_hchosp
-	WHERE a.tipo_servicio = 'Hospitalario' and ((fingreso_hosp <'".$f2."' and fegreso_hosp is null ) or (fegreso_hosp between '".$f1."' and '".$f2."'))
-	and a.id_sedes_ips in (2,8) and a.id_eps=13 group by a.id_adm_hosp
+	$sql="SELECT 	a.tdoc_pac,a.doc_pac,a.nom1,a.nom2,a.ape1,a.ape2,a.fnacimiento,a.edad,a.genero,
+ 								b.id_adm_hosp,b.fingreso_hosp,b.fegreso_hosp,b.tipo_servicio,b.estado_adm_hosp,
+    						c.ddxp dhc,c.ddx1 dx1,c.ddx2 dx2,c.ddx3 dx3,c.clasificacion_dx,
+								e.subjetivo_epicrisis,objetivo_epicrisis,analisis_epicrisis,plant_epicrisis,ddxp_epi,
+    						f.nom_eps,
+								g.nom_sedes,id_evomed,subjetivo,objetivo,analisis_evomed,plan_tratamiento
+FROM adm_hospitalario b 	INNER 	JOIN pacientes a		on
+a.id_paciente	= b.id_paciente
+                 	INNER 	JOIN eps f 				on
+f.id_eps			= b.id_eps
+                 	INNER 	JOIN sedes_ips g 		on
+g.id_sedes_ips	= b.id_sedes_ips
+                 	INNER   JOIN evolucion_medica d on
+b.id_adm_hosp=d.id_adm_hosp
+					LEFT 	JOIN hc_hospitalario c 	on
+b.id_adm_hosp=c.id_adm_hosp
+                 	LEFT 	JOIN epicrisis e 		on
+c.id_hchosp=e.id_hchosp
+WHERE b.id_sedes_ips in (2,8) and b.id_eps=13
+and b.tipo_servicio='Hospitalario'
+and b.estado_adm_hosp='Activo'
+and d.id_evomed IN (select max(id_evomed) FROM evolucion_medica f WHERE
+f.id_adm_hosp=b.id_adm_hosp)
+ORDER by b.fingreso_hosp ASC
 	";
 
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
+				$fi=$fila['fingreso_hosp'];
+				$fa=date('Y-m-d');
+				$fecha=$fila['fingreso_hosp'];
+				$segundos=strtotime($fecha) - strtotime('now');
+				$diferencia_dias=intval($segundos/60/60/24)*(-1);
+				$ff=$fila['fegreso_hosp'];
+				$fecha1=$fila['fingreso_hosp'];
+				$segundos1=strtotime($fecha1) - strtotime($ff);
+				$diferencia_dias1=intval($segundos1/60/60/24)*(-1);
+				if ($fila['estado_adm_hosp']=='Activo') {
+					if ($diferencia_dias>30) {
+						echo"<tr >\n";
+						echo'<td class="text-center alert-danger animated shake">CRONICO</td>';
+						echo'<td class="text-center alert-info">'.$fila["fingreso_hosp"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fa.'</td>';
+		        echo'<td class="text-center alert-info">'.$diferencia_dias.'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["doc_pac"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["ape1"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["ape2"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["nom1"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["nom2"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["fnacimiento"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["genero"].'</td>';
+		        echo'<td class="text-center alert-info">Psiquiatria</td>';
+		        echo'<td class="text-center alert-info">'.$fila["dhc"].'</td>';
+						echo'<td class="text-center alert-info">'.$fila["dx1"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["dx2"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["dx3"].'</td>';
+		        echo'<td class="text-center alert-info">No tiene egreso</td>';
+						echo'<td class="text-center alert-info">'.$fila["analisis_evomed"].'</td>';
 
-				echo"<tr >\n";
-				echo'<td class="text-center alert-info">'.$fila["fingreso_hosp"].'</td>';
-        echo'<td class="text-center alert-info">'.date ('Y-m-d').'</td>';
-        echo'<td class="text-center alert-info">'.$fila["difer1"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["doc_pac"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["ape1"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["ape2"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["nom1"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["nom2"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["fnacimiento"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["genero"].'</td>';
-        echo'<td class="text-center alert-info">Psiquiatria</td>';
-        echo'<td class="text-center alert-info">'.$fila["dx1"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["dx2"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["dx3"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["fegreso_hosp"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["analisis_epicrisis"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["ddxp_epi"].'</td>';
-        echo'<td class="text-center alert-info">'.$fila["plant_epicrisis"].'</td>';
-				echo'<td class="text-center alert-info">'.$fila["plant_epicrisis"].'</td>';
-				$edad=$fila["doc_pac"];
-				$idpaciente=$fila["id_paciente"];
-				$cie=$fila["edad"];
-				$eps=$fila["nom_eps"];
-				echo "</tr>\n";
+		        echo'<td class="text-center alert-info">'.$fila["plan_tratamiento"].'</td>';
+						echo'<td class="text-center alert-info">'.$fila["plan_tratamiento"].'</td>';
+						echo'<td class="text-center alert-info">'.$fila["nom_sedes"].'</td>';
+						$edad=$fila["doc_pac"];
+						$idpaciente=$fila["id_paciente"];
+						$cie=$fila["edad"];
+						$eps=$fila["nom_eps"];
+						echo "</tr>\n";
+					}else {
+						echo"<tr >\n";
+						echo'<td class="text-center alert-info"> </td>';
+						echo'<td class="text-center alert-info">'.$fila["fingreso_hosp"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fa.'</td>';
+		        echo'<td class="text-center alert-info">'.$diferencia_dias.'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["doc_pac"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["ape1"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["ape2"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["nom1"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["nom2"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["fnacimiento"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["genero"].'</td>';
+		        echo'<td class="text-center alert-info">Psiquiatria</td>';
+		        echo'<td class="text-center alert-info">'.$fila["dhc"].'</td>';
+						echo'<td class="text-center alert-info">'.$fila["dx1"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["dx2"].'</td>';
+		        echo'<td class="text-center alert-info">'.$fila["dx3"].'</td>';
+		        echo'<td class="text-center alert-info">No tiene egreso</td>';
+						echo'<td class="text-center alert-info">'.$fila["analisis_evomed"].'</td>';
+
+		        echo'<td class="text-center alert-info">'.$fila["plan_tratamiento"].'</td>';
+						echo'<td class="text-center alert-info">'.$fila["plan_tratamiento"].'</td>';
+						echo'<td class="text-center alert-info">'.$fila["nom_sedes"].'</td>';
+						$edad=$fila["doc_pac"];
+						$idpaciente=$fila["id_paciente"];
+						$cie=$fila["edad"];
+						$eps=$fila["nom_eps"];
+						echo "</tr>\n";
+					}
+
+				}else {
+					echo"<tr >\n";
+					echo'<td class="text-center alert-warning">'.$fila["fingreso_hosp"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fa.'</td>';
+	        echo'<td class="text-center alert-warning">'.$diferencia_dias1.'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["doc_pac"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["ape1"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["ape2"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["nom1"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["nom2"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["fnacimiento"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["genero"].'</td>';
+	        echo'<td class="text-center alert-warning">Psiquiatria</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["dhc"].'</td>';
+					echo'<td class="text-center alert-warning">'.$fila["dx1"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["dx2"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["dx3"].'</td>';
+	        echo'<td class="text-center alert-warning">'.$fila["fegreso_hosp"].'</td>';
+					echo'<td class="text-center alert-info">'.$fila["analisis_evomed"].'</td>';
+
+					echo'<td class="text-center alert-info">'.$fila["plan_tratamiento"].'</td>';
+					echo'<td class="text-center alert-info">'.$fila["plan_tratamiento"].'</td>';
+					echo'<td class="text-center alert-info">'.$fila["nom_sedes"].'</td>';
+					$edad=$fila["doc_pac"];
+					$idpaciente=$fila["id_paciente"];
+					$cie=$fila["edad"];
+					$eps=$fila["nom_eps"];
+					echo "</tr>\n";
+				}
+
 		}
 	}
-
-}
 
 	?>
 

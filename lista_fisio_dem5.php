@@ -19,33 +19,66 @@ $subtitulo="";
 			}
 			switch ($_POST["operacion"]) {
 			case 'VI':
-			$freg=date('Y-m-d');
-			$hreg=date('H:m');
-			
-			$subtitulo="Valoración inicial";
-				$subtitulo1="Adicionado";
-				$subtitulo2="Fisioterapia";
+
 			break;
 			case 'EVO':
-				$sql="INSERT INTO evo_fisio_reh(id_adm_hosp,id_user,freg_evofisio_reh,hreg_evofisio_reh,evolucionfisio_reh,estado_evofisio_reh)VALUES
+				$sql="INSERT INTO evo_fisio_dem (id_adm_hosp, id_user, freg_evofisio, hreg_evofisio, evolucionfisio, estado_evofisio) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["evoto"]."','Realizada')";
-				$subtitulo="EVolución";
+				$subtitulo="Evolución Fisioterapia";
 				$subtitulo1="Adicionado";
-				$subtitulo2="Fisioterapia";
+				$subtitulo2="Demencias";
 			break;
 			case 'IM':
-				$sql="INSERT INTO im_fisio_reh (id_adm_hosp, id_user, freg_imfisio_reh, hreg_imfisio_reh, objetivo_imfisio_reh, actrealizada_imfisio_reh, logros_imfisio_reh, plant_imfisio_reh, estado_imfisio_reh) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregimto"]."','".$_POST["hregimto"]."','".$_POST["obj"]."','".$_POST["act"]."','".$_POST["logro"]."','".$_POST["plant"]."','Realizada')";
-				$subtitulo="Informe Mensual";
+			if ($_SESSION["AUT"]["especialidad"]=='ADMINISTRATIVO') {
+				$sql="";
+				$msg='LA ESPECIELIDAD DE SU PERFIL NO LE PERMITE REALIZAR REGISTROS ASISTENCIALES';
+				$subtitulo="Informe Mensual Fisioterapia";
 				$subtitulo1="Adicionado";
-				$subtitulo2="Fisioterapia";
+				$subtitulo2="Demencias";
+
+			}else {
+				$sql="INSERT INTO im_demencias_inde (id_adm_hosp, id_user, freg_im_dem, hreg_im_dem, objetivo_im_dem, actrealizada_im_dem, logros_im_dem, plant_im_dem, servico, estado_im_dem) VALUES
+				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregimto"]."','".$_POST["hregimto"]."','".$_POST["obj"]."','".$_POST["act"]."','".$_POST["logro"]."','".$_POST["plant"]."','".$_SESSION["AUT"]["especialidad"]."','Realizada')";
+				$subtitulo="Informe Mensual Fisioterapia";
+				$subtitulo1="Adicionado";
+				$subtitulo2="Demencias";
+			}
+
 			break;
-			case 'PT':
-				$sql="INSERT INTO plantrimestral_fisio_reh(id_adm_hosp, id_user, freg_ptfisio_reh, hreg_ptfisio_reh, obgen_fisio_reh, obespec1_fisio_reh, obespec2_fisio_reh, obespec3_fisio_reh, estado_ptfisio_reh) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["fregptto"]."','".$_POST["hregptto"]."','".$_POST["obgen_reh"]."','".$_POST["obespec1_reh"]."','".$_POST["obespec2_reh"]."','".$_POST["obespec3_reh"]."','Realizada')";
-				$subtitulo="Plan Trimestral";
+			case 'PTGEN':
+			if ($_SESSION["AUT"]["especialidad"]=='ADMINISTRATIVO') {
+				$sql="";
+				$msg='LA ESPECIELIDAD DE SU PERFIL NO LE PERMITE REALIZAR REGISTROS ASISTENCIALES';
+				$subtitulo="Plan Trimestral General";
 				$subtitulo1="Adicionado";
-				$subtitulo2="Fisioterapia";
+				$subtitulo2="Demencias";
+
+			}else {
+				$fecha = date('Y-m-j');
+				$nuevafecha = strtotime ( '+90 day' , strtotime ( $fecha ) ) ;
+				$nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+				$sql="INSERT INTO plan_general_dem(id_adm_hosp, id_user, freg_ptgen_dem, fvence_ptgen_dem, modulo,obj_general_dem, estado_ptgen_dem) VALUES
+				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','$nuevafecha','".$_POST["modulo"]."','".$_POST["objgen"]."','Realizada')";
+				$subtitulo="Plan Trimestral General";
+				$subtitulo1="Adicionado";
+				$subtitulo2="Demencias";
+			}
+			break;
+			case 'PTINV':
+			if ($_SESSION["AUT"]["especialidad"]=='ADMINISTRATIVO') {
+				$sql="";
+				$msg='LA ESPECIELIDAD DE SU PERFIL NO LE PERMITE REALIZAR REGISTROS ASISTENCIALES';
+				$subtitulo="Plan Trimestral Individual Fisioterapia";
+				$subtitulo1="Adicionado";
+				$subtitulo2="Demencias";
+
+			}else {
+				$sql="INSERT INTO plan_individual_dem (id_ptgen_dem, id_user, servicio, freg_ptinv_dem, obj_dem, act1_dem, atc2_dem, estado_ptinv_dem) VALUES
+				('".$_POST["idgen"]."','".$_SESSION["AUT"]["id_user"]."','".$_SESSION["AUT"]["especialidad"]."','".$_POST["freg"]."','".$_POST["obespec"]."','".$_POST["actividad1"]."','".$_POST["actividad2"]."','Realizada')";
+				$subtitulo="Plan Trimestral Individual Fisioterapia";
+				$subtitulo1="Adicionado";
+				$subtitulo2="Demencias";
+			}
 			break;
 		}
 		//echo $sql;
@@ -58,7 +91,7 @@ $subtitulo="";
 			}
 			}
 		}else{
-			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!!";
+			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!!. $msg";
 			$check='no';
 		}
 	}
@@ -80,7 +113,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$date=date('Y-m-d');
 			$date1=date('H:i');
 			$form1='FormulariosINDE/val_inifisio_dem.php';
-			$subtitulo='Valoracion inicial Fisioterapia Demencias';
+			$subtitulo='Valoracion inicial Demencias';
 			break;
 			case 'EVO':
       $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
@@ -99,11 +132,12 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
       $return='114';
       $consulta='include ("consulta_rapidaDEM.php")';
+			$terapia='Fisioterapia';
       $servicio='Demencias';
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='FormulariosINDE/evo_fisio_inde.php';
-			$subtitulo='Evolución Diaria Fisioterapia Demencias';
+			$form1='FormulariosINDE/evo_inde.php';
+			$subtitulo='Evolución Diaria '.$terapia.' Demencias';
 			break;
 			case 'IM':
       $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
@@ -122,13 +156,14 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='';
       $return='114';
       $consulta='include ("consulta_rapidaDEM.php")';
+			$terapia='Fisioterapia';
       $servicio='Demencias';
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='FormulariosINDE/im_fisio_inde.php';
-			$subtitulo='Informe Mensual Fisioterapia Demencias';
+			$form1='FormulariosINDE/im_inde.php';
+			$subtitulo='Informe Mensual '.$terapia.' Demencias';
 			break;
-			case 'PT':
+			case 'PTGEN':
       $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
       b.id_adm_hosp,b.id_eps ideps,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
       j.nom_eps,
@@ -139,27 +174,56 @@ if (isset($_GET["mante"])){					///nivel 2
                         left join sedes_ips h on (h.id_sedes_ips=b.id_sedes_ips)
                         left join uedad i on (i.coduedad=a.uedad)
       where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Plan tratamiento";
+			$boton="Agregar plan general";
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
       $return='114';
       $consulta='include ("consulta_rapidaDEM.php")';
+			$terapia='Fisioterapia';
       $servicio='Demencias';
 			$date=date('Y-m-d');
 			$date1=date('H:i');
-			$form1='FormulariosINDE/plan_fisio_dem.php';
-			$subtitulo='Plan Trimestral Fisioterapia Demencias';
+			$form1='FormulariosINDE/ptgen_inde.php';
+			$subtitulo='Plan General Demencias';
 			break;
 
+			case 'PTINV':
+      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
+      b.id_adm_hosp,b.id_eps ideps,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
+      j.nom_eps,
+      h.nom_sedes,
+      i.descripuedad,
+			max(id_ptgen_dem) id,max(freg_ptgen_dem) fecha, m.fvence_ptgen_dem, max(obj_general_dem) objetivo, m.estado_ptgen_dem
+      from pacientes a inner join adm_hospitalario b on a.id_paciente=b.id_paciente
+                        inner join eps j on (j.id_eps=b.id_eps)
+                        inner join sedes_ips h on (h.id_sedes_ips=b.id_sedes_ips)
+                        left join uedad i on (i.coduedad=a.uedad)
+												left join plan_general_dem m on (m.id_adm_hosp=b.id_adm_hosp)
+      where b.id_adm_hosp ='".$_GET["idadmhosp"]."' and m.estado_ptgen_dem='Realizada'" ;
+			$boton="Agregar plan trimestral";
+			$atributo1=' readonly="readonly"';
+			$atributo2='';
+			$atributo3='';
+      $return='114';
+      $consulta='include ("consulta_rapidaDEM.php")';
+			$terapia='Fisioterapia';
+      $servicio='Demencias';
+			$date=date('Y-m-d');
+			$date1=date('H:i');
+			$form1='FormulariosINDE/plan_inde.php';
+			$subtitulo='Plan Trimestral '.$terapia.' ';
+			break;
 		}
 //echo $sql;
 		if($sql!=""){
 			if (!$fila=$bd1->sub_fila($sql)){
-			$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","ideps"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"");
+			$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","ideps"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"","id"=>"","fecha"=>"", "fvence_ptgen_dem"=>"", "objetivo"=>"", "estado_ptgen_dem"=>"");
+			print_r($fila);
 			}
 		}else{
-			$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","ideps"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"");
+			$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","ideps"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"","id"=>"","fecha"=>"", "fvence_ptgen_dem"=>"", "objetivo"=>"", "estado_ptgen_dem"=>"");
+			print_r($fila);
 			}
 
 		?>
@@ -167,7 +231,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<script>
 			function validar(){
 				if (document.forms[0].hreg.value > document.forms[0].fecha.value){
-					alert("Fisioterapeuta (a) <?php echo $_SESSION["AUT"]["nombre"]?>, NO puede adelantar el tiempo.");
+					alert("Neuropsicologo(a) <?php echo $_SESSION["AUT"]["nombre"]?>, NO puede adelantar el tiempo.");
 					document.forms[0].hreg.focus();				// Ubicar el cursor
 					return(false);
 				}
@@ -212,6 +276,7 @@ if (isset($_GET["mante"])){					///nivel 2
 	</section>
 <table class="table table-bordered">
 	<tr>
+		<th id="th-estilo4">Herramientas</th>
 		<th id="th-estilo1">ADMISION</th>
 		<th id="th-estilo1">IDENTIFICACION</th>
 		<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
@@ -220,7 +285,7 @@ if (isset($_GET["mante"])){					///nivel 2
 		<th id="th-estilo4">Valoracion inicial</th>
 		<th id="th-estilo4">Evolucion</th>
 		<th id="th-estilo4">Informe Mensual</th>
-		<th id="th-estilo4">Plan trimestral</th>
+		<th colspan="2" id="th-estilo4">Plan trimestral</th>
 	</tr>
 
 	<?php
@@ -233,16 +298,16 @@ if (isset($_GET["mante"])){					///nivel 2
 		foreach ($tabla as $fila ) {
 
 			echo"<tr >\n";
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ALR&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil" ><span class="fa fa-bullhorn"></span></button></a></th>';
 			echo'<td class="text-center">'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center">'.$fila["doc_pac"].'</td>';
 			echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
 			echo'<td class="text-center">'.$fila["fingreso_hosp"].' | '.$fila["hingreso_hosp"].'</td>';
 			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
 			echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
-			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=IM&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=PT&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=IM&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion=132&return=114&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 			echo "</tr>\n";
 		}
 	}
@@ -253,8 +318,9 @@ if (isset($_GET["mante"])){					///nivel 2
 	if ($tabla=$bd1->sub_tuplas($sql)){
 		//echo $sql;
 		foreach ($tabla as $fila ) {
-
 			echo"<tr >\n";
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ALR&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil" ><span class="fa fa-bullhorn"></span></button></a></th>';
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=PTGEN&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil" ><span class="fa fa-user"></span></button></a></th>';
 			echo'<td class="text-center">'.$fila["id_adm_hosp"].'</td>';
 			echo'<td class="text-center">'.$fila["doc_pac"].'</td>';
 			echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
@@ -263,7 +329,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
 			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=IM&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=PT&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-info sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
+			echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion=132&return=114&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
 
 			echo "</tr>\n";
 		}

@@ -26,7 +26,7 @@ $subtitulo="";
 				$subtitulo2="Psicologia";
 			break;
 			case 'EVO':
-				$sql="INSERT INTO evo_psicohd_sm (id_evoto, id_adm_hosp, id_user, freg_evoto, hreg_evoto, evolucion_to, estado_evoto, resp_evoto) VALUES
+				$sql="INSERT INTO evo_psicohd_sm (id_adm_hosp, id_user, freg_evohd, hreg_evohd, evolucion_hd, estado_evohd, resp_evohd) VALUES
 				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["evoto"]."','Realizada','".$_SESSION["AUT"]["nombre"]."')";
 				$subtitulo="Evolucion";
 				$subtitulo1="Adicionado";
@@ -169,7 +169,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			<?php
 			if (isset($_REQUEST["doc"])){
 			$doc=$_REQUEST["doc"];
-			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.doc_pac='".$doc."' and a.estado_adm_hosp='Activo' and tipo_servicio='Consulta Externa SM'";
+			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.doc_pac='".$doc."' and a.estado_adm_hosp='Activo' and tipo_servicio='Hospital dia'";
 
 			if ($tabla=$bd1->sub_tuplas($sql)){
 				//echo $sql;
@@ -188,7 +188,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			}
 			}	if (isset($_REQUEST["nom"])){
 			$doc=$_REQUEST["nom"];
-			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.nom1 LIKE '%".$doc."%' and a.estado_adm_hosp='Activo'  and tipo_servicio='Consulta Externa SM'";
+			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.nom1 LIKE '%".$doc."%' and a.estado_adm_hosp='Activo'  and tipo_servicio='Hospital dia'";
 
 			if ($tabla=$bd1->sub_tuplas($sql)){
 				//echo $sql;

@@ -167,7 +167,7 @@ class MYPDF extends TCPDF {
       // Set font
       $this->SetFont('helvetica', 'B', 12);
       // Title
-      $this->Cell(180, 20, 'ORDENES MEDICAS', 1, false, 'R', 0, '', 0, false, 'M', 'M');
+      $this->Cell(180, 20, 'ORDENES MEDICAS INTRAHOSPITALARIA', 1, false, 'R', 0, '', 0, false, 'M', 'M');
       $this->Ln();
       $this->SetFont('helvetica', '', 9);
       $this->Cell(30, 5, 'IF-GDC-009', 1, false, 'C', 0, '', 0, false, 'M', 'M');
@@ -251,7 +251,7 @@ class MYPDF extends TCPDF {
       $this->Cell(180,0,'DATOS DE ORDEN MEDICA',1,0,'C',1);
       $this->Ln();
       $this->SetFont('helvetica', 'B', 8);
-      $this->MultiCell(180,0, utf8_encode($row['dx'] .' | '.$row['tdx']),1,0,'L');
+      $this->MultiCell(180,0, utf8_encode($row['dx']),1,0,'L');
       $this->Cell(22,0,'Fecha registro:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
       $this->Cell(30,0, utf8_encode($row['freg_ord_med_hosp']),1,0,'C');
@@ -335,7 +335,7 @@ g.descripdep,
 h.descrimuni,
 i.descripuedad,
 j.nom_eps,
-k.id_ord_med_hosp, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp,dx,tdx, procedimiento, obs_proc, estado_ord_med_hosp,
+k.id_ord_med_hosp, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp,dx, procedimiento, obs_proc, estado_ord_med_hosp,
 l.nombre,rm_profesional,l.especialidad espec_user,firma
 
 from pacientes a inner join adm_hospitalario b on a.id_paciente=b.id_paciente
