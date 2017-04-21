@@ -1,3 +1,4 @@
+<h1 class="fuente_titulo text-center">Ingreso del Paciente</h1>
 <?php
 $subtitulo="";
 	if(isset($_POST["operacion"])){	//nivel3
@@ -18,210 +19,325 @@ $subtitulo="";
 				}
 			}
 			switch ($_POST["operacion"]) {
-			case 'HC':
-			$tallat=$_POST["talla"] * $_POST["talla"];
-			$imc=$_POST["peso"] / $tallat;
-			$tam1=$_POST["tad"] * 2;
-			$tam2=$tam1 + $_POST["tds"];
-			$tamt=$tam2/3;
-			$sql="INSERT INTO hc_hospitalario (id_adm_hosp,id_user,freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,his_personal,his_familiar,perso_premorbida,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,estado_general,tad,tas,tam,fr,fc,so,peso,talla,temperatura,imc,cabcuello,torax,ext,abdomen,neurologico,genitourinario,examen_mental,analisis,finalidad,causa_externa,clasificacion_dx,dxp,ddxp,tdxp,dx1,ddx1,tdx1,dx2,ddx2,tdx2,dx3,ddx3,tdx3,plantratamiento,tipo_atencion,especialidad,estado_hchosp) VALUES
-			('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["motivoconsulta"]."','".$_POST["enferactual"]."','".$_POST["hpersonal"]."','".$_POST["hfamiliar"]."','".$_POST["ppremorbida"]."','".$_POST["antalergico"]."','".$_POST["antpatologico"]."','".$_POST["antquirurgico"]."','".$_POST["anttoxicologicos"]."','".$_POST["antfarmacologico"]."','".$_POST["antgineco"]."','".$_POST["antpsiquiatrico"]."','".$_POST["anthospitalario"]."','".$_POST["anttrauma"]."','".$_POST["antfami"]."','".$_POST["antotros"]."','".$_POST["estadogen"]."','".$_POST["tad"]."','".$_POST["tas"]."','$tamt','".$_POST["fr"]."','".$_POST["fc"]."','".$_POST["sao2"]."','".$_POST["peso"]."','".$_POST["talla"]."','".$_POST["temperatura"]."','$imc','".$_POST["cabezacuello"]."','".$_POST["torax"]."','".$_POST["extsup"]."','".$_POST["abdomen"]."','".$_POST["neurologico"]."','".$_POST["genitourinario"]."','".$_POST["exmental"]."','".$_POST["analisis"]."','".$_POST["finconsulta"]."','".$_POST["causaexterna"]."','".$_POST["clasificacion_dx"]."','".$_POST["dx"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["dx1"]."','".$_POST["dx1"]."','".$_POST["tdx1"]."','".$_POST["dx2"]."','".$_POST["dx2"]."','".$_POST["tdx2"]."','".$_POST["dx3"]."','".$_POST["dx3"]."','".$_POST["tdx3"]."','".$_POST["plant"]."','Hospitalario','".$_SESSION["AUT"]["especialidad"]."','Realizada')";
-				$subtitulo="Historia Clinica de ingreso";
-				$subtitulo1="Adicionado";
-
+			case 'E':
+				$nom_completo=$_POST['nom1'].' '.$_POST['nom2'].' '.$_POST['ape1'].' '.$_POST['ape2'];
+				$sql="UPDATE pacientes SET tdoc_pac='".$_POST["tdocpac"]."',doc_pac='".$_POST["docpac"]."',nom1='".$_POST["nom1"]."',nom2='".$_POST["nom2"]."',ape1='".$_POST["ape1"]."',ape2='".$_POST["ape2"]."',fnacimiento='".$_POST["user_date"]."',edad='".$_POST["edad"]."',uedad='".$_POST["uedad"]."',dir_pac='".$_POST["dirpac"]."',tel_pac='".$_POST["telpac"]."',email_pac='".$_POST["emailpac"]."',estadocivil='".$_POST["estadocivil"]."',genero='".$_POST["genero"]."',rh='".$_POST["rh"]."',etnia='".$_POST["etnia"]."',lateralidad='".$_POST["lateralidad"]."',profesion='".$_POST["profesion"]."',religion='".$_POST["religion"]."',estado_pac='".$_POST["estado_pac"]."', nom_completo='$nom_completo' where id_paciente=".$_POST["idpaci"];
+				$subtitulo="Actualizado";
 			break;
-			case 'EVO':
-				$sql="INSERT INTO evolucion_medica (id_adm_hosp,id_user,freg_evomed,hreg_evomed,objetivo,subjetivo,analisis_evomed,plan_tratamiento,remision_sintomas,conciencia_enfermedad,adherencia_terapeutica,dxp,ddxp,tdxp,dx1,ddx1,tdx1,dx2,ddx2,tdx2,resp_evomed,estado_evomed) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["objetivo"]."','".$_POST["subjetivo"]."','".$_POST["analisis"]."','".$_POST["plantratamiento"]."','".$_POST["remision_sintomas"]."','".$_POST["conciencia_enfermedad"]."','".$_POST["adherencia_terapeutica"]."','".$_POST["dx"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["dx1"]."','".$_POST["dx1"]."','".$_POST["tdx1"]."','".$_POST["dx2"]."','".$_POST["dx2"]."','".$_POST["tdx2"]."','".$_SESSION["AUT"]["nombre"]."','Realizada')";
-				$subtitulo="Evolución Medica";
-				$subtitulo1="Adicionado";
+			case 'X':
+				$sql="SELECT logo from cliente where id=".$_POST["idcli"];
+				if (!$fila=$bd1->sub_fila($sql)){
+					$fila=array("logo"=> "");
+				}
+				$sql="DELETE FROM cliente WHERE id_cliente=".$_POST["idcli"];
+				$subtitulo="Eliminado";
 			break;
-			case 'ADX':
-				$sql="INSERT INTO ord_med_hosp (id_adm_hosp, id_user, freg_ord_med_hosp, hreg_ord_med_hosp, ts_ord_med_hosp,dx,tdx, procedimiento, obs_proc, estado_ord_med_hosp) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["tiposervicio"]."','".$_POST["dx"]."','".$_POST["tdx"]."','".$_POST["cups"]."','".$_POST["obs_proc"]."','Realizada')";
-				$subtitulo="Ordenes Medicas";
-				$subtitulo1="Adicionado";
-			break;
-			case 'MED':
-				$d1='';
-				$f=date('Y-m-d');
-				$sql="INSERT INTO formula_hospitalaria (id_bodega, id_adm_hosp, id_user, fcreacion, tipo_formula, finicial, ffinal, med, via, frec, dosis1, dosis2, dosis3, dosis4, obs_formula, med1, via1, frec1, dosis11, dosis21, dosis31, dosis41, obs_formula1, med2, via2, frec2, dosis12, dosis22, dosis32, dosis42, obs_formula2, med3, via3, frec3, dosis13, dosis23, dosis33, dosis43, obs_formula3, med4, via4, frec4, dosis14, dosis24, dosis34, dosis44, obs_formula4, estado_formula_hosp) VALUES
-				('".$_POST["bodega"]."','".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','$f',
-				'".$_POST["tipo_formula"]."','".$_POST["finicial"]."','".$_POST["ffinal"]."','".$_POST["med"]."',
-				'".$_POST["via"]."','".$_POST["frec"]."','".$_POST["dosis1"]."','".$_POST["dosis2"]."',
-				'".$_POST["dosis3"]."','".$_POST["dosis4"]."','".$_POST["obs_formula"]."','".$_POST["med1"]."',
-				'".$_POST["via1"]."','".$_POST["frec1"]."','".$_POST["dosis11"]."','".$_POST["dosis21"]."',
-				'".$_POST["dosis31"]."','".$_POST["dosis41"]."','".$_POST["obs_formula1"]."',
-				'".$_POST["med2"]."','".$_POST["via2"]."','".$_POST["frec2"]."','".$_POST["dosis12"]."',
-				'".$_POST["dosis22"]."','".$_POST["dosis32"]."','".$_POST["dosis42"]."','".$_POST["obs_formula2"]."'
-				,'".$_POST["med3"]."','".$_POST["via3"]."','".$_POST["frec3"]."','".$_POST["dosis13"]."',
-				'".$_POST["dosis23"]."','".$_POST["dosis33"]."','".$_POST["dosis43"]."',
-				'".$_POST["obs_formula3"]."','".$_POST["med4"]."','".$_POST["via4"]."','".$_POST["frec4"]."',
-				'".$_POST["dosis14"]."','".$_POST["dosis24"]."','".$_POST["dosis34"]."','".$_POST["dosis44"]."',
-				'".$_POST["obs_formula4"]."','Realizada')";
-				$subtitulo="Formula medica hospitalaria";
-				$subtitulo1="Adicionado";
-			break;
-			case 'ORDVER':
-				$sql="INSERT INTO orden_verbal( id_adm_hosp, id_user, freg_ord_verbal, hreg_ord_verbal, orden_verbal, estado_orden_verbal) VALUES
-				('".$_POST["idadmhosp"]."','".$_SESSION["AUT"]["id_user"]."','".$_POST["freg"]."','".$_POST["hreg"]."','".$_POST["ordverb"]."','Realizada')";
-				$subtitulo="Orden Verbal";
-				$subtitulo1="Adicionada";
+			case 'A':
+				$nom_completo=$_POST['nom1'].' '.$_POST['nom2'].' '.$_POST['ape1'].' '.$_POST['ape2'];
+				$sql="INSERT INTO pacientes (tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fnacimiento,edad,uedad,dir_pac,tel_pac,email_pac,estadocivil,genero,rh,etnia,lateralidad,profesion$fotoA1,religion,estado_pac,nom_completo) VALUES
+				('".$_POST["tdocpac"]."','".$_POST["docpac"]."','".$_POST["nom1"]."','".$_POST["nom2"]."','".$_POST["ape1"]."','".$_POST["ape2"]."','".$_POST["user_date"]."','".$_POST["edad"]."','".$_POST["uedad"]."','".$_POST["dirpac"]."','".$_POST["telpac"]."','".$_POST["emailpac"]."','".$_POST["estadocivil"]."','".$_POST["genero"]."','".$_POST["rh"]."','".$_POST["etnia"]."','".$_POST["lateralidad"]."','".$_POST["profesion"]."','".$_POST["religion"]."'$fotoA2,'".$_POST["estado_pac"]."','$nom_completo')";
+				$subtitulo="Adicionado";
 			break;
 		}
 		//echo $sql;
 		if ($bd1->consulta($sql)){
-			$subtitulo="El formato de $subtitulo fue $subtitulo1 con exito!";
-		$check='si';
+			$subtitulo="El registro del paciente fue $subtitulo con exito!";
+			$check='si';
 			if($_POST["operacion"]=="X"){
 			if(is_file($fila["logo"])){
 				unlink($fila["logo"]);
 			}
 			}
 		}else{
-			$subtitulo="El formato de $subtitulo en $subtitulo2 NO fue $subtitulo1 !!! .";
-		$check='no';
+			$subtitulo="El registro del paciente NO fue $subtitulo !!! .";
+			$check='no';
 		}
 	}
 }
 
 if (isset($_GET["mante"])){					///nivel 2
 	switch ($_GET["mante"]) {
-		case 'HC':
-    $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-    b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-    j.nom_eps
-    from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                left join eps j on (j.id_eps=b.id_eps)
-    where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar HC ingreso";
+		case 'E':
+			$sql="SELECT id_paciente, tdoc_pac, doc_pac, nom1, nom2, ape1, ape2, fnacimiento, edad, uedad, dir_pac, tel_pac, email_pac, estadocivil, genero, rh, etnia, lateralidad, profesion, religion, fotopac, estado_pac, cie, descricie, zonapac, ipsordena FROM pacientes where id_paciente=".$_GET["idpac"];
+			$color="green";
+			$boton="Actualizar";
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
 			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/hc_hospitalaria.php';
-			$subtitulo='Historia Clinica de ingreso';
+			$subtitulo='Edicion o actualizacion de datos del paciente';
 			break;
-			case 'EVO':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Evolución Medica";
+			case 'X':
+			$sql="SELECT id_paciente, tdoc_pac, doc_pac, nom1, nom2, ape1, ape2, fnacimiento, edad, uedad, dir_pac, tel_pac, email_pac, estadocivil, genero, rh, etnia, lateralidad, profesion, religion, fotopac, estado_pac, cie, descricie, zonapac, ipsordena FROM pacientes where id_paciente=".$_GET["idpac"];
+			$color="red";
+			$boton="Eliminar";
+			$atributo1=' readonly="readonly"';
+			$atributo2=' readonly="readonly"';
+			$atributo3=' disabled="disabled"';
+			$subtitulo='Eliminacion de paciente';
+			break;
+			case 'A':
+			$sql="";
+			$color="yellow";
+			$boton="Crear";
 			$atributo1=' readonly="readonly"';
 			$atributo2='';
-			$atributo3='';
+			$atributo3='disabled';
 			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/evo_medhosp.php';
-			$subtitulo='Evolución Medica';
+			$subtitulo='Creación del Paciente';
 			break;
-			case 'ADX':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Ayuda Diagnostica";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/ord_med_hosp.php';
-			$subtitulo='Solicitud de Ordenes Medicas Hospitalarias (Procedimientos y laboratorios)';
-			break;
-			case 'MED':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps,
-			k.id_sedes_ips,nom_sedes
-      from pacientes a inner join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  inner join eps j on (j.id_eps=b.id_eps)
-									inner join sedes_ips k on (k.id_sedes_ips=b.id_sedes_ips)
-
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Formula Hospitalaria";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$sede=$fila["id_sedes_ips"];
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/formula_hosp.php';
-			$subtitulo='Solicitud de Medicamentos y/o insumos';
-			break;
-			case 'RES':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
-
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Plan tratamiento";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/planto_reh.php';
-			$subtitulo='Plan Trimestral Terapia Ocupacional';
-			break;
-			case 'EPI':
-      $sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-      b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-      j.nom_eps
-      from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-                  left join eps j on (j.id_eps=b.id_eps)
-      where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Epicrisis";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/epicrisis.php';
-			$subtitulo='Plan Trimestral Terapia Ocupacional';
-			break;
-			case 'ORDVER':
-			$sql="SELECT a.tdoc_pac,a.doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,rh,email_pac,genero,lateralidad,religion,fotopac,
-			b.id_adm_hosp,fingreso_hosp,hingreso_hosp,fegreso_hosp,hegreso_hosp,
-			j.nom_eps
-			from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
-									left join eps j on (j.id_eps=b.id_eps)
-			where b.id_adm_hosp ='".$_GET["idadmhosp"]."'" ;
-			$boton="Agregar Orden Verbal";
-			$atributo1=' readonly="readonly"';
-			$atributo2='';
-			$atributo3='';
-			$date=date('Y-m-d');
-			$date1=date('H:i');
-			$form1='formularios/ordenverbal.php';
-			$subtitulo='Orden verbal';
-			break;
-
 		}
-//echo $sql;
+
 		if($sql!=""){
 			if (!$fila=$bd1->sub_fila($sql)){
-				$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"","id_sedes_ips"=>"");
+				$fila=array("id_paciente"=>"", "tdoc_pac"=>"", "doc_pac"=>"", "nom1"=>"", "nom2"=>"", "ape1"=>"", "ape2"=>"", "fnacimiento"=>"", "edad"=>"", "uedad"=>"", "dir_pac"=>"", "tel_pac"=>"", "email_pac"=>"", "estadocivil"=>"", "genero"=>"", "rh"=>"", "etnia"=>"", "lateralidad"=>"", "profesion"=>"", "religion"=>"", "fotopac"=>"", "estado_pac"=>"", "cie"=>"", "descricie"=>"", "zonapac"=>"", "ipsordena"=>"");
+
 			}
 		}else{
-				$fila=array("tdoc_pac"=>"","doc_pac"=>"","nom1"=>"","nom2"=>"","ape1"=>"","ape2"=>"","edad"=>"","fnacimiento"=>"","dir_pac"=>"","tel_pac"=>"","rh"=>"","email_pac"=>"","genero"=>"","lateralidad"=>"","religion"=>"","fotopac"=>"","id_adm_hosp"=>"","fingreso_hosp"=>"","hingreso_hosp"=>"","fegreso_hosp"=>"","hegreso_hosp"=>"", "nom_eps"=>"","id_sedes_ips"=>"");
+				$fila=array("id_paciente"=>"", "tdoc_pac"=>"", "doc_pac"=>"", "nom1"=>"", "nom2"=>"", "ape1"=>"", "ape2"=>"", "fnacimiento"=>"", "edad"=>"", "uedad"=>"", "dir_pac"=>"", "tel_pac"=>"", "email_pac"=>"", "estadocivil"=>"", "genero"=>"", "rh"=>"", "etnia"=>"", "lateralidad"=>"", "profesion"=>"", "religion"=>"", "fotopac"=>"", "estado_pac"=>"", "cie"=>"", "descricie"=>"", "zonapac"=>"", "ipsordena"=>"");
 			}
 
 		?>
+<script src = "js/sha3.js"></script>
+		<script>
+			function validar(){
+				if (document.forms[0].nom_cliente.value == ""){
+					alert("Se requiere el nombre del cliente!");
+					document.forms[0].nom_cliente.focus();				// Ubicar el cursor
+					return(false);
+				}
+			}
+		</script>
+<form action="<?php echo PROGRAMA.'?&opcion=17';?>" method="POST" enctype="multipart/form-data" onsubmit="return validar()" role="form" class="form-horizontal">
+  	<article>
+			<marquee class="unomarquee">
+				<h4><?php echo $subtitulo;?></h4>
+			</marquee>
+	</article>
+  <section class="panel panel-default">
+	<section class="panel panel-body">
 
-		<script type="text/javascript" src="/js/jquery.js"></script>
+	  <article class="col-xs-1">
+	  	<label for="">ID:</label>
+	  	<input type="text"  name="idpaci" class="form-control" value="<?php echo $fila["id_paciente"];?>"<?php echo $atributo2;?>/>
+	  </article>
+	  <article class="col-xs-3">
+	  	<label for="">Tipo documento:</label>
+	  	<select name="tdocpac" class="form-control" <?php echo atributo3; ?>>
+				<?php
+				$sql="SELECT tipo,descri_tipo from tdocumentos ORDER BY tipo DESC";
+				if($tabla=$bd1->sub_tuplas($sql)){
+					foreach ($tabla as $fila2) {
+						if ($fila["tipo"]==$fila2["tipo"]){
+							$sw=' selected="selected"';
+						}else{
+							$sw="";
+						}
+					echo '<option value="'.$fila2["tipo"].'"'.$sw.'>'.$fila2["descri_tipo"].'</option>';
+					}
+				}
+				?>
+		</select>
+	  </article>
+		<article class="col-xs-4">
+	  	<label for="">Identificación Paciente:<span class="fa fa-info-circle" data-toggle="popover" title="Digite el número de identificación sin puntos" data-content=""></span></label>
+	  	<input type="text" name="docpac" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" value="<?php echo $fila["doc_pac"];?>"<?php echo $atributo2;?>/>
+	  </article>
+	</section>
+	<section class="panel panel-body">
+		<article class="col-xs-3">
+	  	<label for="">Primer Nombre:</label>
+	  	<input type="text" value="<?php echo $fila["nom1"];?>" name="nom1" class="form-control" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"  value="<?php echo $fila["num_interno"];?>"<?php echo $atributo2;?>/>
+	  </article>
+	  <article class="col-xs-3">
+	  	<label for="">Segundo Nombre:</label>
+	  	<input type="text" value="<?php echo $fila["nom2"];?>" name="nom2"  class="form-control" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $fila["modelo"];?>"<?php echo $atributo2;?>/>
+	  </article>
+	  <article class="col-xs-3">
+	  	<label for="">Primer Apellido:</label>
+	  	<input type="text" value="<?php echo $fila["ape1"];?>" name="ape1"  class="form-control" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" value="<?php echo $fila["capacidad_pasajeros"];?>"<?php echo $atributo2;?>/>
+	  </article>
+	  <article class="col-xs-3">
+	  	<label for="">Segundo Apellido:</label>
+	  	<input type="text" value="<?php echo $fila["ape2"];?>" name="ape2" class="form-control" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"  value="<?php echo $fila["num_interno"];?>"<?php echo $atributo2;?>/>
+	  </article>
+	</section>
+	<section class="panel panel-body">
 
-		<div class="alert alert-info animated bounceInRight">		</div>
 
-		<?php include($form1);?>
+		<article class="col-xs-2">
+			<label for="">Fecha Nacimiento:</label>
+			<input type="date" class="form-control" name="user_date" id="user_date" value="<?php echo $fila["fnacimiento"];?>" />
+		</article>
+		<article class="col-xs-1">
+	  	<label for="">Edad:</label>
+    	<input type="text" class="form-control" value="<?php echo $fila["edad"];?>" name="edad" id="result"></div>
+		</article>
+		<article class="col-xs-2">
+			<label for="">Unidad edad: </label>
+			<select name="uedad" value="<?php echo $fila["uedad"];?>" class="form-control" <?php echo atributo3; ?>>
+				<?php
+				$sql="SELECT coduedad,descripuedad from uedad ORDER BY coduedad ASC";
+				if($tabla=$bd1->sub_tuplas($sql)){
+					foreach ($tabla as $fila2) {
+						if ($fila["coduedad"]==$fila2["coduedad"]){
+							$sw=' selected="selected"';
+						}else{
+							$sw="";
+						}
+					echo '<option value="'.$fila2["coduedad"].'"'.$sw.'>'.$fila2["descripuedad"].'</option>';
+					}
+				}
+				?>
+			</select>
+		</article>
+		<article class="col-xs-3">
+	  	<label for="">Dirección Paciente:</label>
+	  	<input type="text" name="dirpac"  class="form-control" value="<?php echo $fila["dir_pac"];?>"<?php echo $atributo2;?>/>
+	  </article>
+		<article class="col-xs-3">
+	  	<label for="">Teléfono Paciente:</label>
+	  	<input type="number" name="telpac"  class="form-control" value="<?php echo $fila["tel_pac"];?>"<?php echo $atributo2;?>/>
+	  </article>
+		</section>
+		<section class="panel panel-body">
+
+
+		<article class="col-xs-4">
+	  	<label for="">Email Paciente:</label>
+	  	<input type="email" name="emailpac"  class="form-control" value="<?php echo $fila["email_pac"];?>"<?php echo $atributo2;?>/>
+	  </article>
+		<article class="col-xs-2">
+			<label for="">Estado Civil: </label>
+			<select name="estadocivil" value="<?php echo $fila["estadoci"];?>" class="form-control" <?php echo atributo3; ?>>
+				<?php
+				$sql="SELECT codestadoc,descriPestadoc from estado_civil ORDER BY codestadoc ASC";
+				if($tabla=$bd1->sub_tuplas($sql)){
+					foreach ($tabla as $fila2) {
+						if ($fila["descriPestadoc"]==$fila2["descriPestadoc"]){
+							$sw=' selected="selected"';
+						}else{
+							$sw="";
+						}
+					echo '<option value="'.$fila2["descriPestadoc"].'"'.$sw.'>'.$fila2["descriPestadoc"].'</option>';
+					}
+				}
+				?>
+			</select>
+		</article>
+		<article class="col-xs-2">
+			<label for="">Genero:</label>
+			<select name="genero" value="<?php echo $fila["genero"];?>" class="form-control" <?php echo atributo3; ?>>
+				<?php
+				$sql="SELECT codsexo,descrisexo from sexo ORDER BY descrisexo ASC";
+				if($tabla=$bd1->sub_tuplas($sql)){
+					foreach ($tabla as $fila2) {
+						if ($fila["descrisexo"]==$fila2["descrisexo"]){
+							$sw=' selected="selected"';
+						}else{
+							$sw="";
+						}
+					echo '<option value="'.$fila2["descrisexo"].'"'.$sw.'>'.$fila2["descrisexo"].'</option>';
+					}
+				}
+				?>
+			</select>
+		</article>
+		<article class="col-xs-2">
+			<label for="">RH:</label>
+			<select class="form-control" name="rh">
+				<option value="O-">O-</option>
+				<option value="O+">O+</option>
+				<option value="B-">B-</option>
+				<option value="B+">B+</option>
+				<option value="A-">A-</option>
+				<option value="A+">A+</option>
+				<option value="AB-">AB-</option>
+				<option value="AB+">AB+</option>
+			</select>
+		</article>
+		<article class="col-xs-2">
+			<label for="">Etnia</label>
+			<select name="etnia" class="form-control" <?php echo atributo3; ?>>
+				<?php
+				$sql="SELECT codetnia,descripetnia from etnia ORDER BY codetnia ASC";
+				if($tabla=$bd1->sub_tuplas($sql)){
+					foreach ($tabla as $fila2) {
+						if ($fila["descripetnia"]==$fila2["descripetnia"]){
+							$sw=' selected="selected"';
+						}else{
+							$sw="";
+						}
+					echo '<option value="'.$fila2["descripetnia"].'"'.$sw.'>'.$fila2["descripetnia"].'</option>';
+					}
+				}
+				?>
+			</select>
+		</article>
+		<article class="col-xs-2">
+			<label for="">Lateralidad:</label>
+			<select class="form-control" name="lateralidad">
+				<option value="DIESTRO">DIESTRO</option>
+				<option value="SINIESTRO">SINIESTRO</option>
+				<option value="AMBIDIESTRO">AMBIDIESTRO</option>
+			</select>
+		</article>
+		<article class="col-xs-2">
+			<label for="">Profesión:</label>
+			<select name="profesion" class="form-control" <?php echo atributo3; ?>>
+				<?php
+				$sql="SELECT descripprof from profesiones ORDER BY descripprof ASC";
+				if($tabla=$bd1->sub_tuplas($sql)){
+					foreach ($tabla as $fila2) {
+						if ($fila["descripprof"]==$fila2["descripprof"]){
+							$sw=' selected="selected"';
+						}else{
+							$sw="";
+						}
+					echo '<option value="'.$fila2["descripprof"].'"'.$sw.'>'.$fila2["descripprof"].'</option>';
+					}
+				}
+				?>
+			</select>
+		</article>
+		<article class="col-xs-2">
+			<label for="">Religión:</label>
+			<select class="form-control" name="religion">
+				<option value="HINDUISMO">HINDUISMO</option>
+				<option value="CRISTIANISMO">CRISTIANISMO</option>
+				<option value="BUDISMO">BUDISMO</option>
+				<option value="JAINISMO">JAINISMO</option>
+				<option value="JUDAISMO">JUDAISMO</option>
+				<option value="ISLAMISMO">ISLAMISMO</option>
+				<option value="TAOISMO">TAOISMO</option>
+				<option value="BRAHAMISMO">BRAHAMISMO</option>
+				<option value="ATEO">ATEO</option>
+				<option value="OTRA">OTRA</option>
+			</select>
+		</article>
+		<article class="col-xs-4">
+	  	<label for="">Foto Paciente:</label>
+	  	<?php echo $fila["fotopac"];?><br/>
+			<input type="file" class="form-control" name="fotopac" <?php echo $atributo2; ?>/><br>
+	  </article>
+	  <article class="col-xs-3">
+	  	<label for="">Estado:</label>
+	  	<select name="estado_pac" class="form-control" <?php echo atributo3;?>>
+			<option value="Activo" selected="selected">Activo</option>
+			<option value="Inactivo" >Inactivo</option>
+		</select>
+	  </article>
+</section>
+	</section>
+
+	<div class="row text-center">
+	  	<input type="submit" class="btn btn-primary" name="aceptar" Value="<?php echo $boton; ?>" />
+		<input type="reset" class="btn btn-primary" Value="Reestablecer"/>
+		<input type="submit" class="btn btn-primary" name="aceptar" Value="Descartar"/>
+		<input type="hidden" class="btn btn-primary" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
+		<input type="hidden" class="btn btn-primary" name="operacion" Value="<?php echo $_GET["mante"];?>"/>
+	</div>
+  </section>
+</form>
 
 <?php
 }else{
@@ -234,118 +350,309 @@ if (isset($_GET["mante"])){					///nivel 2
 		echo $subtitulo;
 		echo '</div>';
 	}
+
 // nivel 1?>
-<section class="panel panel-default">
-<section class="panel-body">
-	<?php
-		include("consulta_rapida1.php");
-	?>
-</section>
-	<section class="panel-heading"><h4>Hospitalario Salud Mental Psiquiatria</h4></section>
+<div class="panel panel-default">
+<div class="panel-body">
 	<section class="panel-body">
-		<form>
-			<section class="col-xs-12">
-				<article class="col-xs-3">
-					<label>Filtro por identificacion:</label>
-					<input type="text" class="form-control" name="doc" placeholder="Digite Identificacion">
-				</article>
-				<div>
-					<input type="submit" name="buscar" class="btn btn-primary" value="Consultar">
-					<input type="hidden" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
-				</div>
-			</section>
-		</form>
-		<form>
-			<section class="col-xs-12">
-				<article class="col-xs-3">
-					<label>Filtro por Nombre:</label>
-					<input type="text" class="form-control" name="nom" placeholder="Digite nombre de paciente">
-				</article>
-				<div>
-					<input type="submit" name="buscar" class="btn btn-primary" value="Consultar">
-					<input type="hidden" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
-				</div>
-			</section>
-		</form>
-	</section>
-	<section class="panel-body">
-		<table class="table table-bordered table-responsive">
-		<tr>
-			<th id="th-estilo4">Herramientas</th>
-			<th id="th-estilo1">ADMISIÓN</th>
-			<th id="th-estilo1">IDENTIFICACIÓN</th>
-			<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
-			<th id="th-estilo3">FECHA INGRESO</th>
-			<th id="th-estilo3">HORA INGRESO</th>
-			<th id="th-estilo3">SERVICIO</th>
-			<th id="th-estilo3">FOTO</th>
-			<th id="th-estilo4">HC Ingreso</th>
-			<th id="th-estilo4">Evolución</th>
-			<th id="th-estilo4">Ayudas DX</th>
-			<th id="th-estilo4">Formulacion</th>
-			<th id="th-estilo4">Resumen HC</th>
-			<th id="th-estilo4">Epicrisis</th>
-		</tr>
-
-
-			<?php
-			if (isset($_REQUEST["doc"])){
-			$doc=$_REQUEST["doc"];
-			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,tipo_servicio,s.id_sedes_ips,nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.doc_pac='".$doc."' and a.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
-
-			if ($tabla=$bd1->sub_tuplas($sql)){
-				//echo $sql;
-				foreach ($tabla as $fila ) {
-					echo"<tr >	\n";
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ORDVER&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-inverse sombra_movil" ><span class="fa fa-bullhorn"></span></button></a></th>';
-					echo'<td class="text-center">'.$fila["id_adm_hosp"].'</td>';
-					echo'<td class="text-center">'.$fila["doc_pac"].'</td>';
-					echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-					echo'<td class="text-center">'.$fila["fingreso_hosp"].'</td>';
-					echo'<td class="text-center">'.$fila["hingreso_hosp"].'</td>';
-					echo'<td class="text-center">'.$fila["tipo_servicio"].'</td>';
-					echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=HC&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-stethoscope"></span></button></a></th>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion=133&idadmhosp='.$fila["id_adm_hosp"].'&servicio=Hospitalario"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-flask"></span></button></a></th>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion=139&idadmhosp='.$fila["id_adm_hosp"].'&servicio=Hospitalario"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
-					echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
-					echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=37&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-share"></span></button></a></th>';
-					echo "</tr>\n";
-				}
-			}
-		}
-		if (isset($_REQUEST["nom"])){
-			$doc=$_REQUEST["nom"];
-			$sql="SELECT p.id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac,a.id_adm_hosp,fingreso_hosp,hingreso_hosp,tipo_servicio,s.nom_sedes FROM pacientes p LEFT JOIN adm_hospitalario a on p.id_paciente=a.id_paciente LEFT JOIN sedes_ips s on a.id_sedes_ips=s.id_sedes_ips  WHERE p.nom1 LIKE '%".$doc."%' and a.estado_adm_hosp='Activo' and tipo_servicio='Hospitalario'";
-
-			if ($tabla=$bd1->sub_tuplas($sql)){
-				//echo $sql;
-				foreach ($tabla as $fila ) {
-
-					echo"<tr >	\n";
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ORDVER&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-inverse sombra_movil" ><span class="fa fa-bullhorn"></span></button></a></th>';
-					echo'<td class="text-center">'.$fila["id_adm_hosp"].'</td>';
-					echo'<td class="text-center">'.$fila["doc_pac"].'</td>';
-					echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-					echo'<td class="text-center">'.$fila["fingreso_hosp"].'</td>';
-					echo'<td class="text-center">'.$fila["hingreso_hosp"].'</td>';
-					echo'<td class="text-center">'.$fila["tipo_servicio"].'</td>';
-					echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=HC&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=EVO&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-stethoscope"></span></button></a></th>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion=133&idadmhosp='.$fila["id_adm_hosp"].'&servicio=Hospitalario"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-flask"></span></button></a></th>';
-					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion=139&idadmhosp='.$fila["id_adm_hosp"].'&servicio=Hospitalario"><button type="button" class="btn btn-success sombra_movil" ><span class="fa fa-toggle-on"></span></button></a></th>';
-					echo'<th class="text-center" ><a href="rpt_hcingreso.php?idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
-					echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=37&idadmhosp='.$fila["id_adm_hosp"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-share"></span></button></a></th>';
-					echo "</tr>\n";
-				}
-			}
-		}
-			?>
-		<table>
-	</section>
-</section>
 		<?php
+			include("consulta_rapida1.php");
+		?>
+	</section>
+	<section class="panel panel-default" class="col-xs-7">
+		<form class="navbar-form navbar-center" role="search">
+        	<section class="form-group col-xs-3">
+          		<input type="text" class="form-control" name="placa" placeholder="Digite Identificación">
+        	</section>
+        	<input type="submit" name="buscar" class="btn btn-primary" value="Consultar">
+        	<input type="hidden" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
+      	</form>
+				<form class="navbar-form navbar-center" role="search">
+							<section class="form-group col-xs-3">
+									<input type="text" class="form-control" name="nom" placeholder="Digite Nombre paciente">
+							</section>
+							<input type="submit" name="buscar" class="btn btn-primary" value="Consultar">
+							<input type="hidden" name="opcion" Value="<?php echo $_GET["opcion"];?>"/>
+				</form>
+	</section>
+<table class="table table-bordered">
+	<tr>
+		<th id="th-estilo4">Formulas</th>
+		<th colspan="3" id="th-estilo1">Edición Paciente</th>
+		<th id="th-estilo2">Cierre Admisión</th>
+		<th id="th-estilo4">ID</th>
+		<th id="th-estilo3">IDENTIFICACION</th>
+		<th id="th-estilo2">NOMBRES Y APELLIDOS</th>
+		<th id="th-estilo3">FOTO</th>
+		<th id="th-estilo4">Constancia</th>
+		<th id="th-estilo4">Familiares</th>
+		<th id="th-estilo4">Acudiente</th>
+		<th id="th-estilo4">Documentación</th>
+		<th id="th-estilo4">Admisión</th>
+
+	</tr>
+
+	<?php
+	if (isset($_REQUEST["placa"])){
+	$fecha=$_REQUEST["placa"];
+	$sql="SELECT id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac FROM pacientes WHERE doc_pac='".$fecha."'";
+
+	if ($tabla=$bd1->sub_tuplas($sql)){
+		//echo $sql;
+		foreach ($tabla as $fila ) {
+
+			echo"<tr >\n";
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=98&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
+			echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=E&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button></a></th>';
+			echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=X&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span></button></a></th>';
+			echo'<th class="text-center" ><button class="btn btn-success" data-toggle="modal"  data-target="#datospac" type="button"><span class="fa fa-eye"></span></button></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=38&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-danger" ><span class="fa fa-ban"></span></button></a></th>';
+			echo'<td class="text-center">'.$fila["id_paciente"].'</td>';
+			echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].':</strong> '.$fila["doc_pac"].'</td>';
+			echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+			echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
+			echo'<th class="text-center" ><a href="rpt_constacia.php?idadmhosp='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=25&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-users"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=26&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-user"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=27&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-text"></span></button></a></th>';
+			echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=18&idpac='.$fila["id_paciente"].'&nompac='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&foto='.$fila["fotopac"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-stethoscope"></span></button></a></th>';
+
+			echo "</tr>\n";
+		}
 	}
+}
+if (isset($_REQUEST["nom"])){
+$fecha=$_REQUEST["nom"];
+$sql="SELECT id_paciente,tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,fotopac FROM pacientes WHERE nom_completo LIKE '%".$fecha."%'";
+
+if ($tabla=$bd1->sub_tuplas($sql)){
+	//echo $sql;
+	foreach ($tabla as $fila ) {
+
+		echo"<tr >\n";
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=98&idpac='.$fila["id_paciente"].'&nompac='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&foto='.$fila["fotopac"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-flask"></span></button></a></th>';
+		echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=X&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-pencil"></span></button></a></th>';
+		echo'<th class="text-left" ><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=X&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span></button></a></th>';
+		echo'<th class="text-left" ><button class="btn btn-success" data-toggle="modal"  data-target="#datospac1" type="button"><span class="fa fa-eye"></span></button></th>';
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=38&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-danger" ><span class="fa fa-ban"></span></button></a></th>';
+		echo'<td class="text-center">'.$fila["id_paciente"].'</td>';
+		echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].':</strong> '.$fila["doc_pac"].'</td>';
+		echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+		echo'<td class="text-center"><img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
+		echo'<th class="text-center" ><a href="rpt_constacia.php?idadmhosp='.$fila["id_adm_hosp"].'&f1='.$f1.'&f2='.$f2.'&nom='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&edad='.$edad.'&cie='.$cie.'&eps='.$eps.'"><button type="button" class="btn btn-primary sombra_movil " ><span class="fa fa-file-pdf-o"></span></button></a></th>';
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=25&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-success sombra_movil " ><span class="fa fa-users"></span></button></a></th>';
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=26&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-danger sombra_movil " ><span class="fa fa-user"></span></button></a></th>';
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=27&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-warning sombra_movil " ><span class="fa fa-file-text"></span></button></a></th>';
+		echo'<th class="text-center" ><a href="'.PROGRAMA.'?opcion=18&idpac='.$fila["id_paciente"].'&nompac='.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'&foto='.$fila["fotopac"].'"><button type="button" class="btn btn-info sombra_movil " ><span class="fa fa-stethoscope"></span></button></a></th>';
+		echo "</tr>\n";
+	}
+}
+}
 	?>
+
+	<tr>
+		<th colspan="14" class="text-center"><a href="<?php echo PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=A';?>"><button type="button" class="btn btn-primary" >Nuevo Paciente</button>
+		</a></th>
+	</tr>
+</table>
+</div>
+</div>
+<section>
+<article >
+  <section class="modal fade" id="datospac" role="dialog">
+    <section class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Datos del Paciente</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+
+            </tr>
+            <?php
+            if (isset($_REQUEST["placa"])){
+
+            $id=$_REQUEST["placa"];
+
+            $sql="
+						SELECT a.tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,email_pac,genero,fotopac,
+b.id_adm_hosp,fingreso_hosp,hingreso_hosp,zona_residencia,nivel,tipo_servicio,resp_admhosp,
+c.descripestadoc,
+d.descriafiliado,
+e.descritusuario,
+f.descriocu,
+g.descripdep,
+h.descrimuni,
+i.descripuedad
+from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
+                left join estado_civil c on (c.codestadoc = a.estadocivil)
+                left join tusuario e on (e.codtusuario=b.tipo_usuario)
+                left join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
+                left join ocupacion f on (f.codocu=b.ocupacion)
+                left join departamento g on (g.coddep=b.dep_residencia)
+                left join municipios h on (h.codmuni=b.mun_residencia)
+                left join uedad i on (i.coduedad=a.uedad)
+						 where doc_pac='".$id."' limit 1";
+            if ($tabla=$bd1->sub_tuplas($sql)){
+
+              foreach ($tabla as $fila ) {
+                echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Nombre completo:</strong></td>';
+                  echo'<td colspan="3" class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].' </td>';
+									echo'<td class="text-center danger"><strong> Fecha ingreso:</strong></td>';
+                  echo'<td class="text-center">'.$fila["fingreso_hosp"].'</td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong><span class="fa fa-vcard">  </span> Documento identidad:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["tdoc_pac"].' : '.$fila["doc_pac"].' </td>';
+									echo'<td class="text-center danger"><strong> Edad::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["edad"].' '.$fila["descriupedad"].'</td>';
+									echo'<td class="text-center danger"><strong> Fecha Nacimiento:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["fnacimiento"].' </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Direccion:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["dir_pac"].' </td>';
+									echo'<td class="text-center danger"><strong><span class="fa fa-vcard-o">  </span> Telefono::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["tel_pac"].' </td>';
+									echo'<td class="text-center danger"><strong> Email:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["email_pac"].' </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Estado civil:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descripestadoc"].' </td>';
+									echo'<td class="text-center danger"><strong> Genero::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["genero"].' </td>';
+									echo'<td class="text-center danger"><strong> Foto:</strong></td>';
+                  echo'<td class="text-center"> <img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Tipo de usuario:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descritusuario"].' </td>';
+									echo'<td class="text-center danger"><strong> Tipo de Afiliacion::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descriafiliado"].' </td>';
+									echo'<td class="text-center danger"><strong> Ocupacion:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descriocu"].' </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Departamento de residencia:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descripdep"].' </td>';
+									echo'<td class="text-center danger"><strong> Municipio de residencia::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descrimuni"].' </td>';
+									echo'<td class="text-center danger"><strong> Zona de residencia:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["zona_residencia"].' </td>';
+                echo '</tr>';
+              }
+            }
+          }
+            ?>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
+</section>
+<section>
+<article >
+  <section class="modal fade" id="datospac1" role="dialog">
+    <section class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Datos del Paciente</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+
+            </tr>
+            <?php
+            if (isset($_REQUEST["nom"])){
+
+            $id=$_REQUEST["nom"];
+						$ced=$fila["doc_pac"];
+            $sql="SELECT a.tdoc_pac,doc_pac,nom1,nom2,ape1,ape2,edad,fnacimiento,dir_pac,tel_pac,email_pac,genero,fotopac,
+b.id_adm_hosp,fingreso_hosp,hingreso_hosp,zona_residencia,nivel,tipo_servicio,resp_admhosp,
+c.descripestadoc,
+d.descriafiliado,
+e.descritusuario,
+f.descriocu,
+g.descripdep,
+h.descrimuni,
+i.descripuedad
+from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
+                left join estado_civil c on (c.codestadoc = a.estadocivil)
+                left join tusuario e on (e.codtusuario=b.tipo_usuario)
+                left join tafiliado d on (d.codafiliado=b.tipo_afiliacion)
+                left join ocupacion f on (f.codocu=b.ocupacion)
+                left join departamento g on (g.coddep=b.dep_residencia)
+                left join municipios h on (h.codmuni=b.mun_residencia)
+                left join uedad i on (i.coduedad=a.uedad)
+						 where doc_pac='".$ced."' limit 1";
+						 echo $sql;
+            if ($tabla=$bd1->sub_tuplas($sql)){
+
+              foreach ($tabla as $fila ) {
+                echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Nombre completo:</strong></td>';
+                  echo'<td colspan="3" class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].' </td>';
+									echo'<td class="text-center danger"><strong> Fecha ingreso:</strong></td>';
+                  echo'<td colspan="3" class="text-center">'.$fila["fingreso_hosp"].'</td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong><span class="fa fa-vcard">  </span> Documento identidad:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["tdoc_pac"].' : '.$fila["doc_pac"].' </td>';
+									echo'<td class="text-center danger"><strong> Edad::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["edad"].' '.$fila["descriupedad"].'</td>';
+									echo'<td class="text-center danger"><strong> Fecha Nacimiento:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["fnacimiento"].' </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Direccion:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["dir_pac"].' </td>';
+									echo'<td class="text-center danger"><strong><span class="fa fa-vcard-o">  </span> Telefono::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["tel_pac"].' </td>';
+									echo'<td class="text-center danger"><strong> Email:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["email_pac"].' </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Estado civil:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descripestadoc"].' </td>';
+									echo'<td class="text-center danger"><strong> Genero::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["genero"].' </td>';
+									echo'<td class="text-center danger"><strong> Foto:</strong></td>';
+                  echo'<td class="text-center"> <img src="'.$fila["fotopac"].'"alt ="foto" class="image_login cursor1" data-toggle="modal" data-target="#modalpac"> </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Tipo de usuario:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descritusuario"].' </td>';
+									echo'<td class="text-center danger"><strong> Tipo de Afiliacion::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descriafiliado"].' </td>';
+									echo'<td class="text-center danger"><strong> Ocupacion:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descriocu"].' </td>';
+                echo '</tr>';
+								echo"<tr >\n";
+                  echo'<td class="text-center danger"><strong> Departamento de residencia:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descripdep"].' </td>';
+									echo'<td class="text-center danger"><strong> Municipio de residencia::</strong></td>';
+                  echo'<td class="text-center"> '.$fila["descrimuni"].' </td>';
+									echo'<td class="text-center danger"><strong> Zona de residencia:</strong></td>';
+                  echo'<td class="text-center"> '.$fila["zona_residencia"].' </td>';
+                echo '</tr>';
+              }
+            }
+          }
+            ?>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+</article>
+</section>
+	<?php
+}
+?>
