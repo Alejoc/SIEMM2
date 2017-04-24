@@ -18,19 +18,7 @@ $subtitulo="";
 				}
 			}
 			switch ($_POST["operacion"]) {
-			case 'E':
-				$nom_completo=$_POST['nom1'].' '.$_POST['nom2'].' '.$_POST['ape1'].' '.$_POST['ape2'];
-				$sql="UPDATE pacientes SET tdoc_pac='".$_POST["tdocpac"]."',doc_pac='".$_POST["docpac"]."',nom1='".$_POST["nom1"]."',nom2='".$_POST["nom2"]."',ape1='".$_POST["ape1"]."',ape2='".$_POST["ape2"]."',fnacimiento='".$_POST["user_date"]."',edad='".$_POST["edad"]."',uedad='".$_POST["uedad"]."',dir_pac='".$_POST["dirpac"]."',tel_pac='".$_POST["telpac"]."',email_pac='".$_POST["emailpac"]."',estadocivil='".$_POST["estadocivil"]."',genero='".$_POST["genero"]."',rh='".$_POST["rh"]."',etnia='".$_POST["etnia"]."',lateralidad='".$_POST["lateralidad"]."',profesion='".$_POST["profesion"]."',religion='".$_POST["religion"]."',estado_pac='".$_POST["estado_pac"]."', nom_completo='$nom_completo' where id_paciente=".$_POST["idpaci"];
-				$subtitulo="Actualizado";
-			break;
-			case 'X':
-				$sql="SELECT logo from cliente where id=".$_POST["idcli"];
-				if (!$fila=$bd1->sub_fila($sql)){
-					$fila=array("logo"=> "");
-				}
-				$sql="DELETE FROM cliente WHERE id_cliente=".$_POST["idcli"];
-				$subtitulo="Eliminado";
-			break;
+		
 			case 'PRES':
 				$sql="INSERT INTO presentacion_dom (id_paciente,fpresentacion, tipo_paciente, ips_ordena, medico_ordena, dx_presentacion, estado_presentacion) VALUES
 				('".$_POST["idpaci"]."','".$_POST["fpresentacion"]."','".$_POST["tipo_paciente"]."','".$_POST["ips_ordena"]."','".$_POST["medico_ordena"]."','".$_POST["dx"]."','Presentado')";
