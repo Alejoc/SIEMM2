@@ -21,7 +21,7 @@ if (!isset($_SESSION["AUT"]["id_user"])){
 <html>
  <head>
  	<meta charset="UTF-8">
-	<link href="css/stylish-portfolio.css" rel="stylesheet">
+	
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/font-awesome.css">
