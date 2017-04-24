@@ -505,7 +505,7 @@ from pacientes a left join adm_hospitalario b on a.id_paciente=b.id_paciente
       left join hc_sm_pv k on (k.id_adm_hosp=b.id_adm_hosp)
       left join user l on (l.id_user=k.id_user)
 where b.id_adm_hosp ='".$_GET["idadmhosp"]."' ";
-echo $sql;
+//echo $sql;
 $rs = mysql_query($sql);
 if (mysql_num_rows($rs)>0){
     $i=0;
