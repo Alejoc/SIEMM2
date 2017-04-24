@@ -83,7 +83,7 @@
                 <?php
                 if (isset($_REQUEST["idadmhosp"])){
                 $id=$_REQUEST["idadmhosp"];
-                $sql="SELECT a.id_adm_hosp,estado_adm_hosp,n.freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,his_personal,his_familiar,perso_premorbida,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,estado_general,tad,tas,tam,fr,fc,so,peso,talla,temperatura,imc,cabcuello,torax,ext,abdomen,neurologico,genitourinario,examen_mental,analisis,finalidad,causa_externa,plantratamiento FROM adm_hospitalario a LEFT JOIN hc_hospitalario n on a.id_adm_hosp=n.id_adm_hosp where a.id_adm_hosp='".$id."'";
+                $sql="SELECT a.id_adm_hosp,estado_adm_hosp,n.freg_hchosp,hreg_hchosp,motivo_consulta,enfer_actual,his_personal,his_familiar,perso_premorbida,ant_alergicos,ant_patologico,ant_quirurgico,ant_toxicologico,ant_farmaco,ant_gineco,ant_psiquiatrico,ant_hospitalario,ant_traumatologico,ant_familiar,otros_ant,estado_general,tad,tas,tam,fr,fc,so,peso,talla,temperatura,imc,cabcuello,torax,ext,abdomen,neurologico,genitourinario,examen_mental,analisis,finalidad,causa_externa,plantratamiento,ddxp,tdxp,ddx1,tdx1,ddx2,tdx2 FROM adm_hospitalario a LEFT JOIN hc_hospitalario n on a.id_adm_hosp=n.id_adm_hosp where a.id_adm_hosp='".$id."'";
 
                 if ($tabla=$bd1->sub_tuplas($sql)){
                   //echo $sql;
@@ -234,6 +234,22 @@
                     echo "<tr>";
                     echo'<td colspan="5" class="text-center">'.$fila["examen_mental"].'</td>';
                     echo'<td colspan="5" class="text-left">'.$fila["analisis"].'</td>';
+                    echo "</tr>\n";
+                    echo "<tr>";
+                    echo'<td class="text-center info" >Diagnostico Principal:</td>';
+                    echo'<td colspan="9" class="text-center">'.$fila["ddxp"].' -- '.$fila["tdxp"].'</td>';
+                    echo "</tr>\n";
+                    echo "<tr>";
+                    echo'<td class="text-center info" >Diagnostico Relacionado 1:</td>';
+                    echo'<td colspan="9" class="text-center">'.$fila["ddx1"].' -- '.$fila["tdx1"].'</td>';
+                    echo "</tr>\n";
+                    echo "<tr>";
+                    echo'<td class="text-center info" >Diagnostico Relacionado 2:</td>';
+                    echo'<td colspan="9" class="text-center">'.$fila["ddx2"].' -- '.$fila["tdx2"].'</td>';
+                    echo "</tr>\n";
+                    echo "<tr>";
+                    echo'<td class="text-center info" >Diagnostico Relacionado 3:</td>';
+                    echo'<td colspan="9" class="text-center">'.$fila["ddx3"].' -- '.$fila["tdx3"].'</td>';
                     echo "</tr>\n";
                     echo '<tr>';
                     echo'<td colspan="10" class="text-center info">Plan tratamiento</td>';

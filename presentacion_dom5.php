@@ -82,7 +82,7 @@ if (isset($_GET["mante"])){					///nivel 2
 			$atributo3='disabled';
 			$date=date('Y-m-d');
 			$return=138;
-			$form1='formulariosDOM/add_paciente1.php'
+			$form1='formulariosDOM/add_paciente1.php';
 			$subtitulo='Registro datos básicos pacientes';
 			break;
 		}
@@ -133,7 +133,7 @@ if (isset($_GET["mante"])){					///nivel 2
 // nivel 1?>
 <div class="panel panel-default">
 	<section class="panel-heading">
-		<h1>Presentacion del paciente en servicio domiciliario</h1>
+		<h3>Presentacion del paciente en servicio domiciliario</h3>
 	</section>
 <div class="panel-body">
 	<section class="panel panel-default" class="col-xs-7">
@@ -153,6 +153,7 @@ if (isset($_GET["mante"])){					///nivel 2
 				</form>
 	</section>
 <table class="table table-bordered">
+
 	<tr>
 		<th id="th-estilo4">ID</th>
 		<th id="th-estilo3">IDENTIFICACION</th>
