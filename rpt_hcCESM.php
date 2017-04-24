@@ -202,7 +202,7 @@ class MYPDF extends TCPDF {
       $this->SetFont('helvetica', 'B', 8);
       $this->Cell(22,5,'Fecha Registro:',1,0,'C',1);
       $this->SetFont('helvetica', '',8);
-      $this->Cell(32,5, utf8_encode($row['freg_hchosp'].' | '.$row['hreg_hchosp']),1,0,'C');
+      $this->Cell(32,5, utf8_encode($row['freg_hcsm_pv'].' | '.$row['hreg_hcsm_pv ']),1,0,'C');
       $this->Ln();
       $this->SetFont('helvetica', 'B', 9);
       $this->Cell(180,0,'ANAMNESIS',1,0,'C',1);
