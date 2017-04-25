@@ -18,7 +18,7 @@ $subtitulo="";
 				}
 			}
 			switch ($_POST["operacion"]) {
-		
+
 			case 'PRES':
 				$sql="INSERT INTO presentacion_dom (id_paciente,fpresentacion, tipo_paciente, ips_ordena, medico_ordena, dx_presentacion, estado_presentacion) VALUES
 				('".$_POST["idpaci"]."','".$_POST["fpresentacion"]."','".$_POST["tipo_paciente"]."','".$_POST["ips_ordena"]."','".$_POST["medico_ordena"]."','".$_POST["dx"]."','Presentado')";
@@ -210,7 +210,9 @@ if ($tabla=$bd1->sub_tuplas($sql)){
 				<th class="text-center danger">IDENTIFICACION</th>
 				<th class="text-center danger">NOMBRE PACIENTE</th>
 				<th class="text-center danger">UBICACION</th>
-				<th class="text-center danger">ACCION</th>
+				<th class="text-center danger"><span class="fa fa-heartbeat"></span> Procedimientos</th>
+				<th class="text-center danger"><span class="fa fa-user"></span> Profesionales</th>
+				<th class="text-center danger"><span class="fa fa-check"></span> Aceptación</th>
 			</tr>
 		</thead>
 
@@ -222,13 +224,39 @@ if ($tabla=$bd1->sub_tuplas($sql)){
 		if ($tabla=$bd1->sub_tuplas($sql)){
 			//echo $sql;
 			foreach ($tabla as $fila ) {
-				echo"<tr >\n";
-				echo'<td class="text-center">'.$fila["id_paciente"].'</td>';
-				echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].':</strong> '.$fila["doc_pac"].'</td>';
-				echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
-				echo'<td class="text-center">'.$fila["dir_pac"].', '.$fila["barrio"].','.$fila["localidad"].', '.$fila["ciudad"].'</td>';
-				echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=PRES&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
-				echo "</tr>\n";
+				if ($fila['estado_presentacion']=='Presentado') {
+					echo"<tr >\n";
+					echo'<td class="text-center">'.$fila["id_paciente"].'</td>';
+					echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].':</strong> '.$fila["doc_pac"].'</td>';
+					echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+					echo'<td class="text-center">'.$fila["dir_pac"].', '.$fila["barrio"].','.$fila["localidad"].', '.$fila["ciudad"].'</td>';
+					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=PROC&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
+					echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
+					echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
+					echo "</tr>\n";
+				}
+				if ($fila['estado_presentacion']=='procedimientos') {
+					echo"<tr >\n";
+					echo'<td class="text-center">'.$fila["id_paciente"].'</td>';
+					echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].':</strong> '.$fila["doc_pac"].'</td>';
+					echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+					echo'<td class="text-center">'.$fila["dir_pac"].', '.$fila["barrio"].','.$fila["localidad"].', '.$fila["ciudad"].'</td>';
+					echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
+					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=PROF&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
+					echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
+					echo "</tr>\n";
+				}
+				if ($fila['estado_presentacion']=='profesional') {
+					echo"<tr >\n";
+					echo'<td class="text-center">'.$fila["id_paciente"].'</td>';
+					echo'<td class="text-center"><strong>'.$fila["tdoc_pac"].':</strong> '.$fila["doc_pac"].'</td>';
+					echo'<td class="text-center">'.$fila["nom1"].' '.$fila["nom2"].' '.$fila["ape1"].' '.$fila["ape2"].'</td>';
+					echo'<td class="text-center">'.$fila["dir_pac"].', '.$fila["barrio"].','.$fila["localidad"].', '.$fila["ciudad"].'</td>';
+					echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
+					echo'<th class="text-center"><span class="fa fa-ban"></span></th>';
+					echo'<th class="text-center"><a href="'.PROGRAMA.'?opcion='.$_REQUEST["opcion"].'&mante=ACEP&idpac='.$fila["id_paciente"].'"><button type="button" class="btn btn-primary sombra_movil" ><span class="fa fa-plus-circle"></span></button></a></th>';
+					echo "</tr>\n";
+				}
 			}
 		}
 
